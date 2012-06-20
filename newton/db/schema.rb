@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120620203812) do
     t.integer  "business_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "original_id"
+    t.string   "original_id"
   end
 
   create_table "original_categories", :force => true do |t|

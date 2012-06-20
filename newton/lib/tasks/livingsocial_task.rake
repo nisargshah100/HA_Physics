@@ -14,17 +14,21 @@ class LivingSocial
   end
 
   def self.save_entry(entry)
-    deal = Deal.where(:livingsocial_id => entry.id).first
+    deal = Deal.where(:original_id => entry.id).first
     if not deal
-      deal = Deal.new(:livingsocial_id => entry.id)
-      deal.attributes = entry.as_json
-      deal.save()
-      puts "Deal saved! #{deal.title}"
+      if entry.is_valid?
+        deal = Deal.new(:original_id => entry.id)
+        deal.attributes = entry.as_json
+        deal.save()
+        puts "Deal saved! #{deal.title}"
+      end
     end
   end
 end
 
 class LivingSocialEntryParser
+  attr_accessor :entry
+
   def initialize(entry)
     @entry ||= entry
   end
@@ -39,6 +43,15 @@ class LivingSocialEntryParser
 
   def date_added
     DateTime.parse(@entry.search('published').first.text)
+  end
+
+  def country
+    country_row = @entry.search('ls|country').first
+    country_row.text if country_row
+  end
+
+  def deal_type
+    @entry.search('deal_type').first.text
   end
 
   def end_date
@@ -67,12 +80,31 @@ class LivingSocialEntryParser
     original_url
   end
 
+  def get_categories
+    categories = @entry.search("categories").first.text
+    @categories ||= categories.strip.split(",") if categories
+  end
+
+  def category
+    get_categories
+    @categories[0] if @categories.length >= 1
+  end
+
+  def subcategory
+    get_categories
+    @categories[1] if @categories.length >= 2
+  end
+
   def image_url
     @entry.search('image_url').first.text
   end
 
   def source
     @entry.search('author/name').first.text
+  end
+
+  def is_valid?
+    country == 'United States'
   end
 
   def as_json(*params)
@@ -86,6 +118,7 @@ class LivingSocialEntryParser
       :original_url => original_url,
       :affiliate_url => affiliate_url,
       :image_url => image_url,
+      # :category => category,
       :source => source
     }
   end
