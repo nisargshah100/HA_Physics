@@ -55,8 +55,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.18)
+    money (5.0.0)
+      i18n (~> 0.4)
+      json
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    nokogiri (1.5.4)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -123,6 +127,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   faraday
   jquery-rails
+  money
+  nokogiri
   rails (= 3.2.6)
   rspec-rails
   sass-rails (~> 3.2.3)

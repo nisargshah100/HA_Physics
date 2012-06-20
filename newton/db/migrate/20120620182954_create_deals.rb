@@ -1,6 +1,8 @@
 class CreateDeals < ActiveRecord::Migration
   def change
     create_table :deals do |t|
+      t.string :livingsocial_id
+      t.string :groupon_id
       t.string :source
       t.datetime :date_added
       t.datetime :end_date
