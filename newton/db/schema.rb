@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620183734) do
+ActiveRecord::Schema.define(:version => 20120620203812) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(:version => 20120620183734) do
   end
 
   create_table "deals", :force => true do |t|
-    t.string   "livingsocial_id"
-    t.string   "groupon_id"
     t.string   "source"
     t.datetime "date_added"
     t.datetime "end_date"
@@ -35,8 +33,9 @@ ActiveRecord::Schema.define(:version => 20120620183734) do
     t.integer  "division_id"
     t.integer  "category_id"
     t.integer  "business_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "original_id"
   end
 
   create_table "original_categories", :force => true do |t|
