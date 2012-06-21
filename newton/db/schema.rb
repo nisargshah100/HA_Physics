@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(:version => 20120620214011) do
     t.integer  "division_id"
     t.integer  "category_id"
     t.integer  "business_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "original_id"
+    t.string   "division_name"
+    t.string   "division_latlon", :limit => nil
   end
 
   create_table "groupon_divisions", :force => true do |t|

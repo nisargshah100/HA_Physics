@@ -1,3 +1,7 @@
-class OriginalDivision < ActiveRecord::Base
-  attr_accessible :division_id, :name, :source
+class OriginalDivision
+  include Mongoid::Document
+  
+  field :division_id
+  field :name
+  field :source
 end

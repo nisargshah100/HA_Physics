@@ -1,3 +1,4 @@
-class Category < ActiveRecord::Base
-  # attr_accessible :title, :body
+class Category
+  include Mongoid::Document
+  
 end

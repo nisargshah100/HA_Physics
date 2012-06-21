@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class LivingSocial
   def self.get_data
-    data = File.open('db/sample_data/cities.atom.txt', 'r').read
+    data = File.open('db/sample_data/cities.atom', 'r').read
   end
 
   def self.fetch
@@ -46,8 +46,7 @@ class LivingSocialEntryParser
   end
 
   def country
-    country_row = @entry.search('ls|country').first
-    country_row.text if country_row
+    @entry.search('country_code').first.text
   end
 
   def deal_type
@@ -103,8 +102,17 @@ class LivingSocialEntryParser
     @entry.search('author/name').first.text
   end
 
+  def division_name
+    @entry.search('market_name').first.text
+  end
+
+  def division_latlon
+    latlon = @entry.search('georss|point').first.text.split(" ")
+    [latlon[0].to_f, latlon[1].to_f]
+  end
+
   def is_valid?
-    country == 'United States'
+    country == 'US' || country == '1'
   end
 
   def as_json(*params)
@@ -118,6 +126,8 @@ class LivingSocialEntryParser
       :original_url => original_url,
       :affiliate_url => affiliate_url,
       :image_url => image_url,
+      :division_name => division_name,
+      :division_latlon => division_latlon,
       # :category => category,
       :source => source
     }
@@ -125,7 +135,7 @@ class LivingSocialEntryParser
 end
 
 namespace :ls do
-  task :fetch => :environment do
+  task :fetch_deals => :environment do
     LivingSocial.fetch
   end
 end

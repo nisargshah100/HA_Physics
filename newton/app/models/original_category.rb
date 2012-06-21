@@ -1,3 +1,6 @@
 class OriginalCategory < ActiveRecord::Base
-  attr_accessible :category_id, :name, :source
+  include Mongoid::Document
+  
+  field :name
+  field :source
 end
