@@ -1,0 +1,32 @@
+<h1>Profile</h1>
+<div class="profile_img">
+  <img class="profile_img" src=<%= "#{@user.image}" %>></img>
+</div>
+
+<div>
+  <%= form_for @event, :html => {:class => "well form-horizontal"} do |f| %>
+    
+    <div class="control-group">
+      <%= label_tag "Link to deal", nil, :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :url %><br />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description_short, "Let's go...", {:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :description_short %><br />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description_long, "And by the way...",{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :description_long %><br />
+      </div>
+    </div>
+
+    <%= f.submit 'Post Date', :class => 'btn btn-primary' %>
+  <% end %>
+</div>
