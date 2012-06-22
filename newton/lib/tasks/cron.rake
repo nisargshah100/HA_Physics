@@ -6,5 +6,7 @@ namespace :cron do
     `rake ls:fetch_deals > log/livingsocial_log.txt`
     `rake groupon:fetch_divisions > log/groupon_log.txt`
     `rake groupon:fetch_deals > log/groupon_log.txt`
+    sleep(1800)
+    `rake cron:run`
   end
 end
