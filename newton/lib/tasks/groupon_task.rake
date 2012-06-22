@@ -4,9 +4,11 @@ require 'groupon_deal.rb'
 require 'groupon_deal_parser.rb'
 require 'groupon_division_handler.rb'
 require 'groupon_division_parser.rb'
+require 'date'
 
 namespace :groupon do
   task :fetch_deals => :environment do
+    puts "GROUPON FETCH DEALS - #{DateTime.now}"
     GROUPON_API_KEY = "8e88a66c6469ebf827c44e42b27d065d556fa1f7"
     # DIVISION_IDS = ["boston", "chicago", "los-angeles", "new-york", "san-francisco", "washington-dc"]
     # DIVISION_IDS = ["boston"]
@@ -21,6 +23,7 @@ namespace :groupon do
   end
 
   task :fetch_divisions => :environment do
+    puts "GROUPON FETCH DIVISIONS - #{DateTime.now}"
     GROUPON_API_KEY = "8e88a66c6469ebf827c44e42b27d065d556fa1f7"
     groupon_client = GrouponDivisionHandler.new(GROUPON_API_KEY)
     groupon_client.fetch_all
