@@ -8,8 +8,9 @@ require 'groupon_division_parser.rb'
 namespace :groupon do
   task :fetch_deals => :environment do
     GROUPON_API_KEY = "8e88a66c6469ebf827c44e42b27d065d556fa1f7"
-    DIVISION_IDS = ["boston", "chicago", "los-angeles", "new-york", "san-francisco", "washington-dc"]
-    DIVISION_IDS = ["boston"]
+    # DIVISION_IDS = ["boston", "chicago", "los-angeles", "new-york", "san-francisco", "washington-dc"]
+    # DIVISION_IDS = ["boston"]
+    DIVISION_IDS = GrouponDivision.all.map { |gd| gd.division_id }
 
     groupon_client = GrouponDeal.new(GROUPON_API_KEY)
     # DIVISION_IDS = GrouponDivision.pluck("division_id")
