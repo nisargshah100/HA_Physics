@@ -1,5 +1,8 @@
 class Deal
   include Mongoid::Document
+  include Mongoid::Timestamps
+  
+  has_many :purchases
 
   field :original_id, type: String
   field :date_added, type: DateTime

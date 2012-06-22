@@ -15,6 +15,10 @@ class GrouponDealParser
     DateTime.parse(@entry['startAt'])
   end
 
+  def quantity 
+    @entry['soldQuantity']
+  end
+
   def end_date
     DateTime.parse(@entry['endAt'])
   end

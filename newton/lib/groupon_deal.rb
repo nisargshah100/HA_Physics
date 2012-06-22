@@ -34,5 +34,7 @@ class GrouponDeal
       deal.save()
       puts "Deal saved! #{deal.title}"
     end
+
+    deal.purchases.create(:quantity => entry.quantity)
   end
 end

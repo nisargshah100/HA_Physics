@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class LivingSocial
   def self.get_data
-    data = File.open('db/sample_data/cities.atom', 'r').read
+    data = File.open('db/sample_data/cities_4.txt', 'r').read
   end
 
   def self.fetch
@@ -23,6 +23,8 @@ class LivingSocial
         puts "Deal saved! #{deal.title}"
       end
     end
+
+    deal.purchases.create(:quantity => entry.quantity) if deal
   end
 end
 
@@ -34,7 +36,11 @@ class LivingSocialEntryParser
   end
 
   def id
-    @entry.search('id').first.text
+    idd = @entry.search('id').first.text.scan(/\/\d+/).join("")[1..-1]
+  end
+
+  def quantity
+    @entry.search('orders_count').first.text
   end
 
   def title
