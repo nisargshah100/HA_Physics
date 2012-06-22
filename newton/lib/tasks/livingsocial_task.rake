@@ -1,12 +1,17 @@
 require 'nokogiri'
+require 'open-uri'
+require 'date'
 
 class LivingSocial
   def self.get_data
-    data = File.open('db/sample_data/cities_4.txt', 'r').read
+    puts 'Downloading...'
+    data = open('http://livingsocial.com/cities.atom', 'r').read
   end
 
   def self.fetch
     data = Nokogiri::XML.parse(get_data)
+    puts 'Parsing...'
+
     data.search('entry').each do |entry|
       entry = LivingSocialEntryParser.new(entry)
       save_entry(entry)
@@ -142,6 +147,7 @@ end
 
 namespace :ls do
   task :fetch_deals => :environment do
+    puts "LIVINGSOCIAL - #{DateTime.now}"
     LivingSocial.fetch
   end
 end
