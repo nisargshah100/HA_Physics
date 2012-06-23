@@ -71,9 +71,9 @@
         1,
         null,
         1,
-        2,
-        2,
-        2,
+        0,
+        0,
+        0,
         null,
         null,
         0,
@@ -87,8 +87,8 @@
         1,
         null,
         1,
-        2,
-        2,
+        0,
+        0,
         0,
         null,
         null,
@@ -105,45 +105,16 @@
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/events_controller.rb": [
         1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/pages_controller.rb": [
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/users/omniauth_callbacks_controller.rb": [
-        1,
-        1,
-        null,
-        0,
         null,
         0,
         0,
         0,
-        null,
         0,
-        null,
-        null,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/users_controller.rb": [
-        1,
-        1,
         0,
-        null,
-        0,
-        null,
-        null,
-        null,
         null,
         null
       ]
     },
-    "timestamp": 1340392792
+    "timestamp": 1340395293
   }
 }

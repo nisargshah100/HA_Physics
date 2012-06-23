@@ -5,13 +5,14 @@
 
 <div>
   <%= form_for @event, :html => {:class => "well form-horizontal"} do |f| %>
-    
-    <div class="control-group">
-      <%= label_tag "Link to deal", nil, :class => "control-label" %>
-      <div class="controls">
-        <%= text_field_tag :url %><br />
+    <%= fields_for :deal do |d| %>  
+      <div class="control-group">
+        <%= d.label "Link to deal", nil, :class => "control-label" %>
+        <div class="controls">
+          <%= d.text_field :url %><br />
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="control-group">
       <%= f.label :description_short, "Let's go...", {:class => "control-label"} %>

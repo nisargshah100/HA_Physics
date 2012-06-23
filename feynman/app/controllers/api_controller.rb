@@ -4,7 +4,7 @@ class ApiController < ActionController::Base
   private
 
   def authenticate
-    @current_user = User.find_by_authentication_token(params[:authentication_token])
+    @current_user = User.find_by_authentication_token(params[:token])
     unless @current_user
       render :json => "User cannot be authenticated.", :status => :unauthorized
     end

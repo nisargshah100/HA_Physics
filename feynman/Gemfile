@@ -10,6 +10,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'feynman_client', :require => 'feynman', :path => '../../feynman_gem'
 
 # Gems used only for assets and not required
 # in production environments by default.
