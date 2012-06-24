@@ -16,4 +16,5 @@ end
 gem 'jquery-rails'
 gem 'nokogiri'
 gem 'money'
+gem 'kaminari'
 gem 'whenever', :require => false
