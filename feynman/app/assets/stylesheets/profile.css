@@ -1,0 +1,18 @@
+div.profile_img {
+  overflow: hidden;
+  height: 160px;
+  width: 160px;"
+}
+
+img.profile_img {
+  width: 160px;
+}
+
+.bubbles{
+  /* Bubbles by sampath_roots 31-40*/
+  color: #8DD5F2;
+  color: #06ADBF;
+  color: #7ABF49;
+  color: #BDD982;
+  color: #8C0404;
+}

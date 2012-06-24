@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Feynman" %></title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <script type="text/javascript" src="https://use.typekit.com/txe0iyw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render "layouts/header" %>
+    <div class="container-fluid">
+      <div class="content">
+        <div id="flash"></div>
+        <%= content_tag "div", class: "info", data: {location: @location} do %><% end %>
+        <%= yield %>
+      </div><!--/content-->
+      <!--<%= render "layouts/footer" %>-->
+    </div> <!-- /container -->
+  </body>
+</html>
