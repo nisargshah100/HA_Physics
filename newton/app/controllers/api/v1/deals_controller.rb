@@ -1,6 +1,6 @@
 class Api::V1::DealsController < ApiController
   def index
-    if deals = Deal.all
+    if deals = Deal.by_params(params).page(params[:page]).per(params[:limit])
       render :json => deals, status: :ok
     else
       render status: :not_found

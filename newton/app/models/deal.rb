@@ -1,6 +1,7 @@
 class Deal
   include Mongoid::Document
   include Mongoid::Timestamps
+  paginates_per 10
   
   has_many :purchases
 
@@ -23,4 +24,33 @@ class Deal
   index(
     [[:division_latlon, Mongo::GEO2D]], background: true
   )
+
+  def self.by_params(params)
+    deals = Deal
+    deals = by_attributes(deals, params)
+    deals = by_location(deals, params)
+    deals
+  end
+
+  def self.by_attributes(deals, params)
+    attributes = Deal.first.attributes.map { |k,v| k }
+    attributes.each do |attr|
+      deals = deals.where(attr.to_sym => /#{params[attr.to_sym]}/) if params[attr.to_sym]
+    end
+    deals
+  end
+
+  def self.by_location(deals, params)
+    if params[:near]
+      near = params[:near].split(",").map { |loc| loc.to_f }
+      distance = params[:distance].to_f || 30
+
+      deals = deals.where(:division_latlon => {
+        '$near' => near, 
+        '$maxDistance' => distance 
+      })
+    end
+
+    deals
+  end
 end
