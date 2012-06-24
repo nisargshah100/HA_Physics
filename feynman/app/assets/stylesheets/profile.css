@@ -8,11 +8,34 @@ img.profile_img {
   width: 160px;
 }
 
-.bubbles{
+div.profile_img_thumb {
+  margin-left: 0px;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;"
+}
+
+img.profile_img_thumb {
+  width: 100px;
+}
+
+.bubbles {
   /* Bubbles by sampath_roots 31-40*/
   color: #8DD5F2;
   color: #06ADBF;
   color: #7ABF49;
   color: #BDD982;
   color: #8C0404;
+}
+
+.event {
+  background: #EEE;
+  padding: 10px;
+  margin: 10px;
+}
+
+.suggestion {
+  color: #999;
+  font-style: italic;
+  font-size: 1em;
 }

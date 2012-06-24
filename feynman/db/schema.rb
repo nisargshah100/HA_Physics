@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622185104) do
+ActiveRecord::Schema.define(:version => 20120624222003) do
 
   create_table "events", :force => true do |t|
     t.string   "source"
@@ -23,6 +23,33 @@ ActiveRecord::Schema.define(:version => 20120622185104) do
     t.datetime "updated_at",        :null => false
     t.string   "description_short"
     t.string   "description_long"
+  end
+
+  create_table "user_details", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "birthday"
+    t.string   "image"
+    t.string   "zipcode"
+    t.string   "display_name"
+    t.string   "gender"
+    t.string   "gender_preference"
+    t.integer  "age_range_lower"
+    t.integer  "age_range_upper"
+    t.string   "employment"
+    t.string   "education"
+    t.string   "faith"
+    t.string   "faith_level"
+    t.string   "political_affiliation"
+    t.string   "political_affiliation_level"
+    t.string   "race"
+    t.string   "children_preference"
+    t.string   "height_feet"
+    t.string   "height_inches"
+    t.integer  "exercise_level"
+    t.integer  "drinking_level"
+    t.integer  "smoking_level"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -40,12 +67,8 @@ ActiveRecord::Schema.define(:version => 20120622185104) do
     t.datetime "updated_at",                             :null => false
     t.string   "uid"
     t.string   "provider"
-    t.string   "name"
-    t.string   "image"
-    t.string   "location"
     t.string   "oauth_access_token"
     t.string   "authentication_token"
-    t.string   "display_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

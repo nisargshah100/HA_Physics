@@ -7,17 +7,17 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="/">daily<span>dates</span></a>
-      <div class="container nav-collapse">
-        
+      <div class="container nav-collapse">        
         <ul class="nav">
+          <li><%= link_to "Search Dates", events_path %></li>
+          <li><%= link_to "Date Ideas", events_path %></li>
           <% if current_user %>
-            <li><%= link_to "Profile", profile_path(current_user.id) %></li>
             <li class="dropdown"><%= render "layouts/nav_login" %></li>
           <% else %>
             <li><%= link_to "Sign up", new_user_registration_path %></li>
           <% end %>
+          <li class="dropdown" id="menu1">
         </ul>
-
       </div><!--/.nav-collapse -->
     </div>
   </div>
