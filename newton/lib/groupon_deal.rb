@@ -18,7 +18,7 @@ class GrouponDeal
 
 
     entries = get_entries(data)
-    puts "#{entries.size} NUMBER OF DEALS"
+    # puts "#{entries.size} NUMBER OF DEALS"
     entries.each do |entry|
       entry = GrouponDealParser.new(entry)
       save_entry(entry)
