@@ -2,10 +2,48 @@ require 'nokogiri'
 require 'open-uri'
 require 'date'
 
+CATEGORIES = {
+  # LS CATEGORIES
+  "Full-Service Restaurant" => "Restaurants",
+  "Services" => "Professional Services",
+  "Beauty/Health" => "Beauty & Spas",
+  "Entertainment" => "Arts and Entertainment",
+  "Retail" => "Shopping",
+  "Fitness/Active" => "Health & Fitness",
+  "Travel" => "Travel",
+  "QSR/Fast Casual" => "Food & Drink",
+  "Food/Drink" => "Food & Drink",
+  nil => "",
+  "Other (Beauty/Health)" => "Beauty & Spas", 
+  "Visual Correction" => "",
+  "Other (Fitness/Active)" => "",
+  "Sporting Goods" => "",
+  # # GROUPON CATEGORIES
+  # "Arts and Entertainment" => ,
+  # "Automotive" => ,
+  # "Beauty & Spas" => ,
+  # "Education" => ,
+  # "Financial Services" => ,
+  # "Food & Drink" => ,
+  # "Health & Fitness" => ,
+  # "Home Services " => ,
+  # "Legal Services" => ,
+  # "Nightlife" => ,
+  # "Pets" => ,
+  # "Professional Services" => ,
+  # "Public Services & Government" => ,
+  # "Real Estate" => ,
+  # "Religious Organizations" => ,
+  # "Restaurants" => ,
+  # "Shopping" => ,
+  # "Travel" => ,
+}
+
 class LivingSocial
   def self.get_data
     puts 'Downloading...'
-    data = open('http://livingsocial.com/cities.atom', 'r').read
+    # data = open('http://livingsocial.com/cities.atom', 'r').read
+    data = File.open('db/sample_data/cities_2.txt', 'r').read
   end
 
   def self.fetch(&block)
@@ -32,6 +70,8 @@ class LivingSocial
     if deal
       deal.purchases.create(:quantity => entry.quantity)
       deal.original_category = entry.category
+      deal.original_subcategory = entry.subcategory
+      deal.category = 
       deal.save()
     end
   end
@@ -99,8 +139,11 @@ class LivingSocialEntryParser
   end
 
   def get_categories
-    categories = @entry.search("categories").first.text
-    @categories ||= categories.strip.split(",") if categories
+    cats = @entry.search('categories')
+    @categories = []
+
+    categories = cats.first.text if cats.present?
+    @categories = categories.strip.split(",") if categories
   end
 
   def category

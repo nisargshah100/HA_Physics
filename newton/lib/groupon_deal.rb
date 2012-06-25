@@ -33,12 +33,15 @@ class GrouponDeal
       deal.attributes = entry.as_json
       deal.save()
       puts "Deal saved! #{deal.title}"
+    else
+      puts "SkIPPING #{deal.title}"
     end
 
     if deal
       deal.purchases.create(:quantity => entry.quantity)
       deal.original_category = entry.category
       deal.original_subcategory = entry.subcategory
+      deal.category = entry.category
       deal.save()
     end
   end
