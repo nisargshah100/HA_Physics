@@ -37,7 +37,8 @@ class GrouponDeal
 
     if deal
       deal.purchases.create(:quantity => entry.quantity)
-      deal.original_category = entry.original_category
+      deal.original_category = entry.category
+      deal.original_subcategory = entry.subcategory
       deal.save()
     end
   end

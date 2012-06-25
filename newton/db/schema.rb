@@ -11,60 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620214011) do
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "deals", :force => true do |t|
-    t.string   "source"
-    t.datetime "date_added"
-    t.datetime "end_date"
-    t.integer  "price_cents"
-    t.integer  "value_cents"
-    t.string   "title"
-    t.string   "subtitle"
-    t.string   "affiliate_url"
-    t.string   "original_url"
-    t.string   "image_url"
-    t.integer  "division_id"
-    t.integer  "category_id"
-    t.integer  "business_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.string   "original_id"
-    t.string   "division_name"
-    t.string   "division_latlon", :limit => nil
-  end
-
-  create_table "groupon_divisions", :force => true do |t|
-    t.float    "lat"
-    t.float    "long"
-    t.string   "country"
-    t.string   "timezone"
-    t.string   "name"
-    t.string   "division_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "original_categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.string   "source"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "original_divisions", :force => true do |t|
-    t.string   "source"
-    t.string   "name"
-    t.integer  "division_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+ActiveRecord::Schema.define(:version => 0) do
 
 end

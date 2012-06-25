@@ -60,11 +60,11 @@ class GrouponDealParser
   end
 
   def category
-    @entry['tags'][0]['name']
+    @entry['tags'][0]['name'] if @entry['tags'].length > 0
   end
 
   def subcategory
-    @entry['tags'][1]['name']
+    @entry['tags'][1]['name'] if @entry['tags'].length > 1
   end
 
   def as_json(*params)
