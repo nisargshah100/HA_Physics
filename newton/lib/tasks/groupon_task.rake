@@ -17,7 +17,7 @@ namespace :groupon do
     groupon_client = GrouponDeal.new(GROUPON_API_KEY)
     # DIVISION_IDS = GrouponDivision.pluck("division_id")
     # DIVISION_IDS = GrouponDivision.all.map(&:"division_id")
-    DIVISION_IDS.each_with_index do |index, division_id|
+    DIVISION_IDS.each_with_index do |division_id, index|
       puts "DIVISION ##{index} of #{DIVISION_IDS.size}- #{division_id}"
       groupon_client.fetch(division_id)
     end
