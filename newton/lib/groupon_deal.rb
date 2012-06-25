@@ -36,8 +36,8 @@ class GrouponDeal
       deal.attributes = entry.as_json
       deal.save()
       puts "Deal saved! #{deal.title}"
-    else
-      puts "SkIPPING #{deal.id}"
+    # else
+      # puts "SkIPPING #{deal.id}"
     end
 
     if deal

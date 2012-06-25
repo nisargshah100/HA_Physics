@@ -5,7 +5,7 @@ require 'date'
 CATEGORIES = {
   # LS CATEGORIES
   "Full-Service Restaurant" => "Restaurants",
-  "Services" => "Professional Services",
+  "Services" => "Home Services",
   "Beauty/Health" => "Beauty & Spas",
   "Entertainment" => "Arts and Entertainment",
   "Retail" => "Shopping",
@@ -15,35 +15,16 @@ CATEGORIES = {
   "Food/Drink" => "Food & Drink",
   nil => "",
   "Other (Beauty/Health)" => "Beauty & Spas", 
-  "Visual Correction" => "",
-  "Other (Fitness/Active)" => "",
-  "Sporting Goods" => "",
-  # # GROUPON CATEGORIES
-  # "Arts and Entertainment" => ,
-  # "Automotive" => ,
-  # "Beauty & Spas" => ,
-  # "Education" => ,
-  # "Financial Services" => ,
-  # "Food & Drink" => ,
-  # "Health & Fitness" => ,
-  # "Home Services " => ,
-  # "Legal Services" => ,
-  # "Nightlife" => ,
-  # "Pets" => ,
-  # "Professional Services" => ,
-  # "Public Services & Government" => ,
-  # "Real Estate" => ,
-  # "Religious Organizations" => ,
-  # "Restaurants" => ,
-  # "Shopping" => ,
-  # "Travel" => ,
+  "Visual Correction" => "Health & Fitness",
+  "Other (Fitness/Active)" => "Health & Fitness",
+  "Sporting Goods" => "Shopping",
 }
 
 class LivingSocial
   def self.get_data
     puts 'Downloading...'
-    # data = open('http://livingsocial.com/cities.atom', 'r').read
-    data = File.open('db/sample_data/cities_2.txt', 'r').read
+    data = open('http://livingsocial.com/cities.atom', 'r').read
+    # data = File.open('db/sample_data/cities_2.txt', 'r').read
   end
 
   def self.fetch(&block)
@@ -71,7 +52,7 @@ class LivingSocial
       deal.purchases.create(:quantity => entry.quantity)
       deal.original_category = entry.category
       deal.original_subcategory = entry.subcategory
-      deal.category = 
+      deal.category = CATEGORIES[entry.category] || ""
       deal.save()
     end
   end
