@@ -18,12 +18,26 @@ class Deal
   field :source, type: String
   field :division_name, type: String
   field :division_latlon, type: Array
+  field :original_category, type: String
+  field :category, type: String
 
   validates_uniqueness_of :original_id, :scope => :source
 
   index(
     [[:division_latlon, Mongo::GEO2D]], background: true
   )
+
+  def as_json(*params)
+    attributes = Deal.first.attributes.map { |k,v| k }
+
+    data = {}
+    attributes.each do |attribute|
+      data[attribute] = self.read_attribute(attribute.to_sym)
+    end
+    data['purchases'] = self.purchases.all
+
+    data
+  end
 
   def self.by_params(params)
     deals = Deal

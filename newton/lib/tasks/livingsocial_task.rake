@@ -8,13 +8,13 @@ class LivingSocial
     data = open('http://livingsocial.com/cities.atom', 'r').read
   end
 
-  def self.fetch
+  def self.fetch(&block)
     data = Nokogiri::XML.parse(get_data)
     puts 'Parsing...'
 
     data.search('entry').each do |entry|
       entry = LivingSocialEntryParser.new(entry)
-      save_entry(entry)
+      yield entry
     end
   end
 
@@ -29,7 +29,15 @@ class LivingSocial
       end
     end
 
-    deal.purchases.create(:quantity => entry.quantity) if deal
+    if deal
+      deal.purchases.create(:quantity => entry.quantity)
+      deal.original_category = entry.category
+      deal.save()
+    end
+  end
+
+  def self.save_category(entry)
+    Category.create(:original_category => entry.category)
   end
 end
 
@@ -139,7 +147,6 @@ class LivingSocialEntryParser
       :image_url => image_url,
       :division_name => division_name,
       :division_latlon => division_latlon,
-      # :category => category,
       :source => source
     }
   end
@@ -148,6 +155,15 @@ end
 namespace :ls do
   task :fetch_deals => :environment do
     puts "LIVINGSOCIAL - #{DateTime.now}"
-    LivingSocial.fetch
+    LivingSocial.fetch do |entry|
+      LivingSocial.save_entry(entry)
+    end
+  end
+
+  task :fetch_categories => :environment do
+    puts "LIVINGSOCIAL CATEGORIES - #{DateTime.now}"
+    LivingSocial.fetch do |entry|
+      LivingSocial.save_category(entry)
+    end
   end
 end
