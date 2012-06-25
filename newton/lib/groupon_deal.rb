@@ -35,6 +35,10 @@ class GrouponDeal
       puts "Deal saved! #{deal.title}"
     end
 
-    deal.purchases.create(:quantity => entry.quantity)
+    if deal
+      deal.purchases.create(:quantity => entry.quantity)
+      deal.original_category = entry.original_category
+      deal.save()
+    end
   end
 end

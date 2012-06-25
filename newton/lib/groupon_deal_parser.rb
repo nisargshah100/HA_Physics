@@ -59,6 +59,14 @@ class GrouponDealParser
     [ @entry['division']['lat'].to_f, @entry['division']['lng'].to_f]
   end
 
+  def category
+    @entry['tags'][0]['name']
+  end
+
+  def subcategory
+    @entry['tags'][1]['name']
+  end
+
   def as_json(*params)
     {
       :title => title,
