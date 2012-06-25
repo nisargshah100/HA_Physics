@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  def show    
+  def show
     @user = User.find(params[:id])
-    # @graph = Koala::Facebook::API.new(@user.oauth_access_token)
     @event = Event.new
-    # pictures = @graph.get_connections("me", "photos")
-    # profile = @graph.get_object("1111218")
-    # raise profile.inspect
+
+    if @user == current_user
+      @my_events = current_user.events
+    end
   end
 end

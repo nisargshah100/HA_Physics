@@ -1,8 +1,19 @@
 <h1>Profile</h1>
-<div class="profile_img">
-  <img class="profile_img" src=<%= "#{@user.image}" %>></img>
+<div class="row-fluid">
+  <div class="span4">
+    <div class="profile_img">
+      <img class="profile_img" src=<%= "#{@user.image}" %>></img>
+    </div>
+  </div>
+  <div class="span8">
+    <div class="user_meta">
+      <h1><%= "#{@user.display_name}" %></h1>
+      <h3><%= "#{@user.age}, #{@user.gender}, #{@user.orientation}" %></h3>
+      <h3><%= "#{@user.location}" %></h3>
+    </div>
+  </div>
 </div>
-
+<br />
 <div>
   <%= form_for @event, :html => {:class => "well form-horizontal"} do |f| %>
     <%= fields_for :deal do |d| %>  
