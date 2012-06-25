@@ -16,7 +16,10 @@ class GrouponDeal
       req.params['division_id'] = @division_id
     end
 
-    get_entries(data).each do |entry|
+
+    entries = get_entries(data)
+    puts "#{entries.size} NUMBER OF DEALS"
+    entries.each do |entry|
       entry = GrouponDealParser.new(entry)
       save_entry(entry)
     end
@@ -34,7 +37,7 @@ class GrouponDeal
       deal.save()
       puts "Deal saved! #{deal.title}"
     else
-      puts "SkIPPING #{deal.title}"
+      puts "SkIPPING #{deal.id}"
     end
 
     if deal
