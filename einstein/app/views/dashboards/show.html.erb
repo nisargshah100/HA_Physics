@@ -1,5 +1,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://www.highcharts.com/js/highcharts.js" type="text/javascript"></script>
+<script src='http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js' type='text/javascript'></script>
 
 <div class='span8' style='margin-right: 20px'>
   <h2 id='header'></h2>
@@ -16,34 +17,15 @@
   </div>
 </div>
 
-<!-- 
-<script type="text/javascript">
-  $.getJSON('/dashboard/data/velocity', function(data) {
-    ls = data.groupon;
-    series = [];
-    for(x in ls) {
-      v = ls[x];
-      series.push({ name: v[1].title, data: [v[0]] });
-    }
+<!-- Templates -->
 
-    var chart1; // globally available
-    chart1 = new Highcharts.Chart({
-      chart: {
-        renderTo: 'container',
-        type: 'line'
-      },
-      title: {
-        text: 'LivingSocial Velocity'
-      },
-      xAxis: {
-        categories: []
-      },
-      yAxis: {
-        title: {
-           text: 'Velocity'
-        }
-      },
-      series: series
-    });
-  });
-</script> -->
+<script id="velocity-data-table" type="text/x-handlebars-template">
+  <table class='table table-bordered'>
+    {{#each data}}
+      <tr>
+        <td>{{[1].original_id}}
+        <td><a href='{{[1].original_url}}' target='_blank'>{{[1].title}}</a></td>
+      </tr>
+    {{/each}}
+  </table>
+</script>
