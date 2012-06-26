@@ -1,19 +1,20 @@
 require 'spec_helper'
 
 describe 'Events API', :type => :api do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user_with_events) }
   # let(:event) { FactoryGirl.build(:event) }
   let(:root_url) { "http://feynman.dev" }
 
-  context "Creating an event through the API" do
+  context "Fetching all events through the API" do
     describe "When valid parameters are passed in" do
-      it "Should create an event" do
-        expect{ post "#{api_v1_events_url}", authentication_token: user.authentication_token, event: "{}" }.to change{ user.events.count }.by(1)
+      before(:each) { get "#{api_v1_events_url}.json", authentication_token: user.authentication_token }
+      
+      it "Should return all events" do
+        JSON.parse(response.body).count.should == Event.count
       end
 
       it "Should return a successful response" do
-        post "#{api_v1_events_url}", authentication_token: user.authentication_token, event: "{}"
-        response.status.should == 201
+        response.status.should == 200
       end
     end
   end

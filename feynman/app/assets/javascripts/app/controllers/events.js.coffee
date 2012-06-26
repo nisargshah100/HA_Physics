@@ -8,11 +8,15 @@ class App.Events extends Spine.Controller
     Event.bind 'refresh', @render
 
   events: ->
-    $('#hello_button').live('click', @render)
+    # $('#hello_button').live('click', @render)
 
   render: =>
     $("#events").html @template()
 
   template: ->
     @events = Event.all()
-    @view('events')(@)
+    @user_id = $('.user_meta').data('id')
+    if @user_id
+      @view('short_events')(@)
+    else
+      @view('events')(@)

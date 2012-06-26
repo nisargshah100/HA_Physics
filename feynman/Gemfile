@@ -5,7 +5,7 @@ gem 'rails', '3.2.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'koala'
@@ -14,6 +14,11 @@ gem 'feynman_client', :require => 'feynman', :path => '../../feynman_gem'
 gem 'spine-rails'
 gem 'eco'
 gem 'jbuilder'
+gem 'random_data'
+gem 'carrierwave'
+gem 'hashie'
+gem 'fastercsv'
+gem 'mongoid'
 
 # Gems used only for assets and not required
 # in production environments by default.

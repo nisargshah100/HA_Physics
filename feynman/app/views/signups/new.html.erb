@@ -1,0 +1,6 @@
+<%= form_for @user_detail, :url => "/signups", :method => "post" do |u| %>
+  <%= render "shared/form_errors", :object => @user_detail %>
+  <%= render "#{@user_detail.current_step}_step", :u => u %>
+  <p><%= u.submit "Continue" %></p>
+  <p><%= u.submit "Back", :name => "back_button" unless @user_detail.first_step? %></p>
+<% end %>

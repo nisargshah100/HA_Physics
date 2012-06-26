@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def create
-    if Event.create(params["event"])
+    if current_user.events.create(params["event"])
       redirect_to profile_path(current_user)
     else
       render :json => false, :status => :not_created
