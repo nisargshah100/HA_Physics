@@ -1,0 +1,31 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://www.highcharts.com/js/highcharts.js" type="text/javascript"></script>
+<script src='http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js' type='text/javascript'></script>
+
+<div class='span8' style='margin-right: 20px'>
+  <h2 id='header'></h2>
+  <hr />
+  <div id='container'></div>
+</div>
+
+<div class="span3">
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+      <li class="nav-header">Charts</li>
+      <li class="active"><a href="#" id='chart_voh'>Best Deals Per Hour</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Templates -->
+
+<script id="velocity-data-table" type="text/x-handlebars-template">
+  <table class='table table-bordered'>
+    {{#each data}}
+      <tr>
+        <td>{{[1].original_id}}
+        <td><a href='{{[1].original_url}}' target='_blank'>{{[1].title}}</a></td>
+      </tr>
+    {{/each}}
+  </table>
+</script>

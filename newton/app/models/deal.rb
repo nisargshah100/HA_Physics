@@ -3,7 +3,7 @@ class Deal
   include Mongoid::Timestamps
   paginates_per 10
   
-  has_many :purchases
+  embeds_many :purchases
 
   field :original_id, type: String
   field :date_added, type: DateTime
