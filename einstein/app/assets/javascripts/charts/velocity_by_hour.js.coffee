@@ -18,7 +18,7 @@ class VelocityByHour
     """
 
     $("#container").html(html)
-    $("#header").html('Best Deals / Hour')
+    $("#header").html('Fastest Growing Deals')
 
     @render_graph()
     @render_table()
