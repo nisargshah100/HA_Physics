@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'hashie'
 
 describe User do
   let(:user) { FactoryGirl.build(:user) }
@@ -7,6 +8,32 @@ describe User do
     it "should be called upon save" do
       user.should_receive(:ensure_authentication_token)
       user.save
+    end
+  end
+
+  context ".find_for_facebook_oauth" do
+    let(:auth) { Hashie::Mash.new({ provider: "facebook", uid: "1" }) }
+
+    describe "If a facebook user does not exist" do
+      it "should create a user" do
+        User.should_receive(:create_user_with_detail).with(auth)
+        User.find_for_facebook_oauth(auth)
+      end
+    end
+
+    describe "If a facebook user already exists" do
+      let(:user) { User.new }
+
+      it "returns the found user" do
+        User.stub(:where).with({ provider: "facebook", uid: "1" }).and_return([user])
+        User.find_for_facebook_oauth(auth).should == user
+      end
+
+      it "it does not create a new user" do
+        User.should_receive(:where).with({ provider: "facebook", uid: "1" }).and_return([user])
+        User.should_not_receive(:create_user_with_detail)
+        User.find_for_facebook_oauth(auth).should
+      end
     end
   end
 end

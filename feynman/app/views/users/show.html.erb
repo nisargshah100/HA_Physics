@@ -6,15 +6,22 @@
     </div>
   </div>
   <div class="span8">
-    <div class="user_meta">
-      <h1><%= "#{@user.display_name}" %></h1>
+    <%= content_tag "div", class: "user_meta", data: {id: @user.id} do %>
+      <h1 class="edit" id="display_name"><%= "#{@user.display_name}" %></h1>
       <h3><%= "#{@user.age}, #{@user.gender}, #{@user.orientation}" %></h3>
       <h3><%= "#{@user.location}" %></h3>
-    </div>
+    <% end %>
   </div>
 </div>
 <br />
-<div>
+
+<div class="row-fluid">
+  <h1>My Dates</h1>
+  <div id="events"></div>
+</div>
+
+<br />
+<div class="row-fluid">
   <%= form_for @event, :html => {:class => "well form-horizontal"} do |f| %>
     <%= fields_for :deal do |d| %>  
       <div class="control-group">
@@ -32,13 +39,14 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :description_long, "And by the way...",{:class => "control-label"} %>
-      <div class="controls">
-        <%= f.text_field :description_long %><br />
-      </div>
-    </div>
-
     <%= f.submit 'Post Date', :class => 'btn btn-primary' %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  new App.Events()
+
+  $(document).ready(function() {
+     $('.edit').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>');
+  });
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624222003) do
+ActiveRecord::Schema.define(:version => 20120625001042) do
 
   create_table "events", :force => true do |t|
     t.string   "source"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20120624222003) do
     t.integer  "user_id"
     t.date     "birthday"
     t.string   "image"
-    t.string   "zipcode"
     t.string   "display_name"
     t.string   "gender"
     t.string   "gender_preference"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120624222003) do
     t.integer  "smoking_level"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "zip_id"
   end
 
   create_table "users", :force => true do |t|
@@ -73,5 +73,15 @@ ActiveRecord::Schema.define(:version => 20120624222003) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "zips", :id => false, :force => true do |t|
+    t.string   "code",       :null => false
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "lat"
+    t.decimal  "lon"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

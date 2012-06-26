@@ -3,11 +3,13 @@ Feynman::Application.routes.draw do
 
   resources :users, :only => [:show]
   resources :events, :only => [:create, :index]
+  resources :user_details, :only => [:edit, :update]
+  resources :signups, :only => [:new, :create]
 
   namespace :api do
     namespace :v1 do
-      resources :users, :only => [:index]
-      resources :events, :only => [:create, :index]
+      resources :events, :only => [:index]
+      match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end
   end
 

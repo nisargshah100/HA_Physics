@@ -1,13 +1,13 @@
-<h1>Events</h1>
-
 <% for event in @events: %>
   <div class="event span8">
     <div class="profile_img_thumb span1">
-      <img class="profile_img_thumb" src=<%= "#{event.user.image}" %>></img>
+      <a href='<%= "#{event.user.url}" %>'>
+        <img class="profile_img_thumb" src=<%= "#{event.user.image || ''}" %>></img>
+      </a>
     </div>
     <div class="span6">
       <p class="suggestion">Let's go...</p>
-      <%= event.description_long %>
+      <%= event.description_short %>
     </div>
   </div>
 <% end %>
