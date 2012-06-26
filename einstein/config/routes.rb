@@ -2,7 +2,7 @@ Einstein::Application.routes.draw do
   devise_for :users
 
   resource :dashboard do
-    namespace :data do
+    scope :data do
       get 'velocity' => 'dashboards#velocity'
     end
   end
