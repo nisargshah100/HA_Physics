@@ -9,7 +9,7 @@ test:
 # set these environment variables on your prod server
 production:
   host: localhost
-  database: newton_development
+  database: newton
   
   # slaves:
   #   - host: slave1.local
