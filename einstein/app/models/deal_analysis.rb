@@ -5,10 +5,16 @@ class DealAnalysis
   field :groupon_deal_velocity
   field :livingsocial_deal_velocity
 
+  field :livingsocial_top_districts
+  field :groupon_top_districts
+
   def self.compute
     analysis = DealAnalysis.new
     analysis.compute_groupon_deal_velocity_by_hour
     analysis.compute_livingsocial_deal_velocity_by_hour
+
+    analysis.compute_livingsocial_top_districts
+    analysis.compute_groupon_top_districts
 
     analysis.save()
   end
@@ -25,7 +31,35 @@ class DealAnalysis
     end
   end
 
+  def compute_livingsocial_top_districts
+    DealAnalysis.compute_top_districts('LivingSocial') do |districts|
+      self.livingsocial_top_districts = districts.to_json
+    end
+  end
+
+  def compute_groupon_top_districts
+    DealAnalysis.compute_top_districts('groupon') do |districts|
+      self.groupon_top_districts = districts.to_json
+    end
+  end
+
   private
+
+  def self.compute_top_districts(source, limit=10)
+    deals = Deal.all.group_by { |deal| deal.division_name }
+    deal_values = {}
+
+    deals.each do |k,v|
+      revenue = compute_revenue_for_deals(v)
+      deal_values[k] = revenue
+    end
+
+    yield Hash[deal_values.sort_by { |k,v| -v}]
+  end
+
+  def self.compute_revenue_for_deals(deals)
+    deals.map { |deal| deal.value_cents * deal.purchases.last.quantity.to_i }.sum
+  end
 
   # Deal (quantity / time)
   def self.compute_deal_velocity_by_hour(source, limit=10)
