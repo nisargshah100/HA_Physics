@@ -38,7 +38,6 @@ group :development, :test do
   gem 'capybara'
   gem 'simplecov'
   gem 'launchy'
-  gem 'debugger'
   gem 'awesome_print'
   gem 'factory_girl'
   gem 'rack-test'
