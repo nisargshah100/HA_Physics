@@ -2,9 +2,7 @@ Einstein::Application.routes.draw do
   devise_for :users
 
   resource :dashboard do
-    namespace :data do
-      get 'velocity' => 'dashboards#velocity'
-    end
+    get 'data/velocity' => 'dashboards#velocity'
   end
 
   root :to => 'home#index'
