@@ -12,15 +12,15 @@ class GrouponDealParser
   end
 
   def date_added
-    DateTime.parse(@entry['startAt'])
+    DateTime.parse(@entry['startAt']) if @entry['startAt']
   end
 
-  def quantity 
+  def quantity
     @entry['soldQuantity']
   end
 
   def end_date
-    DateTime.parse(@entry['endAt'])
+    DateTime.parse(@entry['endAt']) if @entry['endAt']
   end
 
   def price
@@ -32,10 +32,12 @@ class GrouponDealParser
   end
 
   def subtitle
+    puts 'subtitle'
     @entry['announcementTitle']
   end
 
   def original_url
+    puts 'original url'
     @entry['dealUrl']
   end
 
@@ -60,11 +62,11 @@ class GrouponDealParser
   end
 
   def category
-    @entry['tags'][0]['name'] if @entry['tags'].length > 0
+    @entry['tags'][0]['name'] if @entry['tags'] and @entry['tags'].length > 0
   end
 
   def subcategory
-    @entry['tags'][1]['name'] if @entry['tags'].length > 1
+    @entry['tags'][1]['name'] if @entry['tags'] and @entry['tags'].length > 1
   end
 
   def as_json(*params)
