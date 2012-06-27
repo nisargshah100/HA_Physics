@@ -1,5 +1,6 @@
 require 'data/deal_velocity'
 require 'data/top_districts'
+require 'data/deal_run_probability'
 
 GROUPON = 'groupon'
 LS = 'LivingSocial'
