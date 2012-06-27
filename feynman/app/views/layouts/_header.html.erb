@@ -9,8 +9,8 @@
       <a class="brand" href="/">daily<span>dates</span></a>
       <div class="container nav-collapse">        
         <ul class="nav">
-          <li><%= link_to "Search Dates", events_path %></li>
-          <li><%= link_to "Date Ideas", events_path %></li>
+          <li><%= link_to "Find a Date", events_path %></li>
+          <li><%= link_to "Post a Date", new_event_path %></li>
           <% if current_user %>
             <li class="dropdown"><%= render "layouts/nav_login" %></li>
           <% else %>

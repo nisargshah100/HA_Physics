@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    redirect_to new_signup_path unless current_user.complete?
+    unless (current_user.user_detail && current_user.complete?)
+      new_signup_path
+    end
   end
 
   def client

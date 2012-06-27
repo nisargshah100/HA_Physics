@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_one :user_detail, :dependent => :destroy, :autosave => true
   before_save :ensure_authentication_token
+  after_create :ensure_user_detail
 
   extend Forwardable
 
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height_feet,
     :height_inches, :exercise_level, :drinking_level, :smoking_level, :location,
-    :complete?
+    :complete?, :height, :objective_pronoun
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -55,5 +56,17 @@ class User < ActiveRecord::Base
     { image: auth.info.image.gsub("=square", "=large"),
     gender: auth.extra.raw_info.gender.capitalize,
     birthday: Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y") }
+  end
+
+  def self.find_by_display_name(name)
+    if user_detail = UserDetail.find_by_display_name(name)
+      user_detail.user
+    end
+  end
+
+  def ensure_user_detail
+    if user_detail.nil?
+      create_user_detail
+    end
   end
 end

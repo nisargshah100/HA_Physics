@@ -94,4 +94,14 @@ class UserDetail < ActiveRecord::Base
   def get_gay_string
     gender =~ /male/i ? "Gay" : "Lesbian"
   end
+
+  def height
+    if height_feet && height_inches
+      "#{height_feet}\"#{height_inches}"
+    end
+  end
+
+  def objective_pronoun
+    gender =~ /male/i ? "him" : "her"
+  end
 end

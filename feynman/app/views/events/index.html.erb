@@ -1,29 +1,28 @@
-<div class="row-fluid">
-  <h1>Post a Date!</h1>
-  <%= form_for @event, :html => {:class => "form-horizontal well span10"} do |f| %>
-    <%= fields_for :deal do |d| %>  
-      <div class="control-group">
-        <%= d.label "Link to deal", nil, :class => "control-label" %>
-        <div class="controls">
-          <%= d.text_field :url %><br />
-        </div>
-      </div>
-    <% end %>
-
-    <div class="control-group">
-      <%= f.label :description_short, "Let's go...", {:class => "control-label"} %>
-      <div class="controls">
-        <%= f.text_field :description_short %><br />
-      </div>
+<div class="row-fluid span10">
+  <form class="well form-inline" action="">
+    <div class="input-prepend">
+      <input type="text" name="query" class="input-large search_query" placeholder="Search by keyword or username">
     </div>
-
-    <%= f.submit 'Post Date', :class => 'btn btn-primary' %>
-  <% end %>
+    <button type="submit" class="btn btn-large">Search</button>
+  </form>
 </div>
 
-<div id="events">
+<div class="row-fluid span10">
+  <h1>Matches:</h1>
+  <div id="events">
+  </div>
 </div>
 
 <script>
   new App.Events()
 </script>
+
+<style>
+  input.search_query {
+    font-size: 1.5em;
+    height: 1.5em;
+    padding-right: 0px;
+    margin-right: 0px;
+    width: 400px;
+  }
+</style>

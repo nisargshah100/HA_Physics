@@ -2,7 +2,7 @@ Feynman::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, :only => [:show]
-  resources :events, :only => [:create, :index]
+  resources :events, :only => [:create, :index, :new]
   resources :user_details, :only => [:edit, :update]
   resources :signups, :only => [:new, :create]
 
@@ -13,6 +13,6 @@ Feynman::Application.routes.draw do
     end
   end
 
-  match '/profile/:id' => 'users#show', :as => 'profile'
+  match '/profile/:display_name' => 'users#show', :as => 'profile'
   root to: 'pages#index'
 end
