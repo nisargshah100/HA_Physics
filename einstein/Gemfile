@@ -23,4 +23,3 @@ gem 'bson_ext'
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'classifier'
-gem 'debugger'
