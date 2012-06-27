@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
-  attr_accessible :source, :deal_id, :description_long, :description_short, :user_id, :date
+  attr_accessible :source, :deal_id, :description, :user_id, :date
 
+  # DELETE DESCRIPTION_LONG, probably.
+  validates_presence_of :user_id
   belongs_to :user
   # attr_accessible :title, :body
 

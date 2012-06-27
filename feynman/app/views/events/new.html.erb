@@ -1,0 +1,21 @@
+<div class="row-fluid">
+  <%= form_for @event, :html => {:class => "form-horizontal well span10"} do |f| %>
+    <%= fields_for :deal do |d| %>  
+      <div class="control-group">
+        <%= d.label "Link to deal", nil, :class => "control-label" %>
+        <div class="controls">
+          <%= d.text_field :url %><br />
+        </div>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :description, "Let's go...", {:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :description %><br />
+      </div>
+    </div>
+
+    <%= f.submit 'Post Date', :class => 'btn btn-primary btn-large' %>
+  <% end %>
+</div>

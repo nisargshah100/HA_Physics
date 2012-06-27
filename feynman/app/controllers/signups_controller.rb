@@ -13,20 +13,19 @@ class SignupsController < ApplicationController
     if @user_detail.valid?
       if params[:back_button]
         @user_detail.previous_step
-      elsif @user_detail.last_step?
-        current_user.user_detail.update_attributes(session[:user_detail_params]) if @user_detail.all_valid?
-        @user_detail.next_step
       else
         @user_detail.next_step
       end
       session[:user_detail_step] = @user_detail.current_step
     end
 
-    if @user_detail.zip_id.nil? || @user_detail.display_name.nil?
-      render "new"
-    else
+    if @user_detail.last_step? && @user_detail.all_valid?
+      current_user.user_detail.update_attributes(session[:user_detail_params])
+      current_user.user_detail.set_complete
       session[:user_detail_step] = session[:user_detail_params] = nil
       redirect_to current_user, :notice => "Get started."
+    else
+      render "new"
     end
   end
 

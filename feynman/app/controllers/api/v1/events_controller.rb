@@ -1,6 +1,4 @@
 class Api::V1::EventsController < ApiController
-  before_filter :authenticate, :only => [:create]
-
   def index
     @events = params[:user_id] ? Event.for_user(params[:user_id]) : Event.all
     unless @events

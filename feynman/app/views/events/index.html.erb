@@ -1,6 +1,28 @@
-<div id="events">
+<div class="row-fluid span10">
+  <form class="well form-inline" action="">
+    <div class="input-prepend">
+      <input type="text" name="query" class="input-large search_query" placeholder="Search by keyword or username">
+    </div>
+    <button type="submit" class="btn btn-large">Search</button>
+  </form>
+</div>
+
+<div class="row-fluid span10">
+  <h1>Matches:</h1>
+  <div id="events">
+  </div>
 </div>
 
 <script>
   new App.Events()
 </script>
+
+<style>
+  input.search_query {
+    font-size: 1.5em;
+    height: 1.5em;
+    padding-right: 0px;
+    margin-right: 0px;
+    width: 400px;
+  }
+</style>

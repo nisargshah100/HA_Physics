@@ -1,6 +1,6 @@
 <% for event in @events: %>
   <div class="event span6">
     <p class="suggestion">Let's go...</p>
-    <%= event.description_short %>
+    <%= event.description %>
   </div>
 <% end %>
