@@ -44,6 +44,8 @@ class DealRunProbability
 
       if deal and next_deal
         diffs << next_deal.date_added.to_date - deal.date_added.to_date
+      end
+      
       i += 1
     end
     avg = diffs.sum.to_f / diffs.count.to_f
