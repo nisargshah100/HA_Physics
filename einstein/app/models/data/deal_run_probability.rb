@@ -35,13 +35,15 @@ class DealRunProbability
   def self.compute_slope(deals)
     avg = 0
     diffs = []
-    deals = deals.sort_by { |d| d.date_added }
+    deals = deals.sort_by { |d| d.date_added }.select { |d| d.date_added != nil }
 
     i = 0
     while(i < deals.count - 1)
       deal = deals[i]
       next_deal = deals[i+1]
-      diffs << next_deal.date_added.to_date - deal.date_added.to_date
+
+      if deal and next_deal
+        diffs << next_deal.date_added.to_date - deal.date_added.to_date
       i += 1
     end
     avg = diffs.sum.to_f / diffs.count.to_f
