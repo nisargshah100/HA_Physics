@@ -1,3 +1,9 @@
+require 'data/deal_velocity'
+require 'data/top_districts'
+
+GROUPON = 'groupon'
+LS = 'LivingSocial'
+
 class DealAnalysis
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -10,76 +16,34 @@ class DealAnalysis
 
   def self.compute
     analysis = DealAnalysis.new
-    analysis.compute_groupon_deal_velocity_by_hour
-    analysis.compute_livingsocial_deal_velocity_by_hour
-
-    analysis.compute_livingsocial_top_districts
-    analysis.compute_groupon_top_districts
-
+    analysis.compute_deal_velocity
+    analysis.compute_top_districts
     analysis.save()
   end
 
-  def compute_groupon_deal_velocity_by_hour
-    DealAnalysis.compute_deal_velocity_by_hour('groupon') do |velocity|  
-      self.groupon_deal_velocity = velocity.to_json
-    end
+  def compute_deal_velocity(limit=10)
+    vel_g  = DealVelocity.compute(DealAnalysis.unique_deals(source=GROUPON))
+    vel_ls = DealVelocity.compute(DealAnalysis.unique_deals(source=LS))
+
+    self.groupon_deal_velocity = vel_g[0...limit].to_json
+    self.livingsocial_deal_velocity = vel_ls[0...limit].to_json
   end
 
-  def compute_livingsocial_deal_velocity_by_hour
-    DealAnalysis.compute_deal_velocity_by_hour('LivingSocial') do |velocity|
-      self.livingsocial_deal_velocity = velocity.to_json
-    end
+  def compute_top_districts
+    dis_g  = TopDistricts.compute(Deal.groupon_deals)
+    dis_ls = TopDistricts.compute(Deal.livingsocial_deals)
+
+    self.groupon_top_districts = dis_g.to_json
+    self.livingsocial_top_districts = dis_ls.to_json
   end
 
-  def compute_livingsocial_top_districts
-    DealAnalysis.compute_top_districts('LivingSocial') do |districts|
-      self.livingsocial_top_districts = districts.to_json
-    end
+  # Helper functions
+
+  def self.revenue(deals)
+    deals.map { |deal| deal.price_cents * deal.purchases.last.quantity.to_i }.sum
   end
 
-  def compute_groupon_top_districts
-    DealAnalysis.compute_top_districts('groupon') do |districts|
-      self.groupon_top_districts = districts.to_json
-    end
-  end
-
-  private
-
-  def self.compute_top_districts(source, limit=10)
-    deals = Deal.all.group_by { |deal| deal.division_name }
-    deal_values = {}
-
-    deals.each do |k,v|
-      revenue = compute_revenue_for_deals(v)
-      deal_values[k] = revenue
-    end
-
-    yield Hash[deal_values.sort_by { |k,v| -v}]
-  end
-
-  def self.compute_revenue_for_deals(deals)
-    deals.map { |deal| deal.value_cents * deal.purchases.last.quantity.to_i }.sum
-  end
-
-  # Deal (quantity / time)
-  def self.compute_deal_velocity_by_hour(source, limit=10)
-    deals = self.find_unique_deals(source)
-
-    # return deals
-    deals = deals.map do |deal|
-      purchases = deal.purchases
-      last_purchase = purchases.last
-
-      velocity = last_purchase.quantity.to_f / 
-                 (last_purchase.created_at.to_f - deal.date_added.to_f)
-      
-      [velocity * 3600, deal]
-    end
-
-    yield deals.sort_by { |deal| -deal[0] }[0...limit]
-  end
-
-  def self.find_unique_deals(source)
+  def self.unique_deals(source)
     titles = Deal.all.distinct(:title)
     all_deals = Deal.where(:source => source)
     uniq_deals = []

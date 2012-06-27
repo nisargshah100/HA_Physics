@@ -9,6 +9,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'fabrication'
+  gem 'database_cleaner'
+end
+
 gem 'jquery-rails'
 gem 'mongoid'
 gem 'bson_ext'

@@ -12,7 +12,8 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
       <li class="nav-header">Charts</li>
-      <li class="active"><a href="#" id='chart_voh'>Best Deals Per Hour</a></li>
+      <li class="active"><a href="#" id='chart_voh' class='charts-link' data-f="velocity_by_hour">Best Deals Per Hour</a></li>
+      <li><a href='#' id='chart_districts' class='charts-link' data-f="top_districts">Top Districts</a></li>
     </ul>
   </div>
 </div>
@@ -25,6 +26,16 @@
       <tr>
         <td>{{[1].original_id}}
         <td><a href='{{[1].original_url}}' target='_blank'>{{[1].title}}</a></td>
+      </tr>
+    {{/each}}
+  </table>
+</script>
+
+<script id="districts-data-table" type="text/x-handlebars-template">
+  <table class='table table-bordered'>
+    {{#each data}}
+      <tr>
+        <td>{{district}}</td>
       </tr>
     {{/each}}
   </table>
