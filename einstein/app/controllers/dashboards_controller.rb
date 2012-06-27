@@ -11,4 +11,11 @@ class DashboardsController < ApplicationController
     }
   end
 
+  def districts
+    render :json => {
+      :groupon => JSON.parse(DealAnalysis.last.groupon_top_districts),
+      :livingsocial => JSON.parse(DealAnalysis.last.livingsocial_top_districts)
+    }
+  end
+
 end

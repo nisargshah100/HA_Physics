@@ -16,4 +16,15 @@
 //= require_tree .
 
 velocity_by_hour = new VelocityByHour();
-velocity_by_hour.fetch()
+top_districts = new TopDistricts();
+
+velocity_by_hour.fetch();
+
+$(".charts-link").click(function() {
+  $(".charts-link").parent().removeClass('active');
+  $(this).parent().addClass('active');
+
+  $("#container").html('');
+  $("#header").html('');
+  eval($(this).data('f')+".fetch()");
+});

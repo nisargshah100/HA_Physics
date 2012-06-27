@@ -3,6 +3,7 @@ Einstein::Application.routes.draw do
 
   resource :dashboard do
     get 'data/velocity' => 'dashboards#velocity'
+    get 'data/districts' => 'dashboards#districts'
   end
 
   root :to => 'home#index'

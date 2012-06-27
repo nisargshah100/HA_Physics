@@ -25,4 +25,13 @@ class Deal
   index(
     [[:division_latlon, Mongo::GEO2D]], background: true
   )
+
+  def self.livingsocial_deals 
+    where(:source => "LivingSocial")
+  end
+
+  def self.groupon_deals
+    where(:source => "groupon")
+  end
+
 end
