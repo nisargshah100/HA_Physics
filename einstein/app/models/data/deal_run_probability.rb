@@ -1,5 +1,4 @@
 require 'classifier'
-require 'debugger'
 
 class DealRunProbability
   def self.compute(deals, date)
