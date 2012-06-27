@@ -34,7 +34,7 @@ class UserDetail < ActiveRecord::Base
   end
 
   def steps
-    %w[display_name zipcode]
+    %w[display_name zipcode complete]
   end
 
   def next_step
@@ -60,6 +60,14 @@ class UserDetail < ActiveRecord::Base
     end
   end
 
+  def complete?
+    status == "complete"
+  end 
+
+  def set_complete
+    update_attribute(:status, "complete")
+  end
+
   def within_miles(radius)
     self.class.within_miles_of_zip(radius, zip)
   end
@@ -70,7 +78,7 @@ class UserDetail < ActiveRecord::Base
   end
 
   def location
-    "#{zip.city.capitalize}, #{zip.state}" if zip
+    "#{zip.city.titleize}, #{zip.state}" if zip
   end
 
   def orientation

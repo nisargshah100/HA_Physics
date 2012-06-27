@@ -8,7 +8,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    # @events = JSON.parse(client.get_events[:response])
-    # raise @events.inspect
+    @event = Event.new
   end
 end

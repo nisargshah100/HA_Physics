@@ -1,13 +1,65 @@
 <% for event in @events: %>
-  <div class="event span8">
-    <div class="profile_img_thumb span1">
-      <a href='<%= "#{event.user.url}" %>'>
-        <img class="profile_img_thumb" src=<%= "#{event.user.image || ''}" %>></img>
-      </a>
+  <div class="event_container span8">
+    <div class="event row-fluid">
+      <div class="profile_img_thumb span2">
+        <a href='<%= "#{event.user.url}" %>'>
+          <img class="profile_img_thumb" src=<%= "#{event.user.image || ''}" %>></img>
+        </a>
+      </div>
+      <div class="span6 event_description_container">
+        <span class="event_letsgo">Let's go...</span>
+        <span class="event_description"><%= event.description_short %></span>
+      </div>
     </div>
-    <div class="span6">
-      <p class="suggestion">Let's go...</p>
-      <%= event.description_short %>
+    <div class="row-fluid event_user_container">
+      <a href='<%= "#{event.user.url}" %>'>
+        <p class="event_user_name"><%= event.user.display_name %></p>
+        <p class="event_user_details"><%= "#{event.user.age}, #{event.user.gender}, #{event.user.orientation}" %></p>
+        <p class="event_user_details"><%= "#{event.user.location}" %></p>
+      </a>
     </div>
   </div>
 <% end %>
+
+<style>
+  .event_user_container {
+    padding-left:10px;
+  }
+
+  .event_letsgo {
+    color: #999;
+    font-style: italic;
+    font-family: Georgia;
+    font-size: 1.2em;
+  }
+
+  .event_description {
+    color: #333;
+    font-family: Georgia;
+    font-size: 1.2em;    
+  }
+
+  .event_description_container {
+    padding-top:10px;
+  }
+
+  .event_user_details {
+    margin: 0px;
+    color: #AAA;
+    font-size: 0.8em;
+  }
+
+  .event_user_name {
+    margin: 5px 0px 0px 0px;
+    font-weight: bold;
+    color: #8C0404;
+  }
+
+  .test {
+  color: #8DD5F2;
+  color: #06ADBF;
+  color: #7ABF49;
+  color: #BDD982;
+  color: #8C0404;
+  }
+</style>
