@@ -1,5 +1,5 @@
 class UserDetail < ActiveRecord::Base
-  attr_accessible :user, :user_id, :birthday, :image, :zip_id, :zip, :display_name,
+  attr_accessible :user, :user_id, :birthday, :image, :zip_id, :display_name,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height_feet,
@@ -7,7 +7,9 @@ class UserDetail < ActiveRecord::Base
 
   attr_writer :current_step
 
-  validates_uniqueness_of :display_name
+  validates_uniqueness_of :display_name, :if => lambda { |u| u.current_step == "user_info" }
+  validates_presence_of :zip_id, :if => lambda { |u| u.current_step == "user_preference" }
+
   belongs_to :user
   belongs_to :zip
 
@@ -34,7 +36,7 @@ class UserDetail < ActiveRecord::Base
   end
 
   def steps
-    %w[display_name zipcode complete]
+    %w[user_preference user_info complete]
   end
 
   def next_step
@@ -82,17 +84,21 @@ class UserDetail < ActiveRecord::Base
   end
 
   def orientation
-    if gender_preference == "Both"
+    if gender_preference =~ /^both/i
       return "Bisexual"
-    elsif gender == gender_preference
-      get_gay_string
+    elsif gay?
+      return "Gay"
     elsif gender != gender_preference
       return "Straight"
     end
   end
 
-  def get_gay_string
-    gender =~ /male/i ? "Gay" : "Lesbian"
+  def gay?
+    if gender =~ /^male/i && gender_preference =~ /^men/i || gender =~ /^female/i && gender_preference =~ /^women/i
+      true
+    else
+      false
+    end
   end
 
   def height
@@ -102,6 +108,10 @@ class UserDetail < ActiveRecord::Base
   end
 
   def objective_pronoun
-    gender =~ /male/i ? "him" : "her"
+    gender =~ /^male/i ? "him" : "her"
+  end
+
+  def image
+    "/assets/default_#{gender.downcase}_250.png" if @image.nil?
   end
 end

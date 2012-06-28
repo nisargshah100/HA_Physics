@@ -1,1 +1,10 @@
-<h1>Feynman</h1>
+<a href="#sign_up" data-toggle="modal" id="open_modal" class="btn btn-default">Let's get started</a>
+
+<div class="modal hide" id="sign_up">
+  <%= form_for @user_detail, :url => "/signups", :html => {:class => "form-horizontal"} do |u| %>
+    <%= render "shared/form_errors", :object => @user_detail %>
+    <%= render "signups/#{@user_detail.current_step}_step", :u => u %>
+    <p><%= u.submit "Back", { :name => "back_button", :class => "btn btn-primary btn-large" } unless @user_detail.first_step? %>
+    <%= u.submit "Continue", { :class => "btn btn-primary btn-large" } %></p>
+  <% end %>
+</div>

@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
 
   has_many :events, :dependent => :destroy
   has_one :user_detail, :dependent => :destroy, :autosave => true
+  has_many :messages, :foreign_key => :recipient_id
+
   before_save :ensure_authentication_token
-  after_create :ensure_user_detail
 
   extend Forwardable
 
@@ -31,16 +32,22 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     unless user = User.where(:provider => auth.provider, :uid => auth.uid).first
-      user = User.create_user_with_detail(auth)
+      user = User.create_user_with_detail_for_facebook(auth)
     end
     user
   end
 
-  def self.create_user_with_detail(auth)
+  def self.create_user_with_detail_for_facebook(auth)
     User.create(create_user_hash_from_facebook_auth(auth)).tap do |user|
       if user.provider == "facebook"
         user.create_user_detail(create_user_detail_hash_from_facebook_auth(auth))
       end
+    end
+  end
+
+  def self.create_user_with_detail(user_params, user_detail_params)
+    User.create(user_params).tap do |user|
+      user.create_user_detail(user_detail_params)
     end
   end
 
@@ -61,12 +68,6 @@ class User < ActiveRecord::Base
   def self.find_by_display_name(name)
     if user_detail = UserDetail.find_by_display_name(name)
       user_detail.user
-    end
-  end
-
-  def ensure_user_detail
-    if user_detail.nil?
-      create_user_detail
     end
   end
 end

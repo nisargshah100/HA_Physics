@@ -1,0 +1,13 @@
+<p class="signup_form">I'm a 
+  <%= u.select(:gender, %w(male female), { :selected => "female", :index => nil }, {:class => 'gender'}) %> 
+  interested in 
+  <%= u.select(:gender_preference, %w(men women both), { :selected => "men", :index => nil }, {:class => 'gender'}) %>
+</p>
+<p class="signup_form">
+  between
+  <%= u.text_field :age_range_lower, { :class => "age", :placeholder => "25" } %> 
+  and 
+  <%= u.text_field :age_range_upper, { :class => "age", :placeholder => "35" } %> 
+  near 
+  <%= u.text_field :zip_id, { :class => "zip", :placeholder => "zip" } %>
+</p>

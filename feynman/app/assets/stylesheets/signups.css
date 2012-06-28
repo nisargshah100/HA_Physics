@@ -1,0 +1,37 @@
+p.signup_form {
+  font-size: 1.25em;
+}
+
+select {
+  font-size: 1.25em;
+  height: 1.25em !important;
+}
+
+.signup_form > input {
+  font-size: 1.25em !important;
+  height: 1.25em;
+}
+
+select.gender {
+  width: 150px;
+}
+
+input.age {
+  width: 30px;
+}
+
+input.zip {
+  width: 100px;
+}
+
+input.btn {
+  height: 2em;
+  font-size: 1.25em;
+}
+
+.modal {
+  padding:20px;
+  position:fixed;
+  top:50%;
+  left:50%;
+}
