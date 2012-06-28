@@ -1,5 +1,3 @@
-require 'classifier'
-
 class DealRunProbability
   def self.compute(deals, date)
     # c = Classifier::Bayes.new 'Run', 'Not Run'

@@ -52,6 +52,7 @@ class LivingSocial
       deal.purchases.create(:quantity => entry.quantity)
       deal.original_category = entry.category
       deal.original_subcategory = entry.subcategory
+      deal.sold_out = entry.sold_out
       deal.category = CATEGORIES[entry.category] || ""
       deal.save()
     end
@@ -139,6 +140,10 @@ class LivingSocialEntryParser
 
   def image_url
     @entry.search('image_url').first.text
+  end
+
+  def sold_out
+    @entry.search('sold_out').first.text == 'true'
   end
 
   def source

@@ -12,8 +12,10 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
       <li class="nav-header">Charts</li>
-      <li class="active"><a href="#" id='chart_voh' class='charts-link' data-f="velocity_by_hour">Best Deals Per Hour</a></li>
+      <li class="active"><a href="#" id='chart_voh' class='charts-link' data-f="velocity_by_hour">Fastest Growing Deals</a></li>
       <li><a href='#' id='chart_districts' class='charts-link' data-f="top_districts">Top Districts</a></li>
+      <li class="nav-header">Revenue</li>
+      <li><a href='#' data-f="projected_revenue" class='charts-link'>Projected  Revenue</a>
     </ul>
   </div>
 </div>
@@ -36,6 +38,38 @@
     {{#each data}}
       <tr>
         <td>{{district}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</script>
+
+<script id='projected-revenue-search' type="text/x-handlebars-template">
+  <form class="well form-search" id='projected-revenue-search-form'>
+    <input type="text" id='projected-revenue-search-box' class="input-large search-query" placeholder='Deal Name'>
+    <button type="submit" class="btn">Search</button>
+  </form>
+
+  <div id='projected-revenue-html'>
+    Loading...
+  </div>
+</script>
+
+<script id='projected-revenue-table' type="text/x-handlebars-template">
+  <h4>Top Projected Revenue Deals</h4>
+  <br />
+
+  <table class='table table-bordered'>
+    {{#each revenues}}
+      <tr>
+        <td>
+          <img src='{{[1].image_url}}' style='width: 60px; height: 60px; float: left;'></img> 
+          <div style='float: left; margin-left: 10px; width: 500px;'>
+            <a href='{{[1].original_url}}' target='_blank'>{{[1].title}}</a><br />
+            From {{[1].date_added}} to {{[1].end_date}}
+          </div>
+
+          <div style='font-size: 13px; float: right;'><span class='label label-success'>${{[0]}}</span></div>
+        </td>
       </tr>
     {{/each}}
   </table>

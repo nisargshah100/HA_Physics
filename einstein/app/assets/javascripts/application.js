@@ -17,6 +17,7 @@
 
 velocity_by_hour = new VelocityByHour();
 top_districts = new TopDistricts();
+projected_revenue = new ProjectedRevenue();
 
 velocity_by_hour.fetch();
 
