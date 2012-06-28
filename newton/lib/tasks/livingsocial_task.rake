@@ -24,7 +24,7 @@ class LivingSocial
   def self.get_data
     puts 'Downloading...'
     data = open('http://livingsocial.com/cities.atom', 'r').read
-    # data = File.open('db/sample_data/cities_2.txt', 'r').read
+    # data = File.open('db/sample_data/cities_4.txt', 'r').read
   end
 
   def self.fetch(&block)
