@@ -1,5 +1,5 @@
 class UserDetail < ActiveRecord::Base
-  attr_accessible :user, :user_id, :birthday, :image, :zip_id, :display_name,
+  attr_accessible :user, :user_id, :image, :zip_id,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height_feet,
@@ -7,7 +7,6 @@ class UserDetail < ActiveRecord::Base
 
   attr_writer :current_step
 
-  validates_uniqueness_of :display_name, :if => lambda { |u| u.current_step == "user_info" }
   validates_presence_of :zip_id, :if => lambda { |u| u.current_step == "user_preference" }
 
   belongs_to :user
@@ -72,11 +71,6 @@ class UserDetail < ActiveRecord::Base
 
   def within_miles(radius)
     self.class.within_miles_of_zip(radius, zip)
-  end
-
-  def age
-    now = Time.now.utc.to_date
-    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
   def location

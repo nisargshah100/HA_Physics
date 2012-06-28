@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628030128) do
+ActiveRecord::Schema.define(:version => 20120628125843) do
 
   create_table "events", :force => true do |t|
     t.string   "source"
@@ -27,15 +27,14 @@ ActiveRecord::Schema.define(:version => 20120628030128) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.string   "body"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "status",       :default => "unread"
   end
 
   create_table "user_details", :force => true do |t|
     t.integer  "user_id"
-    t.date     "birthday"
     t.string   "image"
-    t.string   "display_name"
     t.string   "gender"
     t.string   "gender_preference"
     t.integer  "age_range_lower"
@@ -76,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20120628030128) do
     t.string   "provider"
     t.string   "oauth_access_token"
     t.string   "authentication_token"
+    t.string   "display_name"
+    t.date     "birthday"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,115 @@
+Full-Service Restaurant | North American
+Entertainment | Other (Entertainment)
+Full-Service Restaurant | Other (Restaurant)
+Entertainment | Athletic Spectator Sports
+Retail | Food/Drink
+Full-Service Restaurant | European
+Fitness/Active | Yoga Studio
+Entertainment | Event/Festival/Exhibition
+Full-Service Restaurant | Asian
+Entertainment | Museums
+Entertainment | Tours
+Fitness/Active | Other (Fitness/Active)
+Entertainment | City Attractions
+Entertainment | Art Studio/Center
+Entertainment | Specialty Sports/Racing
+Fitness/Active | Extreme/Adventure Sports
+Entertainment | Beer/Wine/Spirits
+Entertainment | Boating
+Restaurants | French
+Food & Drink | Specialty Food
+Arts and Entertainment | Alcohol Event
+Arts and Entertainment | Arts/Crafts/Hobbies
+Restaurants | Sandwich/Deli
+Health & Fitness | Golf
+Restaurants | Asian/Sushi
+Food & Drink | Ice Cream & Frozen Yogurt
+Nightlife | Bars
+Restaurants | Creperies
+Restaurants | Gastropubs
+Arts and Entertainment | Outdoor Pursuits
+Arts and Entertainment | Arcades
+Restaurants | Chinese
+Restaurants | Mediterranean
+Restaurants | Thai
+Arts and Entertainment | Skating
+Arts and Entertainment | Paintball
+Arts and Entertainment | Bowling
+Arts and Entertainment | Hot Air Balloon
+Nightlife | Comedy Clubs
+Restaurants | Barbeque
+Food & Drink | Dessert/Bakery
+Restaurants | Cafe
+Education | Cooking Classes
+Arts and Entertainment | Entertainment
+Restaurants | Burgers
+Arts and Entertainment | Amusement Parks
+Arts and Entertainment | Zoos
+Arts and Entertainment | Boating
+Arts and Entertainment | Music Concert
+Arts and Entertainment | Sporting Events
+Entertainment | Performing Art Center/Theater
+Full-Service Restaurant | Central and South American
+Full-Service Restaurant | African/Middle Eastern
+Arts and Entertainment | Dance
+Restaurants | Italian Restaurant
+Arts and Entertainment | Dinner Theater
+Health & Fitness | Yoga
+Arts and Entertainment | Horse/Carriage Ride
+Restaurants | American/Traditional
+Food & Drink | Wine Shops
+Entertainment | Culinary Classes
+Entertainment | Nightlife
+Arts and Entertainment | Miniature Golf
+Nightlife | Pubs/Sports Bars
+Food & Drink | Breweries
+Arts and Entertainment | Water Parks
+Arts and Entertainment | Bike Tours
+Arts and Entertainment | Theater & Plays
+Restaurants | Moroccan
+Arts and Entertainment | Festivals
+Restaurants | Korean
+Restaurants | Fine Dining
+Arts and Entertainment | Art Galleries
+Restaurants | Pizza
+Arts and Entertainment | Opera
+Nightlife | Night Clubs
+Restaurants | Brazilian
+Restaurants | Tea Rooms
+Arts and Entertainment | Go Karts
+Restaurants | Japanese
+Arts and Entertainment | Museum
+Restaurants | Seafood
+Fitness/Active | Golf Course
+Restaurants | Cajun
+Nightlife | Sports Bars
+Arts and Entertainment | Walking Tours
+Restaurants | Tapas
+Health & Fitness | Rock Climbing
+Arts and Entertainment | Canoe & Kayak Rentals
+Restaurants | Food Stands
+Restaurants | German
+Restaurants | Tex-Mex
+Arts and Entertainment | Biking
+Nightlife | Wine Bars
+Arts and Entertainment | Movie Theaters
+Restaurants | Belgian
+Restaurants | Steakhouses
+Restaurants | Coffee & Tea
+Restaurants | Cuban
+Restaurants | Soup
+Restaurants | Greek
+Entertainment | Experiential Dining
+Fitness/Active | Water Sports
+Arts and Entertainment | Circus
+Restaurants | Middle Eastern
+Arts and Entertainment | Yacht Clubs
+Food & Drink | Seafood Markets
+Restaurants | Dessert
+Restaurants | Southern
+Nightlife | Hookah Bars
+Food & Drink | Gourmet Foods
+Restaurants | Soul Food
+Restaurants | Breakfast & Brunch
+Food & Drink | Juice Bars & Smoothies
+Restaurants | Vegan

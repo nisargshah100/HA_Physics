@@ -6,10 +6,19 @@ Feynman::Application.routes.draw do
   resources :users, :only => [:show]
   resources :events, :only => [:create, :index, :new]
   resources :user_details, :only => [:edit, :update]
-  resources :signups, :only => [:new, :create]
-
+  resources :signups, :only => [:new, :create] do
+    collection do
+      get  :preferences
+      post :save_preferences
+      post :personal_details
+      post :save_personal_details
+    end
+  end
+  resources :messages, :only => [:index, :show]
+    
   namespace :api do
     namespace :v1 do
+      resources :messages, :only => [:index, :show]
       resources :events, :only => [:index]
       match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end

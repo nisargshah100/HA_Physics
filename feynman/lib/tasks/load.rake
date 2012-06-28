@@ -20,8 +20,8 @@ namespace :load do
             :code => row[1],
             :state => row[2],
             :city => row[3],
-            :lat => row[4],
-            :lon => row[5])
+            :lat => row[5],
+            :lon => -1*row[4].to_f)
           puts "%20s, %2s, %5s" % [zip.city, zip.state, zip.code]
         end
       end

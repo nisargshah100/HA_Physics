@@ -1,0 +1,20 @@
+<% for message in @messages: %>
+  <div class="row-fluid">
+    <div class="message_container">
+      <div class="well span10">
+        <div class="message_profile_img_thumb span2">
+          <a href='<%= "#{message.sender.url}" %>'>
+            <img class="message_profile_img_thumb" src=<%= "#{message.sender.image || ''}" %>></img>
+          </a>
+        </div>
+        <div class="span6">
+          <p><a href='<%= "#{message.sender.url}" %>'><%= message.sender.display_name %></a>
+          <p><%= message.body %></p>
+        </div>
+        <div class="span4 pull-right" style="text-align:right;">
+          <p><%= "#{message.created_at}" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
