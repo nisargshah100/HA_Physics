@@ -1,6 +1,14 @@
-<%= form_for @user_detail, :url => "/signups", :method => "post" do |u| %>
-  <%= render "shared/form_errors", :object => @user_detail %>
-  <%= render "#{@user_detail.current_step}_step", :u => u %>
-  <p><%= u.submit "Continue" %></p>
-  <p><%= u.submit "Back", :name => "back_button" unless @user_detail.first_step? %></p>
-<% end %>
+<div class="modal" id="sign_up">
+  <%= form_for @user_detail, :url => "/signups", :method => "post", :html => {:class => "form-horizontal"} do |u| %>
+    <%= render "shared/form_errors", :object => @user_detail %>
+    <%= render "#{@user_detail.current_step}_step", :u => u %>
+    <%= u.submit "Back", { :name => "back_button", :class => "btn btn-primary btn-large" } unless @user_detail.first_step? %>
+    <%= u.submit "Continue", { :class => "btn btn-primary btn-large" } %>
+  <% end %>
+</div>
+
+<script>
+  $('#sign_up').modal({
+    keyboard: false
+  })
+</script>

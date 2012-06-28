@@ -3,12 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_display_name(params[:display_name])
-    @event = Event.new
-
-    if @user == current_user
-      @my_events = @user.events
-      render 'show_my_profile'
-    end
+    @events = @user.events
+    
+    @is_owner = true if @user == current_user
 
     if @user.nil?
       redirect_to events_path, :notice => "That user was not found."
