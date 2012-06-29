@@ -25,6 +25,6 @@ Feynman::Application.routes.draw do
     end
   end
 
-  match '/profile/:display_name' => 'users#show', :as => 'profile'
+  match '/profile/:slug' => 'users#show', :as => 'profile'
   root to: 'pages#index'
 end

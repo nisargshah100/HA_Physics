@@ -21,7 +21,7 @@ class SignupsController < ApplicationController
       @user.save
       @user.create_user_detail(user_preferences)
       sign_in(:user, @user)
-      redirect_to profile_path(@user.display_name), :notice => "You have successfully signed up."
+      redirect_to profile_path(@user.slug), :notice => "You have successfully signed up."
     else
       @user_preferences = user_preferences.to_json
       render 'personal_details'

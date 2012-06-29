@@ -1,0 +1,27 @@
+    <div class="control-group">
+      <%= user.label :birthday, :class => "control-label" %>
+      <div class="controls">
+        <%= user.date_select(:birthday, { :order => [:month, :day, :year], :start_year => Time.now.year, :end_year => 1913, :default => {:year => 1994} }, {:class => "birthday"} ) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= user.label :display_name, :class => "control-label" %>
+      <div class="controls">
+        <%= user.text_field :display_name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= user.label :email, :class => "control-label" %>
+      <div class="controls">
+        <%= user.text_field :email %> 
+      </div>
+    </div>
+    <div class="control-group">
+      <%= user.label :password, :class => "control-label" %>
+      <div class="controls">
+        <%= user.password_field :password %> 
+      </div>
+    </div>
+    <%= user.hidden_field :user_preferences, :value => @user_preferences %>
+    <p><%= user.submit "Back", { :name => "back_button", :class => "btn btn-primary btn-large" } %>
+  <%= user.submit "Continue", { :class => "btn btn-primary btn-large" } %></p>

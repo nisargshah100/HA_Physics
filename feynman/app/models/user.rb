@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
   has_many :messages, :foreign_key => :recipient_id
 
   before_save :ensure_authentication_token
+  before_save :ensure_slug
 
   validates_uniqueness_of :display_name
+  validates :display_name, :format => { :with => /^[a-z0-9]+$/i, :message => "can only contain numbers and letters" }
+  validate :uniqueness_of_slug 
 
   extend Forwardable
 
@@ -72,4 +75,13 @@ class User < ActiveRecord::Base
     now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
   end
 
+  def ensure_slug
+    self.slug = display_name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+  end
+
+  def uniqueness_of_slug
+    if User.find_by_slug(slug)
+      errors.add(:display_name, "That display name is already taken.")
+    end
+  end
 end

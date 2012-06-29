@@ -1,19 +1,4 @@
 <%= form_for @user_detail, :url => save_preferences_signups_path, :html => {:class => "form-horizontal"} do |u| %>
   <%= render "shared/form_errors", :object => @user_detail %>
-  
-  <p class="signup_form">I'm a 
-    <%= u.select(:gender, %w(male female), { :selected => "female", :index => nil }, {:class => 'gender'}) %> 
-    interested in 
-    <%= u.select(:gender_preference, %w(men women both), { :selected => "men", :index => nil }, {:class => 'gender'}) %>
-  </p>
-  <p class="signup_form">
-    between
-    <%= u.text_field :age_range_lower, { :class => "age", :placeholder => "25" } %> 
-    and 
-    <%= u.text_field :age_range_upper, { :class => "age", :placeholder => "35" } %> 
-    near 
-    <%= u.text_field :zip_id, { :class => "zip", :placeholder => "zip" } %>
-  </p>
-
-  <p><%= u.submit "Continue", { :class => "btn btn-primary btn-large" } %></p>
+  <%= render "preferences_form", :u => u %>
 <% end %>
