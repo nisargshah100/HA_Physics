@@ -1,8 +1,8 @@
 class Authentication < ActiveRecord::Base
-  attr_accessible :user, :token, :provider, :last_status_id, :nickname, :uid, :secret
+  attr_accessible :user, :token, :provider, :last_status_id, :nickname, :uid, :secret, :image
   belongs_to :user
 
-  def self.create_instagram_auth(user, data)
+  def self.create_instagram(user, data)
     user.authentications.create(provider: data["provider"],
                                 token: data["credentials"]["token"],
                                 uid: data["uid"],

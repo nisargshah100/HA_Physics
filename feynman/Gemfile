@@ -19,6 +19,7 @@ gem 'carrierwave'
 gem 'hashie'
 gem 'geocoder'
 gem 'omniauth-instagram'
+gem 'instagram', :git => 'git@github.com:wengzilla/instagram.git'
 
 # gem 'mongoid'
 

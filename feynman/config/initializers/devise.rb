@@ -207,11 +207,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  if Rails.env.production?
-    config.omniauth :instagram, "88879dba02804bb7b9b70ba93173414a", "b52d86d8728a45c6bfa5e0b10fe71497"
-  else
-    config.omniauth :instagram, "e8d1e46f126e4b50a0c620f2421083dd", "66d9b35dd0164bd68c9a6c84ef8d1545"
-  end
+  config.omniauth :instagram, "20298a13d8404b5da50887561cd0f228", "2372a50989304d4a9375ba5a1e0536d3"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

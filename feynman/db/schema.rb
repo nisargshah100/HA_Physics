@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629025220) do
+ActiveRecord::Schema.define(:version => 20120629141316) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "last_status_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "authentication_id"
+  end
 
   create_table "deals", :force => true do |t|
     t.string   "original_id"
@@ -69,8 +83,6 @@ ActiveRecord::Schema.define(:version => 20120629025220) do
     t.string   "political_affiliation_level"
     t.string   "race"
     t.string   "children_preference"
-    t.string   "height_feet"
-    t.string   "height_inches"
     t.integer  "exercise_level"
     t.integer  "drinking_level"
     t.integer  "smoking_level"
@@ -82,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20120629025220) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
+    t.string   "height"
   end
 
   create_table "users", :force => true do |t|

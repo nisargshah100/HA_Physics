@@ -2,8 +2,8 @@ class UserDetail < ActiveRecord::Base
   attr_accessible :user, :user_id, :image, :zipcode,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
-    :political_affiliation_level, :race, :children_preference, :height_feet,
-    :height_inches, :exercise_level, :drinking_level, :smoking_level
+    :political_affiliation_level, :race, :children_preference, :height, 
+    :exercise_level, :drinking_level, :smoking_level
 
   validates :zipcode, :format => { :with => /^[0-9]{5}$/, :message => "must be 5 digits" }
   validate :ensure_valid_country
@@ -24,7 +24,11 @@ class UserDetail < ActiveRecord::Base
   belongs_to :user
 
   def complete?
-    true if zipcode.nil? || gender.nil? || gender_preference.nil?
+    if zipcode.nil? || gender.nil? || gender_preference.nil?
+      false
+    else
+      true
+    end
   end
 
   def location
@@ -46,12 +50,6 @@ class UserDetail < ActiveRecord::Base
       true
     else
       false
-    end
-  end
-
-  def height
-    if height_feet && height_inches
-      "#{height_feet}\"#{height_inches}"
     end
   end
 

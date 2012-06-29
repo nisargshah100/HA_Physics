@@ -1,0 +1,47 @@
+.event_user_container {
+  margin-left:10px !important;
+  padding-bottom:20px;
+}
+
+.event_letsgo {
+  color: #999;
+  font-style: italic;
+  font-family: Georgia;
+  font-size: 1.2em;
+}
+
+.event_description {
+  color: #333;
+  font-family: Georgia;
+  font-size: 1.2em;    
+}
+
+.event_description_container {
+  padding-top:10px;
+  margin-left:0px !important;
+}
+
+.event_user_details {
+  margin: 0px;
+  color: #AAA;
+  font-size: 1em;
+}
+
+.event_container {
+  margin-left: 0px !important;
+}
+
+.event_display_name {
+  margin: 8px 0px 5px 0px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #E86D45;
+}
+
+.test {
+color: #8DD5F2;
+color: #06ADBF;
+color: #7ABF49;
+color: #BDD982;
+color: #8C0404;
+}

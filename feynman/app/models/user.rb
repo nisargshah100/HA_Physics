@@ -24,9 +24,8 @@ class User < ActiveRecord::Base
   def_delegators :user_detail, :orientation, :image, :zipcode,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
-    :political_affiliation_level, :race, :children_preference, :height_feet,
-    :height_inches, :exercise_level, :drinking_level, :smoking_level, :location,
-    :complete?, :height, :objective_pronoun
+    :political_affiliation_level, :race, :children_preference, :exercise_level, 
+    :drinking_level, :smoking_level, :location, :complete?, :height, :objective_pronoun
 
   def self.create_user_with_detail(user_params, user_detail_params)
     User.create(user_params).tap do |user|
@@ -47,5 +46,9 @@ class User < ActiveRecord::Base
     if User.find_by_slug(slug)
       errors.add(:display_name, "That display name is already taken.")
     end
+  end
+
+  def instagram?
+    authentications.where(provider: "instagram").count > 0
   end
 end

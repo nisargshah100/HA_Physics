@@ -6,6 +6,8 @@ Feynman::Application.routes.draw do
   resources :users, :only => [:show]
   resources :events, :only => [:create, :index, :new]
   resources :user_details, :only => [:edit, :update]
+  resources :authentications, :only => [:new]
+
   resources :signups, :only => [:new, :create] do
     collection do
       get  :preferences

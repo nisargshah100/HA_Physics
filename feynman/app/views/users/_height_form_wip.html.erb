@@ -1,0 +1,24 @@
+<!-- <div class="form">
+  <%= form_for @user.user_detail, :url => api_v1_user_details_url(@user.authentication_token), :method => "put", :remote => true do |u| %>
+    <%= u.select(:height_feet, (4..7).to_a, { :index => nil }) %>
+    <%= u.select(:height_inches, (0..12).to_a, { :index => nil }) %>
+  <%= u.submit "Submit" %>
+  <% end %> 
+
+<script>
+  $('.height_feet').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
+    data: "{'4':'4','5':'5','6':'6','7':'7'}",
+    type: 'select',
+    submit: "OK",
+    placeholder: '',
+  });
+
+  $('.height_inches').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
+    data: "{'0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','11':'11','12':'12'}",
+    type: 'select',
+    placeholder: '0',
+  });
+</script>
+
+
+-->
