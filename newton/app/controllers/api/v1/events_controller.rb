@@ -1,7 +1,17 @@
 class Api::V1::EventsController < ApplicationController
 
   def index
-    deals = Deal.where(:end_date.gt => DateTime.now, :division_latlon => { '$near' => [38.9087, -77.0414], '$maxDistance' => 32.fdiv(111.12)}).limit(Deal.count)
+    deals = Deal.by_params(params).where(:end_date.gt => DateTime.now).limit(Deal.count)
+
+    excludes = ['cleaning', 'family', 'spa', 'treatment', 'stay']
+    conds = []
+
+    excludes.each do |ex|
+      conds << {"$or" => [{"title" => /^((?!#{ex}).)*$/i }]}
+    end
+
+    deals = deals.all_of(conds)
+
     conds = []
 
     # Narrow the scope
