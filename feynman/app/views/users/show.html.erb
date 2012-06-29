@@ -18,15 +18,27 @@
   <div class="row-fluid">
     <div class="span4">
       <h2>About Me</h2>
-      <ul class="profile_about_me">
-        <li>Career: <%= @user.employment %></li>
-        <li>Education: <%= @user.education %></li>
-        <li>Faith: <%= @user.faith %></li>
-        <li>Politics: <%= @user.political_affiliation %></li>
-        <li>Race/Ethnicity: <%= @user.race %></li>
-        <li>Children: <%= @user.children_preference %></li>
-        <li>Height: <%= @user.height %></li>
-      </ul>
+      <div id="profile_about_me_container">
+        <div class="enable_edit">Career: <span id="employment" class="edit"><%= @user.employment %></span>
+        </div>
+        <div class="enable_edit">Education: <span id="education" class="edit"> <%= @user.education %></span>
+        </div>          
+        <div class="enable_edit">Faith: <span id="faith" class="edit"><%= @user.faith %></span>
+        </div>
+        <div class="enable_edit">Politics: <span id="political_affiliation" class="edit"><%= @user.political_affiliation %></span>
+        </div>
+        <div class="enable_edit">Race/Ethnicity: <span id="race" class="edit"><%= @user.race %></span>
+        </div>
+        <div class="enable_edit">Children: <span id="children_preference" class="edit"><%= @user.children_preference %></span>
+        </div>
+        <div>Height: 
+          <%= form_for @user.user_detail, :url => api_v1_user_details_url(@user.authentication_token), :method => "put", :remote => true do |u| %>
+            <%= u.select(:height_feet, (4..7).to_a, { :index => nil }) %>
+            <%= u.select(:height_inches, (0..12).to_a, { :index => nil }) %>
+          <%= u.submit "Submit" %>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="span8">
     </div>
@@ -40,6 +52,32 @@
 <script type="text/javascript">
   new App.Events()
   new App.MessagesNew({ el: "#app"})
+
+  $(document).ready(function() {
+    $('.edit').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
+      indicator: 'Saving...',
+      tooltip: '',
+      placeholder: '',
+    });
+
+    $('.height_feet').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
+      data: "{'4':'4','5':'5','6':'6','7':'7'}",
+      type: 'select',
+      submit: "OK",
+      placeholder: '',
+    });
+
+    $('.height_inches').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
+      data: "{'0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','11':'11','12':'12'}",
+      type: 'select',
+      placeholder: '0',
+    });
+
+    $('.enable_edit').click(function() {
+      console.log("In here.")
+      $(this).children()[0].click()
+    });
+  });
 </script>
 
 <style>
@@ -71,5 +109,20 @@
 
   .profile_action_container {
     text-align:right;
+  }
+
+  .edit {
+    display: inline;
+    height:30px;
+    width:50px;
+  }
+
+  form {
+    display: inline !important;
+  }
+
+  select {
+    display: inline;
+    width: 80px;
   }
 </style>

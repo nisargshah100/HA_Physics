@@ -142,6 +142,9 @@ GEM
       rack
     omniauth-facebook (1.4.0)
       omniauth-oauth2 (~> 1.0.2)
+    omniauth-instagram (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth2 (1.0.2)
       oauth2 (~> 0.6.0)
       omniauth (~> 1.0)
@@ -252,6 +255,7 @@ DEPENDENCIES
   koala
   launchy
   omniauth-facebook
+  omniauth-instagram
   pg
   rack-test
   rails (= 3.2.3)

@@ -18,8 +18,8 @@ class UserDetail < ActiveRecord::Base
     end
   end
 
-  before_validation :geocode          # auto-fetch coordinates
-  before_validation :reverse_geocode
+  before_create :geocode          # auto-fetch coordinates
+  before_create :reverse_geocode
 
   belongs_to :user
 

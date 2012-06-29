@@ -207,6 +207,12 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
+  if Rails.env.production?
+    config.omniauth :instagram, "88879dba02804bb7b9b70ba93173414a", "b52d86d8728a45c6bfa5e0b10fe71497"
+  else
+    config.omniauth :instagram, "e8d1e46f126e4b50a0c620f2421083dd", "66d9b35dd0164bd68c9a6c84ef8d1545"
+  end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

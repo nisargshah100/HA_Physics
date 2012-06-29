@@ -18,6 +18,8 @@ gem 'random_data'
 gem 'carrierwave'
 gem 'hashie'
 gem 'geocoder'
+gem 'omniauth-instagram'
+
 # gem 'mongoid'
 
 # Gems used only for assets and not required
