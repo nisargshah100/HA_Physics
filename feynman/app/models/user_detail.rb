@@ -1,5 +1,5 @@
 class UserDetail < ActiveRecord::Base
-  attr_accessible :user, :user_id, :birthday, :image, :zip_id, :display_name,
+  attr_accessible :user, :user_id, :image, :zipcode,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height_feet,
@@ -7,29 +7,18 @@ class UserDetail < ActiveRecord::Base
 
   attr_writer :current_step
 
-  validates_uniqueness_of :display_name, :if => lambda { |u| u.current_step == "user_info" }
-  validates_presence_of :zip_id, :if => lambda { |u| u.current_step == "user_preference" }
+  geocoded_by :zipcode
+  after_validation :geocode          # auto-fetch coordinates
+
+  reverse_geocoded_by :latitude, :longitude do |user_detail, results|
+    if geo = results.first
+      user_detail.city    = geo.city
+      user_detail.state   = geo.state
+    end
+  end
+  after_validation :reverse_geocode
 
   belongs_to :user
-  belongs_to :zip
-
-  scope :within_miles_of_zip, lambda{|radius, zip|
-    # Get the parameters for the search
-    area = zip.area_for(radius)
-
-    # now find all zip codes that are within 
-    # these min/max lat/lon bounds and return them
-    # weed out any zip codes that fall outside of the search radius
-    { :select => "#{UserDetail.columns.map{|c| "user_details.#{c.name}"}.join(', ')}, sqrt( 
-        pow(#{area[:lat_miles]} * (zips.lat - #{zip.lat}),2) + 
-        pow(#{area[:lon_miles]} * (zips.lon - #{zip.lon}),2)) as distance",
-      :joins => :zip,
-      :conditions => "(zips.lat BETWEEN #{area[:min_lat]} AND #{area[:max_lat]}) 
-        AND (zips.lon BETWEEN #{area[:min_lon]} AND #{area[:max_lon]}) 
-        AND sqrt(pow(#{area[:lat_miles]} * (zips.lat - #{zip.lat}),2) + 
-        pow(#{area[:lon_miles]} * (zips.lon - #{zip.lon}),2)) <= #{area[:radius]}",
-      :order => "distance"}
-  }
 
   def current_step
     @current_step || steps.first
@@ -70,17 +59,8 @@ class UserDetail < ActiveRecord::Base
     update_attribute(:status, "complete")
   end
 
-  def within_miles(radius)
-    self.class.within_miles_of_zip(radius, zip)
-  end
-
-  def age
-    now = Time.now.utc.to_date
-    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
-  end
-
   def location
-    "#{zip.city.titleize}, #{zip.state}" if zip
+    "#{city.titleize}, #{state}" if city && state
   end
 
   def orientation

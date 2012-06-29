@@ -16,7 +16,9 @@ class App.Events extends Spine.Controller
   template: ->
     @events = Event.all()
     @user_id = $('.user_meta').data('id')
-    if @user_id
+    @location = $('.user_meta').data('location')
+
+    if @location
       @view('short_events')(@)
     else
       @view('events')(@)

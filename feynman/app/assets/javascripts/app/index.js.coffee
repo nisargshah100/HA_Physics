@@ -16,6 +16,8 @@ class App extends Spine.Controller
     super
     # Initialize controllers:
     @append(@events = new App.Events)
+    @append(@messages = new App.MessagesNew)
+    @append(@messages = new App.MessagesIndex)
     #  ...
     
     Spine.Route.setup()    

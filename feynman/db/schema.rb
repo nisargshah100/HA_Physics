@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628030128) do
+ActiveRecord::Schema.define(:version => 20120629021529) do
+
+  create_table "deals", :force => true do |t|
+    t.string   "original_id"
+    t.datetime "date_added"
+    t.datetime "end_date"
+    t.integer  "price_cents"
+    t.integer  "value_cents"
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "affiliate_url"
+    t.string   "original_url"
+    t.string   "image_url"
+    t.string   "source"
+    t.string   "division_name"
+    t.float    "division_latitude"
+    t.float    "division_longitude"
+    t.string   "original_category"
+    t.string   "category"
+    t.boolean  "sold_out",           :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
 
   create_table "events", :force => true do |t|
     t.string   "source"
@@ -27,15 +49,14 @@ ActiveRecord::Schema.define(:version => 20120628030128) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.string   "body"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "status",       :default => "unread"
   end
 
   create_table "user_details", :force => true do |t|
     t.integer  "user_id"
-    t.date     "birthday"
     t.string   "image"
-    t.string   "display_name"
     t.string   "gender"
     t.string   "gender_preference"
     t.integer  "age_range_lower"
@@ -55,8 +76,12 @@ ActiveRecord::Schema.define(:version => 20120628030128) do
     t.integer  "smoking_level"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.string   "zip_id"
+    t.string   "zipcode"
     t.string   "status"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "users", :force => true do |t|
@@ -76,6 +101,9 @@ ActiveRecord::Schema.define(:version => 20120628030128) do
     t.string   "provider"
     t.string   "oauth_access_token"
     t.string   "authentication_token"
+    t.string   "display_name"
+    t.date     "birthday"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

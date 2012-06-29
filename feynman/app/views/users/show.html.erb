@@ -2,7 +2,7 @@
   <div class="row-fluid">
     <%= render "profile_header", user: @user %>
     <div class="span4 profile_action_container">
-      <p><a class="btn btn-primary btn-large profile_action">Message</a></p>
+      <p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
       <p><a class="btn btn-primary btn-large profile_action">Ask <%= "#{@user.objective_pronoun}" %> out</a></p>
       <p><a class="btn btn-info btn-large profile_action">Favorite</a></p>
     </div>
@@ -33,8 +33,13 @@
   </div>
 </div>
 
+
+<div class="modal hide" id="message_modal">
+</div>
+
 <script type="text/javascript">
   new App.Events()
+  new App.MessagesNew({ el: "#app"})
 </script>
 
 <style>

@@ -1,0 +1,22 @@
+img.message_profile_img_thumb {
+  width: 75px;
+}
+
+div.message_profile_img_thumb {
+  margin: 0px;
+  overflow: hidden;
+  height: 75px;
+  width: 75px;
+}
+
+div.message_unread {
+  background: #FFF;
+}
+
+p.message_display_name {
+  font-weight: bold;
+}
+
+div.message_hover {
+  background: #F0FAFF;
+}

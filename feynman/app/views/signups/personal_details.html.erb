@@ -1,0 +1,21 @@
+<p class="signup_form">
+  <%= form_for @user, :url => signups_path, :html => {:class => "form-horizontal"} do |user| %>
+    <%= render "shared/form_errors", :object => @user %>
+    <%= render "personal_details_form", :user => user %>
+  <% end %>
+
+</p>
+
+<style>
+  .birthday {
+    width: 100px;
+  }
+
+  label {
+    font-size: 1.25em;
+  }
+
+  #user_detail_birthday_2i {
+    width: 150px;
+  }
+</style>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">×</button>
+  <h3>Send message</h3>
+</div>
+<form accept-charset="UTF-8" action="/messages" class="new_message" id="new_message" method="post">
+  <div class="modal-body">
+    <input id="message_body" name="message[body]" size="30" type="text" />
+    <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="<%= @recipient_id %>" />
+  </div>
+  <div class="modal-footer">
+    <input name="commit" type="submit" value="Create Message" />
+  </div>
+</form>

@@ -4,7 +4,7 @@
     </div>
   </div>
   <div class="span4">
-    <%= content_tag "div", class: "user_meta", data: {id: @user.id} do %>
+    <%= content_tag "div", class: "profile_meta", data:{id: "#{user.id}"} do %>
       <p class="profile_display_name" id="display_name"><%= "#{user.display_name}" %></p>
       <p class="profile_user_details"><%= "#{user.age}, #{user.gender.capitalize}, #{user.orientation}" %></p>
       <p class="profile_user_details"><%= "#{user.location}" %></p>

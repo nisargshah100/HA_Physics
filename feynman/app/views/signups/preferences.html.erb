@@ -1,0 +1,4 @@
+<%= form_for @user_detail, :url => save_preferences_signups_path, :html => {:class => "form-horizontal"} do |u| %>
+  <%= render "shared/form_errors", :object => @user_detail %>
+  <%= render "preferences_form", :u => u %>
+<% end %>
