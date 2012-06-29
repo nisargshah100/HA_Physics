@@ -2,5 +2,18 @@
 </div>
 
 <script>
-  new App.Messages();
+  new App.MessagesIndex();
+
+  $(".message_body").live("click", function(){
+    window.location=$(this).find("a").attr("href"); 
+    return false;
+  });
+
+  $(".message").live({
+    mouseenter:
+      function(){ $(this).addClass("message_hover"); },
+    mouseleave:
+      function(){ $(this).removeClass("message_hover"); },
+  });
+
 </script>

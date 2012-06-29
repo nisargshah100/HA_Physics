@@ -14,11 +14,12 @@ Feynman::Application.routes.draw do
       post :save_personal_details
     end
   end
+  
   resources :messages, :only => [:index, :show]
     
   namespace :api do
     namespace :v1 do
-      resources :messages, :only => [:index, :show]
+      resources :messages, :only => [:index, :show, :create]
       resources :events, :only => [:index]
       match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end

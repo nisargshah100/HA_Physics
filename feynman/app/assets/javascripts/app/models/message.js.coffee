@@ -1,5 +1,5 @@
 class App.Message extends Spine.Model
-  @configure 'Message', 'sender', 'body', 'created_at', 'status'
+  @configure 'Message', 'sender', 'body', 'created_at', 'status', 'recipient_id'
   @extend Spine.Model.Ajax
 
   @url: => 

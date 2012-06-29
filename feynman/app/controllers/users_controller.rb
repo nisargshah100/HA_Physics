@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_display_name(params[:display_name])
     @events = @user.events
+    @message = Message.new
     @location = "user_profile"
 
     @is_owner = true if @user == current_user
