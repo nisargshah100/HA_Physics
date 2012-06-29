@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628125843) do
+ActiveRecord::Schema.define(:version => 20120629014106) do
+
+  create_table "deals", :force => true do |t|
+    t.string   "original_id"
+    t.datetime "date_added"
+    t.datetime "end_date"
+    t.integer  "price_cents"
+    t.integer  "value_cents"
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "affiliate_url"
+    t.string   "original_url"
+    t.string   "image_url"
+    t.string   "source"
+    t.string   "division_name"
+    t.float    "division_latitude"
+    t.float    "division_longitude"
+    t.string   "original_category"
+    t.string   "category"
+    t.boolean  "sold_out",           :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
 
   create_table "events", :force => true do |t|
     t.string   "source"
