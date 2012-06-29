@@ -7,7 +7,8 @@ class UserDetail < ActiveRecord::Base
 
   attr_writer :current_step
 
-  validates_presence_of :zip_id, :if => lambda { |u| u.current_step == "user_preference" }
+  geocoded_by :zip_id
+  after_validation :geocode          # auto-fetch coordinates
 
   belongs_to :user
   belongs_to :zip
