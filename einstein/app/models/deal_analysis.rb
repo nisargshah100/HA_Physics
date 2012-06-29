@@ -1,7 +1,3 @@
-require 'data/deal_velocity'
-require 'data/top_districts'
-require 'data/deal_run_probability'
-
 GROUPON = 'groupon'
 LS = 'LivingSocial'
 
@@ -23,8 +19,8 @@ class DealAnalysis
   end
 
   def compute_deal_velocity(limit=10)
-    vel_g  = DealVelocity.compute(DealAnalysis.unique_deals(source=GROUPON))
-    vel_ls = DealVelocity.compute(DealAnalysis.unique_deals(source=LS))
+    vel_g  = DealVelocity.compute(DealAnalysis.unique_deals(Deal.where(:source => GROUPON)))
+    vel_ls = DealVelocity.compute(DealAnalysis.unique_deals(Deal.where(:source => LS)))
 
     self.groupon_deal_velocity = vel_g[0...limit].to_json
     self.livingsocial_deal_velocity = vel_ls[0...limit].to_json
@@ -41,15 +37,18 @@ class DealAnalysis
   # Helper functions
 
   def self.revenue(deals)
-    deals.map { |deal| deal.price_cents * deal.purchases.last.quantity.to_i }.sum
+    deals.map { |deal| revenue_for_deal(deal) }.sum
   end
 
-  def self.unique_deals(source)
+  def self.revenue_for_deal(deal)
+    deal.price_cents * deal.purchases.last.quantity.to_i
+  end
+
+  def self.unique_deals(deals)
     titles = Deal.all.distinct(:title)
-    all_deals = Deal.where(:source => source)
     uniq_deals = []
 
-    all_deals.each do |d| 
+    deals.each do |d| 
       if titles.include?(d.title)
         uniq_deals << d
         titles.delete(d.title)

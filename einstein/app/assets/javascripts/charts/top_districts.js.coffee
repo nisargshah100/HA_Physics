@@ -9,13 +9,13 @@ class TopDistricts
     groupon = data.groupon
 
     @ls = []
-    @ls.push({ district: key }) for key, val of ls
+    @ls.push({ district: key, revenue: val }) for key, val of ls
 
     @groupon = []
-    @groupon.push({district: key }) for key, val of groupon
+    @groupon.push({district: key, revenue: val }) for key, val of groupon
 
   render: ->
-    $("#header").html('Best districts');
+    $("#header").html('Top districts');
     @render_table()
 
   render_table: ->
