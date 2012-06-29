@@ -27,47 +27,10 @@ class User < ActiveRecord::Base
     :height_inches, :exercise_level, :drinking_level, :smoking_level, :location,
     :complete?, :height, :objective_pronoun
 
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
-    end
-  end
-
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    unless user = User.where(:provider => auth.provider, :uid => auth.uid).first
-      user = User.create_user_with_detail_for_facebook(auth)
-    end
-    user
-  end
-
-  def self.create_user_with_detail_for_facebook(auth)
-    User.create(create_user_hash_from_facebook_auth(auth)).tap do |user|
-      if user.provider == "facebook"
-        user.create_user_detail(create_user_detail_hash_from_facebook_auth(auth))
-      end
-    end
-  end
-
   def self.create_user_with_detail(user_params, user_detail_params)
     User.create(user_params).tap do |user|
       user.create_user_detail(user_detail_params)
     end
-  end
-
-  def self.create_user_hash_from_facebook_auth(auth)
-    { provider: auth.provider,
-    uid: auth.uid,
-    email: auth.info.email,
-    password: Devise.friendly_token[0,20],
-    oauth_access_token: auth.credentials.token }
-  end
-
-  def self.create_user_detail_hash_from_facebook_auth(auth)
-    { image: auth.info.image.gsub("=square", "=large"),
-    gender: auth.extra.raw_info.gender.capitalize,
-    birthday: Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y") }
   end
 
   def age

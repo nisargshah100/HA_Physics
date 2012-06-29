@@ -5,58 +5,26 @@ class UserDetail < ActiveRecord::Base
     :political_affiliation_level, :race, :children_preference, :height_feet,
     :height_inches, :exercise_level, :drinking_level, :smoking_level
 
-  attr_writer :current_step
+  validates :zipcode, :format => { :with => /^[0-9]{5}$/, :message => "must be 5 digits" }
+  validate :ensure_valid_country
 
   geocoded_by :zipcode
-  after_validation :geocode          # auto-fetch coordinates
 
   reverse_geocoded_by :latitude, :longitude do |user_detail, results|
     if geo = results.first
       user_detail.city    = geo.city
       user_detail.state   = geo.state
+      user_detail.country = geo.country
     end
   end
-  after_validation :reverse_geocode
+
+  before_validation :geocode          # auto-fetch coordinates
+  before_validation :reverse_geocode
 
   belongs_to :user
 
-  def current_step
-    @current_step || steps.first
-  end
-
-  def steps
-    %w[user_preference user_info complete]
-  end
-
-  def next_step
-    self.current_step = steps[steps.index(current_step)+1]
-  end
-
-  def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
-  end
-
-  def first_step?
-    current_step == steps.first
-  end
-
-  def last_step?
-    current_step == steps.last
-  end
-
-  def all_valid?
-    steps.all? do |step|
-      self.current_step = step
-      valid?
-    end
-  end
-
   def complete?
-    status == "complete"
-  end 
-
-  def set_complete
-    update_attribute(:status, "complete")
+    true if zipcode.nil? || gender.nil? || gender_preference.nil?
   end
 
   def location
@@ -93,5 +61,9 @@ class UserDetail < ActiveRecord::Base
 
   def image
     "/assets/default_#{gender.downcase}_250.png" if @image.nil?
+  end
+
+  def ensure_valid_country
+    country == "USA"
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629021529) do
+ActiveRecord::Schema.define(:version => 20120629025220) do
 
   create_table "deals", :force => true do |t|
     t.string   "original_id"
@@ -77,11 +77,11 @@ ActiveRecord::Schema.define(:version => 20120629021529) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "zipcode"
-    t.string   "status"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "city"
     t.string   "state"
+    t.string   "country"
   end
 
   create_table "users", :force => true do |t|
