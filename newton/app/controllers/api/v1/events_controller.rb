@@ -3,11 +3,12 @@ class Api::V1::EventsController < ApplicationController
   def index
     deals = Deal.by_params(params).where(:end_date.gt => DateTime.now).limit(Deal.count)
 
-    excludes = ['cleaning', 'family', 'spa', 'treatment', 'stay']
+    excludes = ['cleaning', 'family', 'spa', 'treatment', 'stay', 'paintball', 'month', 'year', 'unlimited', 'children']
     conds = []
 
     excludes.each do |ex|
       conds << {"$or" => [{"title" => /^((?!#{ex}).)*$/i }]}
+      conds << {"$or" => [{"subtitle" => /^((?!#{ex}).)*$/i }]}
     end
 
     deals = deals.all_of(conds)
@@ -26,5 +27,4 @@ class Api::V1::EventsController < ApplicationController
 
     render :json => deals
   end
-
 end
