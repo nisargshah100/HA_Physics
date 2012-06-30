@@ -32,12 +32,10 @@ class GrouponDealParser
   end
 
   def subtitle
-    puts 'subtitle'
     @entry['announcementTitle']
   end
 
   def original_url
-    puts 'original url'
     @entry['dealUrl']
   end
 

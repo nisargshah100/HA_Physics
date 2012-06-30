@@ -21,6 +21,7 @@ class Deal
   field :original_category, type: String
   field :original_subcategory, type: String
   field :category, type: String
+  field :sold_out, type: Boolean
 
   validates_uniqueness_of :original_id, :scope => :source
 
@@ -58,7 +59,7 @@ class Deal
   def self.by_location(deals, params)
     if params[:near]
       near = params[:near].split(",").map { |loc| loc.to_f }
-      distance = params[:distance].to_f || 30
+      distance = (params[:distance].to_f || 30).fdiv(111.12)
 
       deals = deals.where(:division_latlon => {
         '$near' => near, 

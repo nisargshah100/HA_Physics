@@ -14,4 +14,14 @@ class Api::V1::DealsController < ApiController
       render status: :not_found
     end
   end
+
+  def fetch
+    Thread.new do
+      puts %x[rake ls:fetch_deals]
+      puts %x[rake groupon:fetch_divisions]
+      puts %x[rake groupon:fetch_deals]
+    end
+
+    render :json => true
+  end
 end
