@@ -1,22 +1,36 @@
-class App.ImagesIndex extends Spine.Controller
+class App.ImagesNew extends Spine.Controller
   constructor: -> 
     super
 
   events:
-    "click #open_message_modal" : "renderForm"
-    "submit .new_message"       : "sendMessage"
+    "click #open_image_preview_modal" : "fetchImages"
+    "submit .new_image"               : "saveImage"
 
-  renderForm: (e) =>
-    $("#message_modal").html @form()    
-
-  sendMessage: (e) =>
+  saveImage: (e) =>
     e.preventDefault()
-    # message = App.Message.fromForm(e.target).save()
-    message = new App.Message(body: $("#message_body").val(), recipient_id: $("#message_recipient_id").val()).save()
-    @log message
-    $("#message_body").val("")
-    $("#message_modal").modal("hide")
+    alert('hi')
 
-  form: =>
-    @recipient_id = $(".profile_meta").data("id")
-    @view('new_message')(@)
+  renderImages: (e) =>
+    $("#image_preview_modal").html @view('new_image')(@)   
+
+  fetchImages: (e) =>
+    @renderImages(e)
+    token = $('.user_meta').data('token')
+    url = "/api/v1/authentications.json?provider=instagram&token=#{token}"
+    $.getJSON(url, (data) => @getInstagramPhotos(data) )
+
+  getInstagramPhotos: (data) =>
+    @response = data[0].token
+    url = "https://api.instagram.com/v1/users/#{data[0].uid}/media/recent"
+    $.ajax({
+              type: "GET",
+              dataType: "jsonp",
+              url: url,
+              data: { access_token: "#{data[0].token}", count: 30 },
+              success: (response) ->
+                objects = response.data
+                for object in objects
+                  console.log object.images.low_resolution.url
+                  $(".carousel-inner").append("<div class='item'><img src='#{object.images.low_resolution.url}'></img></div>")
+                  $($(".carousel-inner").children()[0]).addClass('active')
+          })

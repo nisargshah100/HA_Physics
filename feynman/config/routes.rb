@@ -21,8 +21,10 @@ Feynman::Application.routes.draw do
     
   namespace :api do
     namespace :v1 do
+      resources :authentications, :only => [:index]
       resources :messages, :only => [:index, :show, :create]
       resources :events, :only => [:index]
+      resources :images, :only => [:create]
       match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end
   end

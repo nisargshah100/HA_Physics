@@ -1,0 +1,16 @@
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <form accept-charset="UTF-8" action="/api/v1/images" class="new_image" id="new_image" method="post">
+        <div class="modal-body">
+          <div id="myCarousel" class="carousel slide">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input name="commit" type="submit" class="btn btn-large btn-primary" value="Add this image" />
+        </div>
+      </form>

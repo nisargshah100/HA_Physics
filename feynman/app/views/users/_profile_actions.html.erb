@@ -1,7 +1,7 @@
     <div class="span4 profile_action_container">
       <% if is_owner %>
         <% if user.instagram? %>
-          <a class="btn btn-primary btn-large profile_action" data-toggle="modal" href="#image_preview_modal">Add Photos</a></p>
+          <a class="btn btn-primary btn-large profile_action" data-toggle="modal" id="open_image_preview_modal" href="#image_preview_modal">Add Photos</a></p>
         <% else %>
         <p><%= link_to "Add Photos", user_omniauth_authorize_path(:instagram), id: "link-instagram" %></p>
         <% end %>
@@ -11,27 +11,3 @@
         <p><a class="btn btn-info btn-large profile_action">Favorite</a></p>
       <% end %>
     </div>
-
-    <div class="modal hide" id="image_preview_modal">
-      <button type="button" class="close" data-dismiss="modal">×</button>
-      <form accept-charset="UTF-8" action="/messages" class="new_message" id="new_message" method="post">
-        <div class="modal-body">
-          <div id="myCarousel" class="carousel slide">
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-              <div class="item active"><img src="http://distilleryimage0.s3.amazonaws.com/55860efebe2011e1b10e123138105d6b_6.jpg"></img></div>
-              <div class="item"><img src="http://distilleryimage7.s3.amazonaws.com/2943b926be5d11e1b2fe1231380205bf_6.jpg"></img></div>
-              <div class="item"><img src="http://distilleryimage6.s3.amazonaws.com/1de9381cbe1c11e1a9f71231382044a1_6.jpg "></img></div>
-            </div>
-            <!-- Carousel nav -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input name="commit" type="submit" class="btn btn-large btn-primary" value="Add this image" />
-        </div>
-      </form>
-    </div>
-
-
