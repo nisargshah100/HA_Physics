@@ -24,7 +24,7 @@ Feynman::Application.routes.draw do
       resources :authentications, :only => [:index]
       resources :messages, :only => [:index, :show, :create]
       resources :events, :only => [:index]
-      resources :images, :only => [:create]
+      resources :images, :only => [:create, :index]
       match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end
   end

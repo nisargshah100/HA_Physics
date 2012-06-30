@@ -4,6 +4,6 @@ class App.Message extends Spine.Model
 
   @url: => 
     @token = $('.user_meta').data('token')
-    url = "/api/v1/messages.json?token=#{@token}&sender_id=#{@sender_id}"
+    url = "/api/v1/messages.json?token=#{@token}"
 
 window.Message = App.Message

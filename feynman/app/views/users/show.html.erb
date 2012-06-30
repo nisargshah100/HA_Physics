@@ -11,11 +11,12 @@
 
     <div class="span8">
       <h2>My Dates</h2>
-      <div id="events"></div>
+      <div id="events" class="profile_events row-fluid"></div>
+      <h2>My Photos</h2>
+      <div id="images"></div>
     </div>
   </div>
 </div>
-
 
 <div class="modal hide" id="message_modal">
 </div>
@@ -26,6 +27,7 @@
   new App.Events()
   new App.MessagesNew({ el: "#app" })
   new App.ImagesNew({ el: "#app" })
+  new App.ImagesIndex()
 
   $(document).ready(function() {
     $('#employment').editable('<%= "#{api_v1_user_details_url(current_user.authentication_token)}" %>', {
@@ -162,5 +164,9 @@
     position:absolute;
     right: 15px;
     top: 15px;
+  }
+
+  .profile_events {
+    margin-bottom:20px;
   }
 </style>

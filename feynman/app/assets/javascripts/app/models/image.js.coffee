@@ -1,9 +1,12 @@
 class App.Image extends Spine.Model
-  @configure 'Image', 'user', 'image_url', 'width', 'height'
+  @configure 'Image', 'image_url', 'width', 'height'
   @extend Spine.Model.Ajax
 
   @url: => 
     @token = $('.user_meta').data('token')
-    url = "/api/v1/images.json?token=#{@token}"
+    @user_id = $('.user_meta').data('id')
 
-window.Message = App.Message
+    url = "/api/v1/images.json?token=#{@token}"
+    if @user_id? then "#{url}&user_id=#{@user_id}" else url
+
+window.Image = App.Image

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_one :user_detail, :dependent => :destroy, :autosave => true
   has_many :events, :dependent => :destroy
+  has_many :images, :dependent => :destroy
   has_many :messages, :foreign_key => :recipient_id
   has_many :authentications
   

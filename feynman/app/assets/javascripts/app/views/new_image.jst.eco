@@ -3,7 +3,12 @@
         <div class="modal-body">
           <div id="myCarousel" class="carousel slide">
             <!-- Carousel items -->
-            <div class="carousel-inner">
+            <div class="carousel-inner image_preview_carousel">
+              <% for object in @objects: %>
+                <div class='item' data-image='<%= "#{JSON.stringify(object.images.low_resolution)}"%>'>
+                  <img src='<%="#{object.images.low_resolution.url}"%>'></img>
+                </div>
+              <% end %>
             </div>
             <!-- Carousel nav -->
             <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -11,6 +16,16 @@
           </div>
         </div>
         <div class="modal-footer">
+          <input id="image_width" name="image[width]" type="hidden" value="" />
+          <input id="image_height" name="image[height]" type="hidden" value="" />
+          <input id="image_image_url" name="image[image_url]" type="hidden" value="" />
+
           <input name="commit" type="submit" class="btn btn-large btn-primary" value="Add this image" />
         </div>
       </form>
+
+<style>
+  .image_preview_carousel {
+    height: 306px;
+  }
+</style>

@@ -8,18 +8,23 @@ class App.ImagesNew extends Spine.Controller
 
   saveImage: (e) =>
     e.preventDefault()
-    alert('hi')
+    new App.Image({ 
+      image_url: $('.active').data('image')['url'], 
+      width: $('.active').data('image')['width'], 
+      height: $('.active').data('image')['height']
+      }).save()
 
-  renderImages: (e) =>
-    $("#image_preview_modal").html @view('new_image')(@)   
+  renderImages: (e, objects) =>
+    @objects = objects
+    $("#image_preview_modal").html @view('new_image')(@) 
+    $($(".carousel-inner").children()[0]).addClass("active")
 
   fetchImages: (e) =>
-    @renderImages(e)
     token = $('.user_meta').data('token')
     url = "/api/v1/authentications.json?provider=instagram&token=#{token}"
-    $.getJSON(url, (data) => @getInstagramPhotos(data) )
+    $.getJSON(url, (data) => @getInstagramPhotos(e, data) )
 
-  getInstagramPhotos: (data) =>
+  getInstagramPhotos: (e, data) =>
     @response = data[0].token
     url = "https://api.instagram.com/v1/users/#{data[0].uid}/media/recent"
     $.ajax({
@@ -27,10 +32,19 @@ class App.ImagesNew extends Spine.Controller
               dataType: "jsonp",
               url: url,
               data: { access_token: "#{data[0].token}", count: 30 },
-              success: (response) ->
-                objects = response.data
-                for object in objects
-                  console.log object.images.low_resolution.url
-                  $(".carousel-inner").append("<div class='item'><img src='#{object.images.low_resolution.url}'></img></div>")
-                  $($(".carousel-inner").children()[0]).addClass('active')
+              success: (response) =>
+                @renderImages(e, response.data)
           })
+
+class App.ImagesIndex extends Spine.Controller
+  constructor: ->
+    super
+    Image.fetch()
+    Image.bind 'refresh', @render
+
+  render: =>
+    $("#images").html @template()
+
+  template: ->
+    @images = Image.all()
+    @view('images/index')(@)
