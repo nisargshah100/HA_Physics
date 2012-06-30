@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629174427) do
+ActiveRecord::Schema.define(:version => 20120630154818) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -40,13 +40,18 @@ ActiveRecord::Schema.define(:version => 20120629174427) do
     t.string   "image_url"
     t.string   "source"
     t.string   "division_name"
-    t.float    "division_latitude"
-    t.float    "division_longitude"
     t.string   "original_category"
     t.string   "category"
-    t.boolean  "sold_out",           :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "sold_out",             :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "original_subcategory"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "last_purchase_count"
   end
 
   create_table "events", :force => true do |t|

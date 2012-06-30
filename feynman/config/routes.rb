@@ -7,6 +7,7 @@ Feynman::Application.routes.draw do
   resources :events, :only => [:create, :index, :new]
   resources :user_details, :only => [:edit, :update]
   resources :authentications, :only => [:new]
+  resources :deals, :only => [:index]
 
   resources :signups, :only => [:new, :create] do
     collection do
@@ -25,6 +26,7 @@ Feynman::Application.routes.draw do
       resources :messages, :only => [:index, :show, :create]
       resources :events, :only => [:index]
       resources :images, :only => [:create, :index]
+      resources :deals, :only => [:index]
       match '/user_details/:token' => 'user_details#update', :as => 'user_details'
     end
   end

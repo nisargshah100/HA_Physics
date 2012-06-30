@@ -1,11 +1,12 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "email#{n}@example.com" }
+    sequence(:display_name) { |n| "user#{n}" }
+    birthday Date.parse("21/6/1988")
     password "hungry"
 
     after_create do |user|
-      zip = Zip.create(city: "Washington", state: "DC")
-      user.create_user_detail(display_name: "Ed", zip: zip)
+      user.create_user_detail(zipcode: "20036")
     end
   end
 

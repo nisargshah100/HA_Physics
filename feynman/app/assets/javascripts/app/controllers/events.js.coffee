@@ -13,6 +13,6 @@ class App.Events extends Spine.Controller
     @location = $('.user_meta').data('location')
 
     if @location
-      @view('short_events')(@)
+      @view('events/index_summary')(@)
     else
-      @view('events')(@)
+      @view('events/index')(@)

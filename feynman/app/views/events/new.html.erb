@@ -19,3 +19,11 @@
     <%= f.submit 'Post Date', :class => 'btn btn-primary btn-large' %>
   <% end %>
 </div>
+
+<div class="row-fluid">
+  <div id="deals"></div>
+</div>
+
+<script>
+  new App.DealsIndex({ el: "#app" })
+</script>

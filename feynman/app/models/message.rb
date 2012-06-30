@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
-  attr_accessible :body, :recipient, :sender, :status, :sender_id, :recipient_id
+  MESSAGE_ATTRS = [ :body, :recipient, :sender, :status, :sender_id, :recipient_id ]
+  attr_accessible *MESSAGE_ATTRS
 
   belongs_to :sender, :class_name => "User"
   belongs_to :recipient, :class_name => "User"
@@ -12,11 +13,12 @@ class Message < ActiveRecord::Base
     created_at.strftime("%a, %b %e at %l:%M %p")
   end
 
-  def self.by_attributes(deals, params)
-    attributes = Deal.first.attributes.map { |k,v| k }
-    attributes.each do |attr|
-      deals = deals.where(attr.to_sym => /#{params[attr.to_sym]}/) if params[attr.to_sym]
+  def self.by_persons(params)
+    messages = Message
+    MESSAGE_ATTRS.each do |attr|
+      # deals = Message.where{attr.to_s.matches "%#{params[attr]}%"} if params[attr]
+      messages = messages.where(attr => "#{params[attr]}") if params[attr]
     end
-    deals
+    messages
   end
 end

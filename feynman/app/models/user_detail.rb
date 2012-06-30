@@ -58,7 +58,10 @@ class UserDetail < ActiveRecord::Base
   end
 
   def image
-    "/assets/default_#{gender.downcase}_250.png" if @image.nil?
+    if @image.nil?
+      gender = gender.nil? ? "male" : gender
+      "/assets/default_#{gender.downcase}_250.png"
+    end
   end
 
   def ensure_valid_country

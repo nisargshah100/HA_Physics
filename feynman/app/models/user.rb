@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :exercise_level, 
-    :drinking_level, :smoking_level, :location, :complete?, :height, :objective_pronoun
+    :drinking_level, :smoking_level, :location, :complete?, :height, 
+    :objective_pronoun, :latitude, :longitude, :city, :state, :country
 
   def self.create_user_with_detail(user_params, user_detail_params)
     User.create(user_params).tap do |user|

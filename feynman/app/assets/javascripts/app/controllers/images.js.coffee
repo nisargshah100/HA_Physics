@@ -16,7 +16,7 @@ class App.ImagesNew extends Spine.Controller
 
   renderImages: (e, objects) =>
     @objects = objects
-    $("#image_preview_modal").html @view('new_image')(@) 
+    $("#image_preview_modal").html @view('images/new')(@) 
     $($(".carousel-inner").children()[0]).addClass("active")
 
   fetchImages: (e) =>

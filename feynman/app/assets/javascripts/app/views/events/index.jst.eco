@@ -1,0 +1,23 @@
+<% for event in @events: %>
+  <div class="event_container">
+    <div class="event row-fluid span12">
+      <div class="profile_img_thumb span2">
+        <a href='<%= "#{event.user.url}" %>'>
+          <img class="profile_img_thumb" src=<%= "#{event.user.image || ''}" %>></img>
+        </a>
+      </div>
+      <div class="span6 event_description_container">
+        <span class="event_letsgo">Let's go...</span>
+        <span class="event_description"><%= event.description %></span>
+      </div>
+    </div>
+
+    <div class="row-fluid event_user_container span12">
+      <a href='<%= "#{event.user.url}" %>'>
+        <p class="event_display_name"><%= event.user.display_name %></p>
+        <p class="event_user_details"><%= "#{event.user.age}, #{event.user.gender}, #{event.user.orientation}" %></p>
+        <p class="event_user_details"><%= "#{event.user.location}" %></p>
+      </a>
+    </div>
+  </div>
+<% end %>
