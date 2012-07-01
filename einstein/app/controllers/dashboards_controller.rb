@@ -26,4 +26,14 @@ class DashboardsController < ApplicationController
     render :json => RevenueProjection.compute(deals).sort_by { |r| -r[0] }[0..10]
   end
 
+  def deal_probability
+    term, time, loc = params[:term], Chronic.parse(params[:time]), params[:loc]
+    deals = Deal.where(:title => /#{term}/i, :division_name => /#{loc}/i, :source => "LivingSocial")
+
+    render :json => {
+      :analysis => DealRunProbability.compute(deals, time.to_date),
+      :deals => deals.select { |d| d.date_added != nil }.sort_by { |d| d.date_added }.reverse
+    }
+  end
+
 end

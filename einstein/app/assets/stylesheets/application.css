@@ -11,3 +11,59 @@
  *= require_self
  *= require_tree .
  */
+
+.content-body {
+  margin-top: 60px;
+  background-color: white;
+  padding: 20px;
+
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+}
+
+.navbar-inner {
+  background: #09090;
+  border-bottom: 3px solid #121212;
+}
+
+.widget {
+  position: relative;
+  clear: both;
+  width: auto;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+.widget-header {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  background: #E9E9E9;
+  background: -moz-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
+  background: -webkit-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+  background: -o-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+  background: -ms-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+  background: linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+  border: 1px solid #D5D5D5;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-background-clip: padding-box;
+}
+
+.widget-header + .widget-content {
+  border-top: none;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-topright: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

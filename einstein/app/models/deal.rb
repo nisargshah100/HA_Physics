@@ -19,6 +19,7 @@ class Deal
   field :division_latlon, type: Array
   field :original_category, type: String
   field :category, type: String
+  field :original_subcategory, type: String
   field :sold_out, type: Boolean, :default => false
 
   validates_uniqueness_of :original_id, :scope => :source

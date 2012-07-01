@@ -30,7 +30,7 @@ class VelocityByHour
     ls_source = template({ data: @ls })
     g_source = template({ data: @groupon })
 
-    $("#data").html("<h3>LivingSocial</h3><br />#{ls_source}<hr /><h3>Groupon</h3><br />#{g_source}")
+    $("#data").html("<h3>LivingSocial</h3><br />#{ls_source}")
 
   render_graph: ->
     new Highcharts.Chart(
@@ -77,8 +77,8 @@ class VelocityByHour
       @g_data.push { y: deal[0], data: deal[1] }
 
     @series = [
-      { name: "Living Social", data: @ls_data },
-      { name: "Groupon", data: @g_data }
+      { name: "Living Social", data: @ls_data }
+     #  { name: "Groupon", data: @g_data }
     ]
 
 window.VelocityByHour = VelocityByHour

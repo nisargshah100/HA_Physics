@@ -23,7 +23,7 @@ class ProjectedRevenue
 
     i = 0
     for rev in data
-      data[i][0] = (rev[0] / 100).toFixed(2)
+      data[i][0] = rev[0]
       i += 1
 
     $("#projected-revenue-html").html(template({revenues: data}))
