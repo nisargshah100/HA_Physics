@@ -7,7 +7,10 @@ class Api::V1::ImagesController < ApiController
   end
 
   def index
-    @images = Image.find_by_user_id(params[:user_id])
-    render :json => @images
+    if params[:user_id]
+      @images = Image.find_all_by_user_id(params[:user_id])
+    else
+      @images = current_user.images
+    end
   end
 end

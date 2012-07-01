@@ -1,0 +1,62 @@
+.deal_description {
+  width: 255px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: rgba(85, 77, 77, 0.8);
+  position: relative;
+  color: #FFF;
+  vertical-align: baseline;
+}
+
+.deal_title {
+  width: 255px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #111;
+  font-weight: bold;
+  height: 60px;
+  position: relative;
+}
+
+.deal_price {
+  color: #E86D45;
+  display: inline;
+}
+
+.deal_value {
+  color: #333;
+  text-decoration: line-through;
+  display: inline;
+  padding-right: 10px;
+}
+
+.deal_pricing {
+  position: absolute;
+  left: 10px;
+  top: 55px;
+}
+
+.deal_button {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+}
+
+div.deal_title > a {
+  color: #06ADBF;
+}
+
+.deal_container {
+  margin-left:0px !important;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  height:300px;
+}
+
+.deal_image {
+  margin: 0 auto;
+  height:200px;
+  width:275px;
+  background-repeat:no-repeat;
+  background-position:center;
+}

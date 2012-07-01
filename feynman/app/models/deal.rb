@@ -1,5 +1,6 @@
 class Deal < ActiveRecord::Base
   has_many :events
+  paginates_per 18
 
   attr_accessible :original_id, :date_added, :end_date, :price_cents,
     :value_cents, :title, :subtitle, :affiliate_url, :original_url,
@@ -7,6 +8,9 @@ class Deal < ActiveRecord::Base
     :original_category, :original_subcategory, :category, :last_purchase_count,
     :sold_out
 
+  monetize :price_cents
+  monetize :value_cents
+  
   validates_uniqueness_of :original_id, :scope => :source
 
   reverse_geocoded_by :latitude, :longitude do |deal, results|
@@ -36,13 +40,8 @@ class Deal < ActiveRecord::Base
     order("last_purchase_count DESC")
   end
 
-  def price
-    Money.new price_cents
+  def self.near_user(user)
+    Deal.active.near([user.latitude, user.longitude], 20).most_popular
   end
 
-  def price=(value)
-    Money.parse(value).tap do |price|
-      write_attribute :price_cents, price.cents
-    end
-  end
 end

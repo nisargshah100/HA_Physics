@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require fancybox
 //= require jquery_ujs
 //= require jquery.jeditable.mini.js
 //= require app

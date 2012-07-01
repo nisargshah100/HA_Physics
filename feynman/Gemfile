@@ -22,7 +22,9 @@ gem 'omniauth-instagram'
 gem 'instagram', :git => 'git@github.com:wengzilla/instagram.git'
 gem 'squeel'
 gem 'kaminari'
-gem 'money'
+gem 'money-rails'
+gem 'jquery-rails'
+gem 'fancybox-rails', :git => 'https://github.com/sverigemeny/fancybox-rails'
 
 # gem 'mongoid'
 
@@ -53,8 +55,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'ruby_gntp'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

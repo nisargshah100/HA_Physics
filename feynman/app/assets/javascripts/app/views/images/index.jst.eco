@@ -1,11 +1,22 @@
-<% for image in @images: %>
   <div class="image_container">
     <ul class="thumbnails">
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src='<%="#{image.image_url}"%>' alt="">
-        </a>
-      </li>
+      <% for image in @images: %>
+        <li class="span3 thumbnail">
+          <a href='<%= "#{image.large_image_url}" %>' class="fancybox">
+            <img src='<%="#{image.small_image_url}"%>' alt="">
+          </a>
+        </li>
+      <% end %>
     </ul>
   </div>
-<% end %>
+
+  <style>
+    li.thumbnail {
+      margin-left: 0px !important;
+      margin-right: 12px;
+    }
+  </style>
+
+  <script>
+    $(".fancybox").fancybox();
+  </script>

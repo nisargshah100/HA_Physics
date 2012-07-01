@@ -1,27 +1,19 @@
 <% for deal in @deals: %>
   <div class="span4 deal_container">
-    <div class="thumb" style="margin: 0 auto; height:200px; width:275px; background-image:url('<%= deal.image_url.replace(/100_q60_/, '275_q100') %>'); background-repeat:no-repeat; background-position:center;">
+    <div class="deal_image" style="background-image:url('<%= deal.image_url %>');">
       <a href="<%= deal.original_url %>">
       </a>
+      <div class="deal_description">
+        <p><%= deal.title %></p>
+      </div>
     </div>
-    <div class="deal_description">
-      <h5><a href="<%= deal.original_url %>"><%= deal.subtitle %></a></h5>
-      <p><%= deal.title %></p>
-    </div>
+      <div class="deal_title">
+        <a href="<%= deal.original_url %>"><%= deal.subtitle %></a>
+        <div class="deal_pricing">
+          <p class="deal_value">$<%= deal.value %></p><p class="deal_price">$<%= deal.price %></p>
+        </div>
+        <div class="deal_button"><a class="btn btn-primary">Date Me</a></div>
+      </div>
   </div>
 <% end %>
 
-<style>
-  .deal_description {
-    width: 255px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  .deal_container {
-    margin-left:0px !important;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    height:300px;
-  }
-</style>

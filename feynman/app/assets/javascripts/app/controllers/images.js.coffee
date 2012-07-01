@@ -47,4 +47,5 @@ class App.ImagesIndex extends Spine.Controller
 
   template: ->
     @images = Image.all()
+    @log @images
     @view('images/index')(@)
