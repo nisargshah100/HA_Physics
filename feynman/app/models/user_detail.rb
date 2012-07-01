@@ -3,7 +3,7 @@ class UserDetail < ActiveRecord::Base
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height, 
-    :exercise_level, :drinking_level, :smoking_level
+    :exercise_level, :drinking_level, :smoking_level, :city, :state, :country
 
   validates :zipcode, :format => { :with => /^[0-9]{5}$/, :message => "must be 5 digits" }
   validate :ensure_valid_country
@@ -58,10 +58,8 @@ class UserDetail < ActiveRecord::Base
   end
 
   def image
-    if @image.nil?
-      gender = gender.nil? ? "male" : gender
-      "/assets/default_#{gender.downcase}_250.png"
-    end
+    self.gender ||= "male"
+    @image.blank? ? "/assets/default_#{gender.downcase}_250.png" : @image
   end
 
   def ensure_valid_country

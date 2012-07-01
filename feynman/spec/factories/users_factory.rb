@@ -5,7 +5,7 @@ FactoryGirl.define do
     birthday Date.parse("21/6/1988")
     password "hungry"
 
-    after_create do |user|
+    after(:create) do |user|
       user.create_user_detail(zipcode: "20036")
     end
   end
@@ -15,7 +15,7 @@ FactoryGirl.define do
       event_count 2
     end
 
-    after_create do |user, evaluator|
+    after(:create) do |user, evaluator|
       FactoryGirl.create_list(
         :event,
         evaluator.event_count,

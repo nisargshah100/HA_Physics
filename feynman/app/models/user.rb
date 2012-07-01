@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider,
     :uid, :oauth_access_token, :display_name, :birthday
 
+  attr_accessor :back
+
   has_one :user_detail, :dependent => :destroy, :autosave => true
   has_many :events, :dependent => :destroy
   has_many :images, :dependent => :destroy

@@ -19,7 +19,10 @@ class SignupsController < ApplicationController
     user_preferences = JSON.parse(params[:user].delete(:user_preferences))
     @user = User.new(params[:user])
 
-    if @user.valid?
+    if params[:back_button]
+      @user_detail = UserDetail.new(user_preferences)
+      render 'preferences'
+    elsif @user.valid?
       @user = User.create_user_with_detail(params[:user], user_preferences)
       sign_in(:user, @user)
       redirect_to profile_path(@user.slug), :notice => "You have successfully signed up."

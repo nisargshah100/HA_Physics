@@ -1,4 +1,4 @@
-class App.Image extends Spine.Model
+class App.Photo extends Spine.Model
   @configure 'Image', 'image_url', 'width', 'height'
   @extend Spine.Model.Ajax
 
@@ -9,4 +9,4 @@ class App.Image extends Spine.Model
     url = "/api/v1/images.json?token=#{@token}"
     if @user_id? then "#{url}&user_id=#{@user_id}" else url
 
-window.Image = App.Image
+window.Photo = App.Photo

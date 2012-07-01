@@ -5,14 +5,29 @@ class App.ImagesNew extends Spine.Controller
   events:
     "click #open_image_preview_modal" : "fetchImages"
     "submit .new_image"               : "saveImage"
+    "click #submit_profile_image"     : "saveProfileImage"
 
   saveImage: (e) =>
     e.preventDefault()
-    new App.Image({ 
+    new App.Photo({ 
       image_url: $('.active').data('image')['url'], 
       width: $('.active').data('image')['width'], 
       height: $('.active').data('image')['height']
       }).save()
+
+  saveProfileImage: (e) =>
+    e.preventDefault()
+    $.ajax({
+          type: "PUT",
+          url: "/api/v1/user_details/#{$('.user_meta').data('id')}",
+          data: { 
+                  token: $('.user_meta').data('token'),
+                  attribute: 'image',
+                  value: $('.active').data('image')['url']
+                },
+          success: (response) =>
+            alert("HI!")
+      }) 
 
   renderImages: (e, objects) =>
     @objects = objects
@@ -39,13 +54,13 @@ class App.ImagesNew extends Spine.Controller
 class App.ImagesIndex extends Spine.Controller
   constructor: ->
     super
-    Image.fetch()
-    Image.bind 'refresh', @render
+    Photo.fetch()
+    Photo.bind 'refresh', @render
 
   render: =>
     $("#images").html @template()
 
   template: ->
-    @images = Image.all()
+    @images = Photo.all()
     @log @images
     @view('images/index')(@)
