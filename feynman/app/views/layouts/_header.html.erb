@@ -11,7 +11,7 @@
         <ul class="nav">
           <li><%= link_to "Find a Date", events_path %></li>
           <li><%= link_to "Post a Date", new_event_path %></li>
-          <li><%= link_to "Messages", messages_path %></li>
+          <li><%= link_to "Messages (#{current_user.unread_messages_count})", messages_path %></li>
           <% if current_user %>
             <li class="dropdown"><%= render "layouts/nav_login" %></li>
           <% else %>

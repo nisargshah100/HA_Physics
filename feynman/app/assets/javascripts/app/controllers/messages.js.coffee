@@ -39,7 +39,10 @@ class App.MessagesNew extends Spine.Controller
   sendMessage: (e) =>
     e.preventDefault()
     # message = App.Message.fromForm(e.target).save()
-    message = new App.Message(body: $("#message_body").val(), recipient_id: $("#message_recipient_id").val()).save()
+    message = new App.Message({ 
+                                body: $("#message_body").val(),
+                                recipient_id: $("#message_recipient_id").val()
+                              }).save()
     @log message
     $("#message_body").val("")
     $("#message_modal").modal("hide")

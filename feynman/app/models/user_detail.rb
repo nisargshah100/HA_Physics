@@ -1,5 +1,5 @@
 class UserDetail < ActiveRecord::Base
-  attr_accessible :user, :user_id, :image, :zipcode,
+  attr_accessible :user, :user_id, :image_url, :zipcode,
     :gender, :gender_preference, :age_range_lower, :age_range_upper,
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :height, 
@@ -59,7 +59,7 @@ class UserDetail < ActiveRecord::Base
 
   def image
     self.gender ||= "male"
-    @image.blank? ? "/assets/default_#{gender.downcase}_250.png" : @image
+    image_url.blank? ? "/assets/default_#{gender.downcase}_250.png" : image_url
   end
 
   def ensure_valid_country

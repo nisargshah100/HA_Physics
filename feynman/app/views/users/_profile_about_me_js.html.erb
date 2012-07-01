@@ -19,7 +19,7 @@
       id   : 'attribute',
     });
 
-    $('#faith').editable('<%= "#{api_v1_user_details_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#faith').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_faiths.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
@@ -31,7 +31,7 @@
       id   : 'attribute',
     });
 
-    $('#political_affiliation').editable('<%= "#{api_v1_user_details_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#political_affiliation').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_political_affiliations.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
@@ -43,7 +43,7 @@
       id   : 'attribute',
     });
 
-    $('#race').editable('<%= "#{api_v1_user_details_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#race').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_races.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
@@ -55,7 +55,7 @@
       id   : 'attribute',
     });
 
-    $('#children_preference').editable('<%= "#{api_v1_user_details_url(:token => current_user.authentication_token)}" %>', {
+    $('#children_preference').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_children_preferences.to_json}" %>',
       type: 'select',
       callback: function(value, settings) {
@@ -67,10 +67,10 @@
       id   : 'attribute',
     });
 
-    $('#height').editable('<%= "#{api_v1_user_details_url(:token => current_user.authentication_token)}" %>', {
+    $('#height').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       indicator: 'Saving...',
       tooltip: '',
-      placeholder: '',
+      placeholder: '"',
       method : 'PUT',
       id   : 'attribute',
     });

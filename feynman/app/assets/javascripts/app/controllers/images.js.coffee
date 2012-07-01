@@ -22,11 +22,9 @@ class App.ImagesNew extends Spine.Controller
           url: "/api/v1/user_details/#{$('.user_meta').data('id')}",
           data: { 
                   token: $('.user_meta').data('token'),
-                  attribute: 'image',
+                  attribute: 'image_url',
                   value: $('.active').data('image')['url']
                 },
-          success: (response) =>
-            alert("HI!")
       }) 
 
   renderImages: (e, objects) =>

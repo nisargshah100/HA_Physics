@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     self.slug = display_name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   end
 
+  def unread_messages_count
+    messages.where(:status => "unread").count
+  end
+
   def uniqueness_of_slug
     if User.find_by_slug(slug)
       errors.add(:display_name, "That display name is already taken.")

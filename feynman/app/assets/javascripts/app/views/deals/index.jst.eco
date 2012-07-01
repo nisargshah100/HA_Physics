@@ -12,7 +12,7 @@
       <div class="deal_pricing">
         <p class="deal_value">$<%= deal.value %></p><p class="deal_price">$<%= deal.price %></p>
       </div>
-      <div class="deal_button"><a class="btn btn-primary">Date Me</a></div>
+      <div class="deal_button"><a class="btn btn-primary open_event_modal" data-deal-id="<%= deal.id %>" data-source="<%= deal.source %>">Make a Date</a></div>
     </div>
   </div>
 <% end %>

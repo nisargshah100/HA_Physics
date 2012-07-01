@@ -1,14 +1,33 @@
 <% for event in @events: %>
   <div class="event_container">
     <div class="event row-fluid span12">
+      
       <div class="profile_img_thumb span2">
         <a href='<%= "#{event.user.url}" %>'>
           <img class="profile_img_thumb" src=<%= "#{event.user.image || ''}" %>></img>
         </a>
       </div>
+
       <div class="span6 event_description_container">
         <span class="event_letsgo">Let's go...</span>
         <span class="event_description"><%= event.description %></span>
+      </div>
+
+      <div class="span4 deal_container">
+        <div class="deal_image" style="background-image:url('<%= event.deal.image_url %>');">
+          <a href="<%= event.deal.original_url %>">
+          </a>
+          <div class="deal_description">
+            <p><%= event.deal.title %></p>
+          </div>
+        </div>
+        <div class="deal_title">
+          <a href="<%= event.deal.original_url %>"><%= event.deal.subtitle %></a>
+          <div class="deal_pricing">
+            <p class="deal_value">$<%= event.deal.value %></p><p class="deal_price">$<%= event.deal.price %></p>
+          </div>
+          <div class="deal_button"><a class="btn btn-primary open_event_modal" data-deal-id="<%= event.deal.id %>" data-source="<%= event.deal.source %>">Make a Date</a></div>
+        </div>
       </div>
     </div>
 

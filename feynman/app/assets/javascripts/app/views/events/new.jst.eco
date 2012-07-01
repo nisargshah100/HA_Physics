@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">×</button>
+  <h3>Send message</h3>
+</div>
+<form accept-charset="UTF-8" action="/api/v1/events" class="new_event" id="new_event" method="post">
+  <div class="modal-body">
+    <span class="event_letsgo">Let's go...</span>
+    <textarea id="event_body" name="event[body]" cols="80" rows="5"></textarea>
+    <input id="event_deal_id" name="event[deal_id]" type="hidden" value="<%= @deal_id %>" />
+    <input id="event_deal_source" name="event[deal_source]" type="hidden" value="<%= @source %>" />
+  </div>
+  <div class="modal-footer">
+    <input name="commit" type="submit" class="btn btn-large btn-default" value="Make a Date" />
+  </div>
+</form>

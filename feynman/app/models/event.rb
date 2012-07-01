@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   # DELETE DESCRIPTION_LONG, probably.
   validates_presence_of :user_id
   belongs_to :user
+  belongs_to :deal
   # attr_accessible :title, :body
 
   def self.for_user(user_id)

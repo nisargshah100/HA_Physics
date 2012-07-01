@@ -41,7 +41,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.near_user(user)
-    Deal.active.near([user.latitude, user.longitude], 20).most_popular
+    Deal.active.near([user.latitude, user.longitude], 10).most_popular
   end
 
 end

@@ -1,29 +1,39 @@
-<div class="row-fluid">
-  <%= form_for @event, :html => {:class => "form-horizontal well span10"} do |f| %>
-    <%= fields_for :deal do |d| %>  
-      <div class="control-group">
-        <%= d.label "Link to deal", nil, :class => "control-label" %>
-        <div class="controls">
-          <%= d.text_field :url %><br />
-        </div>
-      </div>
+<div class="row-fluid span8" style="display:block">
+  <div class="well">
+    <%= form_tag api_v1_deals_path, :method => "post", :class => "form-inline" do %>
+      <span class="deal_filter_form">Within</span>
+      <%= text_field_tag :radius, "10", :class => 'deal_filter_radius' %> <span class="deal_filter_form">miles of</span>
+      <%= text_field_tag :zipcode, "#{current_user.zipcode}", :class => 'deal_filter_zipcode' %>
+      <%= submit_tag 'Filter Deals', :class => 'btn btn-primary btn-large filter_deals' %>
     <% end %>
-
-    <div class="control-group">
-      <%= f.label :description, "Let's go...", {:class => "control-label"} %>
-      <div class="controls">
-        <%= f.text_field :description %><br />
-      </div>
-    </div>
-
-    <%= f.submit 'Post Date', :class => 'btn btn-primary btn-large' %>
-  <% end %>
+  </div>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid span8">
   <div id="deals"></div>
+</div>
+
+<div class="modal hide" id="event_modal">
 </div>
 
 <script>
   new App.DealsIndex({ el: "#app" })
 </script>
+
+<style>
+  input.deal_filter_radius {
+    width: 40px;
+    font-size: 1.25em;
+    height: 1.25em;
+  }
+
+  input.deal_filter_zipcode {
+    width: 60px;
+    font-size: 1.25em;
+    height: 1.25em;
+  }
+
+  span.deal_filter_form {
+    font-size: 1.25em;
+  }
+</style>

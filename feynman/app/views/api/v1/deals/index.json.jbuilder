@@ -1,5 +1,5 @@
 json.array!(@deals) do |json, deal|
-  json.(deal, :original_id, :date_added, :end_date,
+  json.(deal, :id, :original_id, :date_added, :end_date,
     :title, :subtitle, :affiliate_url, :original_url,
     :image_url, :source, :division_name, :latitude, :longitude,
     :original_category, :original_subcategory, :category, :last_purchase_count,
