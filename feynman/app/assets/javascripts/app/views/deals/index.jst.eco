@@ -1,0 +1,19 @@
+<% for deal in @deals: %>
+  <div class="span4 deal_container">
+    <div class="deal_image" style="background-image:url('<%= deal.image_url %>');">
+      <a href="<%= deal.original_url %>">
+      </a>
+      <div class="deal_description">
+        <p><%= deal.title %></p>
+      </div>
+    </div>
+    <div class="deal_title">
+      <a href="<%= deal.original_url %>"><%= deal.subtitle %></a>
+      <div class="deal_pricing">
+        <p class="deal_value">$<%= deal.value %></p><p class="deal_price">$<%= deal.price %></p>
+      </div>
+      <div class="deal_button"><a class="btn btn-primary">Date Me</a></div>
+    </div>
+  </div>
+<% end %>
+

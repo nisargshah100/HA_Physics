@@ -20,3 +20,7 @@ p.message_display_name {
 div.message_hover {
   background: #F0FAFF;
 }
+
+textarea {
+  width: 95% !important;
+}

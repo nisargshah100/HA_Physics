@@ -18,6 +18,14 @@ gem 'random_data'
 gem 'carrierwave'
 gem 'hashie'
 gem 'geocoder'
+gem 'omniauth-instagram'
+gem 'instagram', :git => 'git@github.com:wengzilla/instagram.git'
+gem 'squeel'
+gem 'kaminari'
+gem 'money-rails'
+gem 'jquery-rails'
+gem 'fancybox-rails', :git => 'https://github.com/sverigemeny/fancybox-rails'
+
 # gem 'mongoid'
 
 # Gems used only for assets and not required
@@ -47,8 +55,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'ruby_gntp'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

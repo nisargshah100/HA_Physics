@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    unless (current_user.user_detail && current_user.complete?)
+    if (current_user.user_detail && current_user.complete?)
+      profile_path(current_user.slug)
+    else
       new_signup_path
     end
   end

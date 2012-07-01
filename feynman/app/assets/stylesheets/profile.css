@@ -35,3 +35,14 @@ img.profile_img_thumb {
   background: #EEE;
   padding: 10px;
 }
+
+#profile_about_me_container > div {
+  font-size: 1.25em;
+  padding: 15px 0px;
+  border-bottom: 1px solid #CCC;
+}
+
+#profile_about_me_container > div:first-child {
+  border-top: 1px solid #CCC;
+}
+

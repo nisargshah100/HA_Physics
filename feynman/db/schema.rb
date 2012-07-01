@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629021529) do
+ActiveRecord::Schema.define(:version => 20120630154818) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "last_status_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "authentication_id"
+  end
 
   create_table "deals", :force => true do |t|
     t.string   "original_id"
@@ -26,13 +40,18 @@ ActiveRecord::Schema.define(:version => 20120629021529) do
     t.string   "image_url"
     t.string   "source"
     t.string   "division_name"
-    t.float    "division_latitude"
-    t.float    "division_longitude"
     t.string   "original_category"
     t.string   "category"
-    t.boolean  "sold_out",           :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "sold_out",             :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "original_subcategory"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "last_purchase_count"
   end
 
   create_table "events", :force => true do |t|
@@ -43,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20120629021529) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "description"
+  end
+
+  create_table "images", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "image_url"
+    t.string   "width"
+    t.string   "height"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -69,19 +97,18 @@ ActiveRecord::Schema.define(:version => 20120629021529) do
     t.string   "political_affiliation_level"
     t.string   "race"
     t.string   "children_preference"
-    t.string   "height_feet"
-    t.string   "height_inches"
     t.integer  "exercise_level"
     t.integer  "drinking_level"
     t.integer  "smoking_level"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "zipcode"
-    t.string   "status"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "city"
     t.string   "state"
+    t.string   "country"
+    t.string   "height"
   end
 
   create_table "users", :force => true do |t|

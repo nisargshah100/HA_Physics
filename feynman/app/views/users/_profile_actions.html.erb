@@ -1,0 +1,13 @@
+    <div class="span4 profile_action_container">
+      <% if is_owner %>
+        <% if user.instagram? %>
+          <a class="btn btn-primary btn-large profile_action" data-toggle="modal" id="open_image_preview_modal" href="#image_preview_modal">Add Photos</a></p>
+        <% else %>
+        <p><%= link_to "Add Photos", user_omniauth_authorize_path(:instagram), id: "link-instagram" %></p>
+        <% end %>
+      <% else %>
+        <p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
+        <p><a class="btn btn-primary btn-large profile_action">Ask <%= "#{@user.objective_pronoun}" %> out</a></p>
+        <p><a class="btn btn-info btn-large profile_action">Favorite</a></p>
+      <% end %>
+    </div>

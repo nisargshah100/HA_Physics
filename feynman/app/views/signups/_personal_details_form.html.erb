@@ -23,5 +23,5 @@
       </div>
     </div>
     <%= user.hidden_field :user_preferences, :value => @user_preferences %>
-    <p><%= user.submit "Back", { :name => "back_button", :class => "btn btn-primary btn-large" } %>
-  <%= user.submit "Continue", { :class => "btn btn-primary btn-large" } %></p>
+    <p><%= user.submit "Back", { :name => "back_button", :class => "btn btn-primary btn-large", :id => "signup_back" } %>
+  <%= user.submit "Continue", { :class => "btn btn-primary btn-large", :id => "signup_continue" } %></p>

@@ -1,14 +1,8 @@
 class App.Events extends Spine.Controller
   constructor: ->
     super
-
-    @events()
-
     Event.fetch()
     Event.bind 'refresh', @render
-
-  events: ->
-    # $('#hello_button').live('click', @render)
 
   render: =>
     $("#events").html @template()
@@ -19,6 +13,6 @@ class App.Events extends Spine.Controller
     @location = $('.user_meta').data('location')
 
     if @location
-      @view('short_events')(@)
+      @view('events/index_summary')(@)
     else
-      @view('events')(@)
+      @view('events/index')(@)

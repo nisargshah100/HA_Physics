@@ -11,5 +11,6 @@
     near 
     <%= u.text_field :zipcode, { :class => "zip", :placeholder => "zip" } %>
   </p>
-
-  <p><%= u.submit "Continue", { :class => "btn btn-primary btn-large" } %></p>
+  <div class="row-fluid">
+    <p><%= u.submit "Continue", { :class => "btn btn-primary btn-large", :id => "signup_continue" } %></p>
+  </div>

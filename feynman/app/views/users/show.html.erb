@@ -1,48 +1,58 @@
 <div class="well profile_container">
   <div class="row-fluid">
     <%= render "profile_header", user: @user %>
-    <div class="span4 profile_action_container">
-      <p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
-      <p><a class="btn btn-primary btn-large profile_action">Ask <%= "#{@user.objective_pronoun}" %> out</a></p>
-      <p><a class="btn btn-info btn-large profile_action">Favorite</a></p>
-    </div>
+    <%= render "profile_actions", { user: @user, is_owner: @is_owner} %>
   </div>
 
-  <div class="row-fluid">
-    <h1>My Dates</h1>
-    <div id="events"></div>
-  </div>
-
-  <br />
-  
-  <div class="row-fluid">
-    <div class="span4">
-      <h2>About Me</h2>
-      <ul class="profile_about_me">
-        <li>Career: <%= @user.employment %></li>
-        <li>Education: <%= @user.education %></li>
-        <li>Faith: <%= @user.faith %></li>
-        <li>Politics: <%= @user.political_affiliation %></li>
-        <li>Race/Ethnicity: <%= @user.race %></li>
-        <li>Children: <%= @user.children_preference %></li>
-        <li>Height: <%= @user.height %></li>
-      </ul>
+  <div class="row-fluid" id="profile_bottom">
+    <div class="span4" id="profile_about_me_container">
+      <% if @is_owner %>
+        <%= render "profile_about_me_editable", { user: @user } %>
+      <% else %>
+        <%= render "profile_about_me", { user: @user } %>
+      <% end %>
     </div>
+
     <div class="span8">
+      <h2>My Dates</h2>
+      <div id="events" class="profile_events row-fluid"></div>
+      <h2>My Photos</h2>
+      <div id="images"></div>
     </div>
   </div>
 </div>
 
-
 <div class="modal hide" id="message_modal">
+</div>
+<div class="modal hide" id="image_preview_modal">
 </div>
 
 <script type="text/javascript">
   new App.Events()
-  new App.MessagesNew({ el: "#app"})
+  new App.MessagesNew({ el: "#app" })
+  new App.ImagesNew({ el: "#app" })
+  new App.ImagesIndex()
+
+  <% if @is_owner %>
+    <%= render 'profile_about_me_js' %>
+  <% end %>
 </script>
 
 <style>
+  #image_preview_modal {
+    width: 450px;
+    padding: 0px;
+  }
+
+  .modal-body {
+    margin-left: 10px;
+    padding: 0px;
+  }
+
+  .carousel {
+    margin: 10px 0px;
+  }
+
   .profile_container {
     margin-top:15px;
     background: #EEE;
@@ -60,10 +70,6 @@
     padding-bottom:5px;
   }
 
-  ul.profile_about_me {
-    list-style-type: none;
-  }
-
   a.profile_action {
     width: 150px;
     font-size: 1.25em;
@@ -71,5 +77,49 @@
 
   .profile_action_container {
     text-align:right;
+  }
+
+  .edit {
+    height:30px;
+    width:50px;
+  }
+
+  .placeholder {
+    color: #AAA;
+  }
+
+  form {
+    display: inline !important;
+  }
+
+  select {
+    display: inline;
+    width: auto;
+    font-size: 1em;
+    height: 1.25em;
+  }
+
+  #profile_bottom {
+    padding-top:30px;
+  }
+
+  .profile_about_me_label {
+    color: #AAA;
+    font-size: 0.8em;
+  }
+
+  .enable_edit {
+    position: relative;
+  }
+
+  .icon {
+    width:10px;
+    position:absolute;
+    right: 15px;
+    top: 15px;
+  }
+
+  .profile_events {
+    margin-bottom:20px;
   }
 </style>

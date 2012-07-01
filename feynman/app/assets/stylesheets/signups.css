@@ -21,7 +21,9 @@ input.age {
 }
 
 input.zip {
-  width: 100px;
+  width: 100px !important;
+  height: 1.25em !important;
+  font-size: 1.25em !important;
 }
 
 input.btn {
@@ -34,4 +36,20 @@ input.btn {
   position:fixed;
   top:50%;
   left:50%;
+}
+
+select.birthday {
+  width: 100px;
+}
+
+label {
+  font-size: 1.25em;
+}
+
+#user_birthday_2i {
+  width: 150px;
+}
+
+.field_with_errors {
+  width: 100px;
 }
