@@ -91,7 +91,7 @@
           <img src='{{[1].image_url}}' style='width: 60px; height: 60px; float: left;'></img> 
           <div style='float: left; margin-left: 10px; width: 450px;'>
             <a href='{{[1].original_url}}' target='_blank'>{{[1].title}}</a><br />
-            From {{[1].date_added}} to {{[1].end_date}}
+            from <span class='date_added_div'>{{[1].date_added}}</span> to <span class='date_added_div'>{{[1].end_date}}</div>
           </div>
 
           <div style='font-size: 13px; float: right;'><span class='label label-success' style='font-size: 13px'>${{[0]}}</span></div>
@@ -99,12 +99,20 @@
       </tr>
     {{/each}}
   </table>
+
+  <script type='text/javascript'>
+    $(".date_added_div").each(function() {
+      var date = $(this).html();
+      $(this).html(new Date(date).format("mm/dd/yyyy"));
+    });
+  </script>
 </script>
 
 <script type="text/x-handlebars-template" id='deal_probability_template'>
   <p class='alert alert-info'>
-    The probability of a deal occuring within the next week that belongs
-    to a certain category. It can be filtered by location.
+    The probability of a deal occuring within at some time that belongs
+    to a certain category. It can be filtered by location. <br />
+    Ex/ Is there going to be a beer deal tomorrow in dc?
   </p>
 
   <form class="well form-search" id='deal_probability_template_form'>
@@ -147,10 +155,17 @@
           <img src='{{image_url}}' style='width: 60px; height: 60px; float: left;'></img> 
           <div style='float: left; margin-left: 10px; width: 450px;'>
             <a href='{{original_url}}' target='_blank'>{{title}}</a><br />
-            Deal started on: {{date_added}}
+            Deal started on: <span class='date_added_div'>{{date_added}}</div>
           </div>
         </td>
       </tr>
     {{/deals}}
   </table>
+
+  <script type='text/javascript'>
+    $(".date_added_div").each(function() {
+      var date = $(this).html();
+      $(this).html(new Date(date).format("mm/dd/yyyy"));
+    });
+  </script>
 </script>

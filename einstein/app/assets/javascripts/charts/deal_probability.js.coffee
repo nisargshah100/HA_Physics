@@ -29,6 +29,10 @@ class DealProbability
       diff: data.analysis[1]
       slope: parseFloat(data.analysis[2]).toFixed(3)
     }
+
+    # x = 0
+    # for deal in data.deals
+    #   data.deals[x].date_added = new Date(date_add)
     
     @deals = data.deals
 

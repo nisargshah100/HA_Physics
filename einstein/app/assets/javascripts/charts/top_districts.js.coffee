@@ -10,7 +10,7 @@ class TopDistricts
     groupon = data.groupon
 
     @ls = []
-    @ls.push({ district: key, revenue: (val / 100.0).toFixed(2) }) for key, val of ls
+    @ls.push({ district: key, revenue: (val / 100.0).formatMoney(0, '.', ','); }) for key, val of ls
 
     @groupon = []
     @groupon.push({district: key, revenue: val }) for key, val of groupon
