@@ -30,17 +30,19 @@
           </a>
           <a class="brand" href="#">Einstein</a>
           <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Home", "/"  %></li>
-            </ul>
+            <% if current_user %>
             <ul class='nav pull-right'>
-              <% if current_user %>
-                <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-              <% else %>
+              <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+            </ul>
+            <% else %>
+              <ul class="nav">
+                <li><%= link_to "Home", "/"  %></li>
+              </ul>
+              <ul class='nav pull-right'>
                 <li><%= link_to 'Sign Up', new_user_registration_path %></li>
                 <li><%= link_to 'Login', new_user_session_path %></li>
-              <% end %>
-            </ul>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>
@@ -50,7 +52,14 @@
       <div class="content">
         <div class="row">
            <div class="span12">
-              <%= yield %>
+              <div class='content-body'>
+                <% if flash[:alert] || flash[:error] || flash[:notice] %>
+                  <div class='alert alert-warning'><%= flash[:alert] || flash[:error] || flash[:notice] %></div>
+                <% end %>
+
+                <%= yield %>
+                <div style='clear:both;' />
+              </div>
             </div>
         </div><!--/row-->
       </div><!--/content-->
@@ -61,5 +70,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
+    <br />
   </body>
 </html>

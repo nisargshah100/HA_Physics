@@ -1,3 +1,59 @@
-<h1>Welcome!</h1>
-<hr />
-<p>We collect data and plot it in a cool way!</p>
+<div class='span6'>
+  <h3>What is this?</h3>
+  <hr />
+  <p>
+    Einstein is a platform that analyzes data. We collect data from groupon and livingsocial
+    in order to output it in a creative and unqiue way. Check it out! Sign up for an account
+    to get started!
+  </p>
+
+  <br />
+  <h3>How does it work?</h3>
+  <hr />
+  <p>
+    We collect data from livingsocial every 30 minutes. Based on the data, we compute
+    many different things including fastest growing deals, best cities based on revenue, etc.
+    Currently only livingsocial is being analyzed but we have the capability to analyze 
+    groupon aswell.
+  </p>
+</div>
+
+<div class='span4' style='margin-left: 60px'>
+
+  <div class='widget'>
+    <div class='widget-header'>
+      <i class="icon-plus-sign"></i>&nbsp;&nbsp;
+      Sign Up
+    </div>
+    <div class='widget-content'>
+      <form class='form-vertical' method='post' action='<%= user_registration_path %>'>
+        <div class="control-group">
+          <label class="control-label">Email</label>
+          <div class="controls">
+            <input type="text" id="email" name='user[email]' />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name='user[password]' />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Confirm Password</label>
+          <div class="controls">
+            <input type="password" id="confirm_password" name='user[password_confirmation]' />
+          </div>
+        </div>
+        <div class="control-group">
+          <input type='submit' class='btn' value='Create Account' />
+        </div>
+      </form>
+
+      <div>
+        <a href='<%= new_user_session_path %>'>Sign In</a><br />
+        <a href='<%= new_user_password_path %>'>Forgot Password</a>
+      </div>
+    </div>
+  </div>
+</div>

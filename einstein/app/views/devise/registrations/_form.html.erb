@@ -1,0 +1,40 @@
+<div class='widget'>
+  <div class='widget-header'>
+    <i class="icon-plus-sign"></i>&nbsp;&nbsp;
+    Sign Up
+  </div>
+  <div class='widget-content'>
+
+  <%= devise_error_messages! %>
+
+  <form class='form-vertical' method='post' action='<%= user_registration_path %>'>
+    <div class="control-group">
+      <label class="control-label">Email</label>
+      <div class="controls">
+        <input type="text" id="email" name='user[email]' value='<%= params[:user][:email] if params[:user] %>' />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Password</label>
+      <div class="controls">
+        <input type="password" id="password" name='user[password]' value='<%= params[:user][:password] if params[:user] %>' />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Confirm Password</label>
+      <div class="controls">
+        <input type="password" id="confirm_password" name='user[password_confirmation]' value='<%= params[:user][:password_confirmation] if params[:user] %>' />
+      </div>
+    </div>
+    <div class="control-group">
+      <input type='submit' class='btn' value='Create Account' />
+    </div>
+  </form>
+
+  <div>
+    <a href='<%= new_user_session_path %>'>Sign In</a><br />
+    <a href='<%= new_user_password_path %>'>Forgot Password</a>
+  </div>
+
+  </div>
+</div>
