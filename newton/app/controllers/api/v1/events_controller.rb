@@ -1,9 +1,9 @@
 class Api::V1::EventsController < ApplicationController
-
   def index
     deals = Deal.by_params(params).where(:end_date.gt => DateTime.now).limit(Deal.count)
 
-    excludes = ['cleaning', 'family', 'spa', 'treatment', 'stay', 'paintball', 'month', 'year', 'unlimited', 'children']
+    excludes = ['cleaning', 'family', 'spa', 'treatment', 'stay', 'paintball', 'month', 'year', 'unlimited', 'children', 'shipping',
+      'jewelry', 'ages', 'fireman', 'donation', 'camp', 'kids', 'puppet']
     conds = []
 
     excludes.each do |ex|
