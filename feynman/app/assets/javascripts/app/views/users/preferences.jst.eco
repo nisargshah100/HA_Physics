@@ -19,7 +19,7 @@
       and 
       <input class="age" id="user_detail_age_range_upper" name="age_range_upper" placeholder="35" size="30" type="text" /> 
       near 
-      <input class="zip" id="user_detail_zipcode" name="zipcode" placeholder="zip" size="30" type="text" />
+      <input class="zip" id="user_detail_zipcode" name="zipcode" placeholder="zip" size="30" type="text" value="<%= @user_preferences.zipcode if @user_preferences %>" />
     </p>
     <div class="modal-footer">
       <p><input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" /></p>
