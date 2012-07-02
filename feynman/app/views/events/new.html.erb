@@ -1,5 +1,5 @@
-<div class="row-fluid span8" style="display:block">
-  <div class="well">
+<div class="row-fluid" style="display:block">
+  <div class="well span12">
     <%= form_tag api_v1_deals_path, :method => "post", :class => "form-inline" do %>
       <span class="deal_filter_form">Within</span>
       <%= text_field_tag :radius, "10", :class => 'deal_filter_radius' %> <span class="deal_filter_form">miles of</span>
@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div class="row-fluid span8">
+<div class="row-fluid span12">
   <div id="deals"></div>
 </div>
 

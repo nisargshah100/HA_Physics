@@ -10,6 +10,8 @@ class Deal < ActiveRecord::Base
 
   monetize :price_cents
   monetize :value_cents
+
+  set_primary_key :original_id
   
   validates_uniqueness_of :original_id, :scope => :source
 
@@ -41,7 +43,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.near_user(user)
-    Deal.active.near([user.latitude, user.longitude], 10).most_popular
+    Deal.most_popular.near([user.latitude, user.longitude], 10).active
   end
 
 end

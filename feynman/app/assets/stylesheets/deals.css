@@ -47,8 +47,8 @@ div.deal_title > a {
 }
 
 .deal_container {
-  margin-left:0px !important;
-  margin-right: 10px;
+  margin-left: 10px !important;
+  margin-right: 5px;
   margin-bottom: 20px;
   height:300px;
 }

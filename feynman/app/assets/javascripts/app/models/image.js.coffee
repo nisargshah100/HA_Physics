@@ -1,5 +1,5 @@
 class App.Photo extends Spine.Model
-  @configure 'Image', 'image_url', 'width', 'height'
+  @configure 'Photo', 'image_url', 'width', 'height'
   @extend Spine.Model.Ajax
 
   @url: => 

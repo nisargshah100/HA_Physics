@@ -21,3 +21,10 @@
   $('.deal_container').hover( function(){ $(this).find('.deal_description').show() },
                               function(){ $(this).find('.deal_description').hide() } )
 </script>
+
+<style>
+.deal_title > a:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted;
+}
+</style>

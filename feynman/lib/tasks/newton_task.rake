@@ -23,12 +23,12 @@ class Newton
   end
 
   def self.save_entry(deal_params)
-    deal = Deal.find_by_original_id_and_source(deal_params["original_id"],
-                                               deal_params["source"])
+    deal = Deal.find_by_id(deal_params["original_id"])
     if not deal
       deal = Deal.create!(deal_params)
       puts "Deal saved! #{deal.title}"
     else
+      puts "HERE"
       deal.last_purchase_count = deal_params["last_purchase_count"]
       deal.sold_out = deal_params["sold_out"]
       deal.save()
@@ -44,7 +44,8 @@ class NewtonParser
     purchases = entry.delete("purchases")
     division_latlon = entry.delete("division_latlon")
 
-    entry.merge!({ "latitude" => division_latlon[0], 
+    entry.merge!({ "id" => entry["original_id"],
+                   "latitude" => division_latlon[0], 
                    "longitude" => division_latlon[1],
                    "last_purchase_count" => purchases.last["quantity"]})
   end

@@ -1,7 +1,7 @@
 class App.ImagesNew extends Spine.Controller
   constructor: -> 
     super
-
+    
   events:
     "click #open_image_preview_modal" : "fetchImages"
     "submit .new_image"               : "saveImage"
@@ -9,11 +9,29 @@ class App.ImagesNew extends Spine.Controller
 
   saveImage: (e) =>
     e.preventDefault()
-    new App.Photo({ 
-      image_url: $('.active').data('image')['url'], 
-      width: $('.active').data('image')['width'], 
-      height: $('.active').data('image')['height']
-      }).save()
+
+    $.ajax({
+      type: "POST",
+      url: "/api/v1/images.json",
+      data: { 
+        token: $('.user_meta').data('token'), 
+        image_url: $('.active').data('image')['url'], 
+        width: $('.active').data('image')['width'], 
+        height: $('.active').data('image')['height']
+      },
+      success: (response) =>
+        # Photo.deleteAll()
+        # Photo.fetch()
+        # Photo.trigger 'refresh'
+        image = response.image
+        new_image = "<li class='span3 thumbnail'>
+              <a href='#{image.large_image_url}'' class='fancybox'>
+                <img src='#{image.small_image_url}' alt=''>
+              </a>
+            </li>"
+        $('#image_thumbnails').append(new_image)
+
+    })
 
   saveProfileImage: (e) =>
     e.preventDefault()

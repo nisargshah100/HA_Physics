@@ -1,6 +1,6 @@
 class CreateDeals < ActiveRecord::Migration
   def change
-    create_table :deals do |t|
+    create_table :deals, {:id => false } do |t|
       t.string :original_id
       t.datetime :date_added
       t.datetime :end_date
@@ -20,5 +20,7 @@ class CreateDeals < ActiveRecord::Migration
       t.boolean :sold_out, :default => false
       t.timestamps
     end
+
+    execute "ALTER TABLE deals ADD PRIMARY KEY (original_id)"
   end
 end
