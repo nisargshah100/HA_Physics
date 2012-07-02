@@ -19,5 +19,5 @@ json.array!(@events) do |json, event|
     json.image_url event.deal.image_url.gsub('100_q60_', '275_q100')
     json.price event.deal.price.to_s
     json.value (event.deal.value + event.deal.price).to_s
-  end
+  end if event.deal
 end

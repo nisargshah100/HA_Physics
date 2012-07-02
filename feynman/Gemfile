@@ -54,6 +54,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'ruby_gntp'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password

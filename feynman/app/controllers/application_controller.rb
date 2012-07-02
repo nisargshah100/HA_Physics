@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :get_message_count
+  helper_method :location
 
   private
 
@@ -18,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def get_message_count
     @message_count = current_user.messages.size if current_user
+  end
+
+  def location
+    @location ||= ""
   end
 end

@@ -3,7 +3,7 @@
     <div class="deal_image" style="background-image:url('<%= deal.image_url %>');">
       <a href="<%= deal.original_url %>">
       </a>
-      <div class="deal_description">
+      <div class="deal_description hide">
         <p><%= deal.title %></p>
       </div>
     </div>
@@ -17,3 +17,7 @@
   </div>
 <% end %>
 
+<script>
+  $('.deal_container').hover( function(){ $(this).find('.deal_description').show() },
+                              function(){ $(this).find('.deal_description').hide() } )
+</script>

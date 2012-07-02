@@ -11,7 +11,10 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render "layouts/header" %>
+    <% if location == "splash" %>
+    <% else %>
+      <%= render "layouts/header" %>
+    <% end %>
     <div class="container-fluid">
       <div id="app" class="content">
         <div id="flash"></div>

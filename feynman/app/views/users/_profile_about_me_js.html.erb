@@ -5,6 +5,7 @@
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
+      width:($('#profile_about_me_container').width()) - 20 + "px", // THIS DOES THE TRICK
     });
 
     $('#education').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
@@ -70,9 +71,10 @@
     $('#height').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       indicator: 'Saving...',
       tooltip: '',
-      placeholder: '"',
+      placeholder: '',
       method : 'PUT',
       id   : 'attribute',
+      width:($('#profile_about_me_container').width()) - 200 + "px", // THIS DOES THE TRICK
     });
 
     $('.enable_edit').click(function() {

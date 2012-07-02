@@ -1,0 +1,28 @@
+<button type="button" class="close" data-dismiss="modal">×</button>
+<div class="modal-body">
+  <form accept-charset="UTF-8" action="#" class="form-horizontal" id="new_user_detail" method="post">
+    <p class="signup_form">I'm a 
+      <select class="gender" id="user_detail_gender" name="gender">
+        <option value="male">male</option>
+        <option value="female" selected="selected">female</option>
+      </select>
+      interested in 
+      <select class="gender" id="user_detail_gender_preference" name="gender_preference">
+        <option value="men" selected="selected">men</option>
+        <option value="women">women</option>
+        <option value="both">both</option>
+      </select>
+    </p>
+    <p class="signup_form">
+      between
+      <input class="age" id="user_detail_age_range_lower" name="age_range_lower" placeholder="25" size="30" type="text" /> 
+      and 
+      <input class="age" id="user_detail_age_range_upper" name="age_range_upper" placeholder="35" size="30" type="text" /> 
+      near 
+      <input class="zip" id="user_detail_zipcode" name="zipcode" placeholder="zip" size="30" type="text" />
+    </p>
+    <div class="modal-footer">
+      <p><input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" /></p>
+    </div>
+  </form>
+</div>
