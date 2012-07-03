@@ -68,4 +68,11 @@ class User < ActiveRecord::Base
   def all_messages
     Message.where{ (sender_id.eq my{ id }) | (recipient_id.eq my{ id }) }
   end
+
+  def messages_with_sender(sender)
+      all_messages.where{ 
+        (sender_id.eq my{ sender.id }) & (recipient_id.eq my{ id }) | 
+        (recipient_id.eq my{ sender.id }) & (sender_id.eq my{ id })
+      }
+  end
 end

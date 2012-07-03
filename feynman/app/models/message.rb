@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   belongs_to :recipient, :class_name => "User"
 
   def mark_as_opened
-    update_attribute(:status, "read")
+    update_attribute(:status, "read") if status == "unread"
   end
 
   def pretty_time
