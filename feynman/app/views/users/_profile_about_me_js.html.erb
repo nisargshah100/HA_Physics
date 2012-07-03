@@ -2,6 +2,7 @@
     $('#employment').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       indicator: 'Saving...',
       tooltip: 'Click to edit',
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
@@ -15,6 +16,7 @@
       },
       type: 'select',
       submit: "OK",
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
@@ -26,6 +28,7 @@
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
@@ -38,6 +41,7 @@
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
@@ -50,6 +54,7 @@
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
@@ -63,6 +68,7 @@
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       submit: "OK",
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
@@ -72,6 +78,7 @@
       indicator: 'Saving...',
       tooltip: '',
       placeholder: '',
+      onblur : "submit",
       method : 'PUT',
       id   : 'attribute',
       width:($('#profile_about_me_container').width()) - 200 + "px", // THIS DOES THE TRICK
