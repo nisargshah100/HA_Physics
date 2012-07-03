@@ -36,4 +36,20 @@ class Deal
     where(:source => "groupon")
   end
 
+  def self.by_division(params)
+    select { |d| d.division_name != nil }.map { |d| d.division_name }.uniq.sort_by { |d| d }
+  end
+
+  def self.by_category(params)
+    select { |d| d.original_subcategory != nil }.map { |d| d.original_subcategory }.uniq.sort_by { |d| d }
+  end
+
+  def self.by_term(term)
+    where(:title => /#{term}/i)
+  end
+
+  def self.by_division_name(loc)
+    where(:division_name => /#{loc}/i)
+  end
+
 end
