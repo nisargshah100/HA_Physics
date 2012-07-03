@@ -1,0 +1,32 @@
+<script type='text/x-handlebars-template' id='deal_prob_search_template'>
+  <h3>Probability for '{{cat}}'</h3>
+  <br />
+  <div style='border: 1px solid #eee; font-size: 18px; padding: 7px;'>
+    This deal <b>{{analysis.will_run}}</b> run again on {{date}}.
+  </div>
+  <br />
+  <div class='alert alert-info'>A deal with '{{cat}}' runs every <b>{{analysis.slope}}</b> days in '{{loc}}'.</div>
+
+  <h3>Previous Deals that matched this category</h3>
+
+  <table class='table table-bordered'>
+    {{#deals}}
+      <tr>
+        <td>
+          <img src='{{image_url}}' style='width: 60px; height: 60px; float: left;'></img> 
+          <div style='float: left; margin-left: 10px; width: 450px;'>
+            <a href='{{original_url}}' target='_blank'>{{title}}</a><br />
+            Deal started on: <span class='date_added_div'>{{date_added}}</div>
+          </div>
+        </td>
+      </tr>
+    {{/deals}}
+  </table>
+
+  <script type='text/javascript'>
+    $(".date_added_div").each(function() {
+      var date = $(this).html();
+      $(this).html(new Date(date).format("mm/dd/yyyy"));
+    });
+  </script>
+</script>
