@@ -1,13 +1,14 @@
 require 'spec_helper'
 
-DatabaseCleaner.start # usually this is called in setup of a test
 
 describe 'Signing up from the home page', :js => true  do
   let(:user) { FactoryGirl.build(:user) }
   let(:user_details) { FactoryGirl.build(:user_details) }
 
   describe "When viewing the root" do
-    before(:each) { visit "http://feynman.dev" }
+    before(:each) do 
+      visit root_path 
+    end
 
     it "then I should see a button to sign up" do
       page.should have_selector("#new_user_btn")
@@ -37,7 +38,10 @@ describe 'Signing up from the home page', :js => true  do
         end
 
         describe "When I fill out the account information and click continue" do
-          before(:each) do
+          let(:user) { FactoryGirl.build(:user) }
+
+
+          it "should take me to my profile" do
             select  "June",    from: "user_birthday_2i"
             select  "21",      from: "user_birthday_3i"
             select  "1988",      from: "user_birthday_1i"
@@ -45,9 +49,7 @@ describe 'Signing up from the home page', :js => true  do
             fill_in "user_email", with: user.email
             fill_in "user_password", with: user.password
             find("#signup_continue").click
-          end
 
-          it "should take me to my profile" do
             page.should have_content(user.display_name)
           end
         end
@@ -56,4 +58,3 @@ describe 'Signing up from the home page', :js => true  do
   end
 end
 
-DatabaseCleaner.clean

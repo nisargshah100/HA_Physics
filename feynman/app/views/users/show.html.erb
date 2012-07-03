@@ -17,7 +17,12 @@
       <h2>My Dates</h2>
       <div id="events" class="profile_events row-fluid"></div>
       <h2>My Photos</h2>
-      <div id="images"></div>
+      <div id="images">
+        <div class="image_container">
+          <ul class="thumbnails" id="image_thumbnails">
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -126,6 +131,11 @@
   #height, #employment {
     width: 100px;
     height: 1.25em;
+  }
+
+  li.thumbnail {
+    margin-left: 0px !important;
+    margin-right: 12px;
   }
 
 </style>

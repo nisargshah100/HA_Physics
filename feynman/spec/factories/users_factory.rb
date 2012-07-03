@@ -5,9 +5,41 @@ FactoryGirl.define do
     birthday Date.parse("21/6/1988")
     password "hungry"
 
-    after(:create) do |user|
-      user.create_user_detail(zipcode: "20036")
+    factory :straight_male_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "women", gender: "male")
+      end
     end
+
+    factory :straight_female_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "men", gender: "female")
+      end
+    end
+
+    factory :bisexual_male_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "both", gender: "male")
+      end
+    end
+
+    factory :bisexual_female_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "both", gender: "female")
+      end
+    end
+
+    factory :gay_female_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "women", gender: "female")
+      end
+    end
+
+    factory :gay_male_user do
+      after(:create) do |user|
+        user.create_user_detail(zipcode: "20036", gender_preference: "men", gender: "male")
+      end
+    end    
   end
 
   factory :user_with_events, parent: :user do

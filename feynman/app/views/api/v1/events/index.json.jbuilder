@@ -6,7 +6,7 @@ json.array!(@events) do |json, event|
     json.display_name event.user.display_name
     json.image event.user.image
     json.age event.user.age
-    json.gender event.user.gender
+    json.gender event.user.gender.capitalize
     json.orientation event.user.orientation
     json.location event.user.location
   end

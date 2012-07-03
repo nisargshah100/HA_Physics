@@ -1,11 +1,14 @@
 class Api::V1::EventsController < ApiController
-  before_filter :authenticate, :only => [:create]
+  before_filter :authenticate, :only => [:create, :index]
 
   def index
-    @events = params[:user_id] ? Event.for_user(params[:user_id]) : Event.all
-    unless @events
-      render :json => false, :status => :not_found
+    if params[:user_id]
+      @events = Event.created_by(params[:user_id])
+    else
+      @events = Event.filter_by(current_user, params)
     end
+    
+    render :json => false, :status => :not_found unless @events
   end
 
   def create

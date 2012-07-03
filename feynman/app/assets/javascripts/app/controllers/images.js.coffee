@@ -3,7 +3,7 @@ class App.ImagesNew extends Spine.Controller
     super
     
   events:
-    "click #open_image_preview_modal" : "fetchImages"
+    "click #open_image_preview_modal" : "getInstagramPhotos"
     "submit .new_image"               : "saveImage"
     "click #submit_profile_image"     : "saveProfileImage"
 
@@ -20,49 +20,38 @@ class App.ImagesNew extends Spine.Controller
         height: $('.active').data('image')['height']
       },
       success: (response) =>
-        # Photo.deleteAll()
-        # Photo.fetch()
-        # Photo.trigger 'refresh'
-        image = response.image
-        new_image = "<li class='span3 thumbnail'>
-              <a href='#{image.large_image_url}'' class='fancybox'>
-                <img src='#{image.small_image_url}' alt=''>
-              </a>
-            </li>"
-        $('#image_thumbnails').append(new_image)
-
+        Photo.trigger 'create', response if response
     })
 
   saveProfileImage: (e) =>
     e.preventDefault()
     $.ajax({
-          type: "PUT",
-          url: "/api/v1/user_details/#{$('.user_meta').data('id')}",
-          data: { 
-                  token: $('.user_meta').data('token'),
-                  attribute: 'image_url',
-                  value: $('.active').data('image')['url']
-                },
-      }) 
+      type: "PUT",
+      url: "/api/v1/user_details/#{$('.user_meta').data('id')}",
+      data: { 
+        token: $('.user_meta').data('token'),
+        user_detail: { image_url: $('.active').data('image')['url'] }
+      },
+      success: (response) =>
+        @log response
+        $('img.profile_img').attr('src', response.image_url)
+    }) 
+
 
   renderImages: (e, objects) =>
     @objects = objects
     $("#image_preview_modal").html @view('images/new')(@) 
     $($(".carousel-inner").children()[0]).addClass("active")
 
-  fetchImages: (e) =>
-    token = $('.user_meta').data('token')
-    url = "/api/v1/authentications.json?provider=instagram&token=#{token}"
-    $.getJSON(url, (data) => @getInstagramPhotos(e, data) )
-
   getInstagramPhotos: (e, data) =>
-    @response = data[0].token
-    url = "https://api.instagram.com/v1/users/#{data[0].uid}/media/recent"
+    instagram_data = $('#open_image_preview_modal').data()
+
+    url = "https://api.instagram.com/v1/users/#{instagram_data.uid}/media/recent"
     $.ajax({
               type: "GET",
               dataType: "jsonp",
               url: url,
-              data: { access_token: "#{data[0].token}", count: 30 },
+              data: { access_token: "#{instagram_data.token}", count: 30 },
               success: (response) =>
                 @renderImages(e, response.data)
           })
@@ -72,11 +61,17 @@ class App.ImagesIndex extends Spine.Controller
     super
     Photo.fetch()
     Photo.bind 'refresh', @render
+    Photo.bind 'create',  @renderOne
 
   render: =>
-    $("#images").html @template()
-
-  template: ->
     @images = Photo.all()
-    @log @images
-    @view('images/index')(@)
+    for image in @images
+      @addImage(image)
+
+  renderOne: (data) =>
+    @addImage(data.image)
+
+  addImage: (image) =>
+    image_html = @view('images/image')(image)
+    $('#image_thumbnails').append(image_html)
+    $('.fancybox').fancybox()
