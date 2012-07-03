@@ -1,28 +1,27 @@
 require 'spec_helper'
 
 describe 'Events API', :type => :api do
-  let!(:user) do
-  FactoryGirl.create(:straight_female_user) do |user|
-      FactoryGirl.create(:event, user: user)
-    end
-  end
-
-  let!(:compatible_user) do
-    FactoryGirl.create(:straight_male_user) do |user|
-      FactoryGirl.create(:event, user: user)
-    end
-  end
-  # let(:event) { FactoryGirl.build(:event) }
-
   context "Fetching all events through the API" do
     describe "When valid parameters are passed in" do
-      before(:each) { get "#{api_v1_events_url}.json", token: user.authentication_token }
+      let!(:user) do
+      FactoryGirl.create(:straight_female_user) do |user|
+          FactoryGirl.create(:event, user: user)
+        end
+      end
 
-      it "Should return all events of compatible users" do
+      let!(:compatible_user) do
+        FactoryGirl.create(:straight_male_user) do |user|
+          FactoryGirl.create(:event, user: user)
+        end
+      end
+
+      it "should return all events of compatible users" do
+        get "#{api_v1_events_url}.json", token: user.authentication_token
         JSON.parse(response.body).count.should == compatible_user.events.count
       end
 
-      it "Should return a successful response" do
+      it "should return a successful response" do
+        get "#{api_v1_events_url}.json", token: user.authentication_token
         response.status.should == 200
       end
     end

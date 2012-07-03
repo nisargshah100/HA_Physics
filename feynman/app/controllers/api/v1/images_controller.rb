@@ -8,7 +8,7 @@ class Api::V1::ImagesController < ApiController
     if @image.valid?
       @image.save
     else
-      render :json => false
+      render :json => false, :status => :bad_request
     end
   end
 

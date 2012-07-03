@@ -21,18 +21,9 @@ class Deal < ActiveRecord::Base
       deal.state   = geo.state
       deal.country = geo.country
     end
-    puts "NIL RESULT --- #{deal.inspect}, #{deal.latitude}, #{deal.longitude}" if results.first.nil?
   end
 
   before_create :reverse_geocode
-
-  def self.livingsocial_deals 
-    where(:source => "LivingSocial")
-  end
-
-  def self.groupon_deals
-    where(:source => "groupon")
-  end
 
   def self.active
     where{ end_date.gt Time.now }
@@ -43,7 +34,7 @@ class Deal < ActiveRecord::Base
   end
 
   def self.near_user(user)
-    Deal.most_popular.near([user.latitude, user.longitude], 10).active
+    Deal.active.near([user.latitude, user.longitude], 10).most_popular
   end
 
 end

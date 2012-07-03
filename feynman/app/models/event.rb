@@ -11,15 +11,19 @@ class Event < ActiveRecord::Base
     user.events if user
   end
 
+  def self.created_by_users(user_id_array)
+    Event.where{ user_id.in( user_id_array ) }
+  end
+
   def self.filter_by(user, params=nil)
     nearby_users = user.nearby_compatible_users
-    events = Event.where{ user_id.in( user_ids ) }
-    events = Event.by_categories(params[:categories], events) if params[:categories]
+    events = Event.created_by_users(nearby_users.pluck(:id))
+    events = events.by_categories(params[:categories]) if params[:categories]
     events
   end
 
   def self.by_categories(categories, events=Event)
     deals = Deal.where{ category.like_any my{ categories } }
-    events = events.where{ deal_id.in ( deals.select{ original_id } ) }
+    where{ deal_id.in ( deals.select{ original_id } ) }
   end
 end
