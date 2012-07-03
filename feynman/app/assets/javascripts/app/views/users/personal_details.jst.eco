@@ -1,3 +1,5 @@
+<button type="button" class="close" data-dismiss="modal">×</button>
+<div class="modal-body">
   <form accept-charset="UTF-8" action="/signups" class="form-horizontal" id="new_user" method="post">
     <div class="control-group">
       <label class="control-label" for="user_birthday">Birthday</label>
@@ -172,6 +174,11 @@
       </div>
     </div>
     <input id="user_user_preferences" name="user[user_preferences]" type="hidden" value='<%= "#{@user_preferences_json}" %>' />
-    <p><input class="btn btn-primary btn-large" id="signup_back" name="back_button" type="submit" value="Back" />
-  <input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" /></p>
-</form>
+    <div class="modal-footer">
+      <p>
+        <input class="btn btn-primary btn-large" id="signup_back" name="back_button" type="submit" value="Back" />
+        <input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" />
+      </p>
+    </div>
+  </form>
+</div>

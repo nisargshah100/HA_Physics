@@ -4,13 +4,21 @@ require 'hashie'
 describe User do
   let(:user) { FactoryGirl.build(:user) }
 
-  context "#ensure_authentication_token" do
+  describe "#ensure_authentication_token" do
     it "should be called upon save" do
       user.should_receive(:ensure_authentication_token)
       user.save
     end
   end
 
+  describe "#instagram_account" do
+    it "should return the instagram authentication for a user" do
+      authentications = double
+      user.stub(:authentications){ authentications }
+      authentications.should_receive(:where).with(provider: "instagram").and_return([])
+      user.instagram_account
+    end
+  end
 end
 # == Schema Information
 #

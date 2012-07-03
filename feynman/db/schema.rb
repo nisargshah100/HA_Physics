@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701162701) do
+ActiveRecord::Schema.define(:version => 20120703062343) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
     t.datetime "updated_at",        :null => false
     t.integer  "authentication_id"
   end
+
+  add_index "authentications", ["authentication_id"], :name => "index_authentications_on_authentication_id"
+  add_index "authentications", ["id"], :name => "index_authentications_on_id"
+  add_index "authentications", ["last_status_id"], :name => "index_authentications_on_last_status_id"
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "deals", :force => true do |t|
     t.string   "original_id"
@@ -54,15 +59,24 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
     t.integer  "last_purchase_count"
   end
 
+  add_index "deals", ["id"], :name => "index_deals_on_id"
+  add_index "deals", ["original_id"], :name => "index_deals_on_original_id"
+
   create_table "events", :force => true do |t|
     t.string   "source"
-    t.integer  "deal_id"
+    t.string   "deal_id"
     t.integer  "user_id"
     t.datetime "date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "description"
   end
+
+  add_index "events", ["deal_id", "user_id"], :name => "index_events_on_deal_id_and_user_id"
+  add_index "events", ["deal_id"], :name => "index_events_on_deal_id"
+  add_index "events", ["id"], :name => "index_events_on_id"
+  add_index "events", ["user_id", "deal_id"], :name => "index_events_on_user_id_and_deal_id"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "images", :force => true do |t|
     t.integer  "user_id"
@@ -73,6 +87,9 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "images", ["id"], :name => "index_images_on_id"
+  add_index "images", ["user_id"], :name => "index_images_on_user_id"
+
   create_table "messages", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -81,6 +98,12 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
     t.datetime "updated_at",                         :null => false
     t.string   "status",       :default => "unread"
   end
+
+  add_index "messages", ["id"], :name => "index_messages_on_id"
+  add_index "messages", ["recipient_id", "sender_id"], :name => "index_messages_on_recipient_id_and_sender_id"
+  add_index "messages", ["recipient_id"], :name => "index_messages_on_recipient_id"
+  add_index "messages", ["sender_id", "recipient_id"], :name => "index_messages_on_sender_id_and_recipient_id"
+  add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
 
   create_table "user_details", :force => true do |t|
     t.integer  "user_id"
@@ -111,6 +134,9 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
     t.string   "height"
   end
 
+  add_index "user_details", ["id"], :name => "index_user_details_on_id"
+  add_index "user_details", ["user_id"], :name => "index_user_details_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -134,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20120701162701) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "zips", :id => false, :force => true do |t|

@@ -10,6 +10,8 @@ class Deal < ActiveRecord::Base
 
   monetize :price_cents
   monetize :value_cents
+
+  set_primary_key :original_id
   
   validates_uniqueness_of :original_id, :scope => :source
 
@@ -19,18 +21,9 @@ class Deal < ActiveRecord::Base
       deal.state   = geo.state
       deal.country = geo.country
     end
-    puts "NIL RESULT --- #{deal.inspect}, #{deal.latitude}, #{deal.longitude}" if results.first.nil?
   end
 
   before_create :reverse_geocode
-
-  def self.livingsocial_deals 
-    where(:source => "LivingSocial")
-  end
-
-  def self.groupon_deals
-    where(:source => "groupon")
-  end
 
   def self.active
     where{ end_date.gt Time.now }

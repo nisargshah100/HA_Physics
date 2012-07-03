@@ -11,19 +11,6 @@ class App.MessagesIndex extends Spine.Controller
     @messages = Message.all()
     @view('messages/index')(@)
 
-class App.MessagesShow extends Spine.Controller
-  constructor: -> 
-    super
-    Message.fetch()
-    Message.bind 'refresh', @render
-
-  render: =>
-    $("#messages").html @template()
-
-  template: ->
-    @messages = Message.all()
-    @view('messages/index')(@)
-
 class App.MessagesNew extends Spine.Controller
   constructor: -> 
     super

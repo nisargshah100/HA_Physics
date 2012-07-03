@@ -1,23 +1,6 @@
 require 'spec_helper'
 
 describe UserDetail do
-  describe "#complete?" do
-    let(:user_detail) { UserDetail.new(zipcode: "20036", gender: "male", gender_preference: "female") }
-    
-    context "if a user detail has a zip code, a gender, and a gender preference" do
-      it "should return true" do
-        user_detail.complete?.should == true
-      end
-    end
-
-    context "if it doesn't have a zip code, a gender, and a gender preference" do
-      it "should return false" do
-        user_detail.gender = nil
-        user_detail.complete?.should == false
-      end
-    end
-  end
-
   describe "#location" do
     let(:user_detail) { UserDetail.new(city: "Washington", state: "DC") }
     it "should return a well formatted string" do
@@ -29,6 +12,20 @@ describe UserDetail do
         user_detail.city = nil
         user_detail.location.should == nil
       end
+    end
+  end
+
+  describe "#gender_orientation_array" do
+    let(:user_detail) { UserDetail.new(gender: "male", gender_preference: "women") }
+    it "should return an array with both the gender and the preference" do
+      user_detail.gender_orientation_array.should == [user_detail.gender, user_detail.gender_preference]
+    end
+  end
+
+  describe "#get_gender_orientation" do
+    let(:user_detail) { UserDetail.new(gender: "male", gender_preference: "women") }
+    it "should return a string classifying gender orientation (e.g. what a different user would be looking for)" do
+      user_detail.get_gender_orientation.should == "straight guys"
     end
   end
 
@@ -76,9 +73,9 @@ describe UserDetail do
 
   describe "#image" do
     context "given you have an image" do
-      let(:user_detail) { UserDetail.new(image: "me.jpg") }
+      let(:user_detail) { UserDetail.new(image_url: "me.jpg") }
 
-      pending "should return your image" do
+      it "should return your image" do
         user_detail.image.should == "me.jpg"
       end
     end
@@ -101,15 +98,4 @@ describe UserDetail do
       end
     end
   end
-
-  describe "#ensure_valid_country" do
-    context "given the user is located in the USA" do
-      it "should return true" do
-        user_detail = UserDetail.new(country: "USA")
-        user_detail.ensure_valid_country.should == true
-      end
-    end
-  end
-
-
 end

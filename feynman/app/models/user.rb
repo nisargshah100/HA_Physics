@@ -29,12 +29,17 @@ class User < ActiveRecord::Base
     :employment, :education, :faith, :faith_level, :political_affiliation,
     :political_affiliation_level, :race, :children_preference, :exercise_level, 
     :drinking_level, :smoking_level, :location, :complete?, :height, 
-    :objective_pronoun, :latitude, :longitude, :city, :state, :country
+    :objective_pronoun, :latitude, :longitude, :city, :state, :country,
+    :compatible_user_details, :nearby_compatible_user_details
 
   def self.create_user_with_detail(user_params, user_detail_params)
     User.create(user_params).tap do |user|
       user.create_user_detail(user_detail_params)
     end
+  end
+
+  def nearby_compatible_users(radius=10)
+    User.where{ id.in my{ nearby_compatible_user_details(radius).pluck(:user_id) } }
   end
 
   def age
@@ -56,7 +61,18 @@ class User < ActiveRecord::Base
     end
   end
 
-  def instagram?
-    authentications.where(provider: "instagram").count > 0
+  def instagram_account
+    authentications.where(provider: "instagram").first
+  end
+
+  def all_messages
+    Message.where{ (sender_id.eq my{ id }) | (recipient_id.eq my{ id }) }
+  end
+
+  def messages_with_sender(sender)
+      all_messages.where{ 
+        (sender_id.eq my{ sender.id }) & (recipient_id.eq my{ id }) | 
+        (recipient_id.eq my{ sender.id }) & (sender_id.eq my{ id })
+      }
   end
 end

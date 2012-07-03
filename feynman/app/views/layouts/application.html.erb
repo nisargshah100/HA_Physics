@@ -8,6 +8,7 @@
     <%= javascript_include_tag "application" %>
     <script type="text/javascript" src="https://use.typekit.com/txe0iyw.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="shortcut icon" type="image/png" href="/assets/edweng.ico" />
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -15,7 +16,7 @@
     <% else %>
       <%= render "layouts/header" %>
     <% end %>
-    <div class="container-fluid">
+    <div id="main_content" class="container-fluid">
       <div id="app" class="content">
         <div id="flash"></div>
         <%= yield %>

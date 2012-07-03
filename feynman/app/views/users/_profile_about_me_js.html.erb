@@ -1,77 +1,84 @@
   $(document).ready(function() {
-    $('#employment').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#employment').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       indicator: 'Saving...',
       tooltip: 'Click to edit',
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
-      width:($('#profile_about_me_container').width()) - 20 + "px", // THIS DOES THE TRICK
+      width:($('#profile_about_me_container').width()) - 50 + "px", // THIS DOES THE TRICK
     });
 
-    $('#education').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#education').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_educations.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
       submit: "OK",
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
     });
 
-    $('#faith').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#faith').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_faiths.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
     });
 
-    $('#political_affiliation').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#political_affiliation').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_political_affiliations.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
     });
 
-    $('#race').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#race').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_races.to_json}" %>',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       type: 'select',
+      onblur : "submit",
       submit: "OK",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
     });
 
-    $('#children_preference').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#children_preference').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       data: '<%= raw "#{get_children_preferences.to_json}" %>',
       type: 'select',
       callback: function(value, settings) {
         $(this).html(jQuery.parseJSON(settings.data)[value]);
       },
       submit: "OK",
+      onblur : "submit",
       placeholder: '',
       method : 'PUT',
       id   : 'attribute',
     });
 
-    $('#height').editable('<%= "#{api_v1_user_detail_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
+    $('#height').editable('<%= "#{api_v1_jeditable_url(:id => current_user.id, :token => current_user.authentication_token)}" %>', {
       indicator: 'Saving...',
       tooltip: '',
       placeholder: '',
+      onblur : "submit",
       method : 'PUT',
       id   : 'attribute',
       width:($('#profile_about_me_container').width()) - 200 + "px", // THIS DOES THE TRICK

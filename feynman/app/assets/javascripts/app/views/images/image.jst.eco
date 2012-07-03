@@ -1,0 +1,5 @@
+<li class="span3 thumbnail">
+  <a href='<%= "#{@large_image_url}" %>' class="fancybox">
+    <img src='<%="#{@small_image_url}"%>' alt="">
+  </a>
+</li>

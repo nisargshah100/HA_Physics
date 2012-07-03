@@ -16,7 +16,6 @@
       <div class="span4 event_description_container">
         <div>
           <a href="<%= event.deal.original_url %>"><%= event.deal.subtitle %></a>
-          <p><%= event.deal.title %></p>
           <p class="deal_value">$<%= event.deal.value %></p><p class="deal_price">$<%= event.deal.price %></p>
         </div>
       </div>

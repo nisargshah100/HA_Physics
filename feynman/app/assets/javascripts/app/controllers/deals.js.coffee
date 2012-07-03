@@ -1,7 +1,7 @@
 class App.DealsIndex extends Spine.Controller
   constructor: ->
     super
-    Deal.fetch()
+    @filterDeals()
     Deal.bind 'refresh', @render
 
   events:
@@ -14,15 +14,12 @@ class App.DealsIndex extends Spine.Controller
     $("#event_modal").html @newEventForm(deal) # XXX ASK HOW TO BIND TO HTML LOAD
     $('#event_modal').modal()
 
-  render: =>
-    $("#deals").html @template(Deal.all())
-
   template: (deals) =>
     @deals = deals
     @view('deals/index')(@)
 
   filterDeals: (e) =>
-    e.preventDefault()
+    e.preventDefault() if e
     $.ajax({
           url: "/api/v1/deals",
           data: { 
@@ -41,8 +38,14 @@ class App.DealsIndex extends Spine.Controller
 
   createEvent: (e) =>
     e.preventDefault()
-    message = new App.Event({
+    event = new App.Event({
                               description: $("#event_body").val(),
                               deal_id: $("#event_deal_id").val(),
                               source: $("#event_deal_source").val(),
                             }).save()
+
+    $("#event_body").val("")
+    $("#event_modal").modal("hide")
+
+    $("#alert-bar").addClass('alert-success').text('Congratulations on posting your date!').hide()
+    $("#alert-bar").slideDown().delay(5000).slideUp()

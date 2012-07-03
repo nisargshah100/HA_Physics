@@ -4,14 +4,16 @@ class Api::V1::MessagesController < ApiController
   def create
     params[:message].merge!({:sender => current_user})
     @message = Message.create(params[:message])
-    render json: @message
+    
+    if @message
+      render :json => @message, :status => :created
+    else
+      render :json => false, :status => :bad_request
+    end
   end
 
   def index
     @messages = current_user.messages
-
-    unless @messages
-      render :json => false, :status => :not_found
-    end
+    render :json => false, :status => :not_found unless @messages
   end
 end

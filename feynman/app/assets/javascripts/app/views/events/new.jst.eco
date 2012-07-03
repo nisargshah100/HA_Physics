@@ -1,6 +1,5 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">×</button>
-  <h3>Send message</h3>
 </div>
 <form accept-charset="UTF-8" action="/api/v1/events" class="new_event" id="new_event" method="post">
   <div class="modal-body">
@@ -10,6 +9,16 @@
     <input id="event_deal_source" name="event[deal_source]" type="hidden" value="<%= @source %>" />
   </div>
   <div class="modal-footer">
-    <input name="commit" type="submit" class="btn btn-large btn-default" value="Make a Date" />
+    <input name="commit" type="submit" class="btn btn-large btn-primary" value="Make a Date" />
   </div>
 </form>
+
+<style>
+  #new_event {
+    margin-bottom:0px;
+  }
+
+  .modal-header {
+    border: 0px;
+  }
+</style>

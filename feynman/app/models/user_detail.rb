@@ -6,9 +6,15 @@ class UserDetail < ActiveRecord::Base
     :exercise_level, :drinking_level, :smoking_level, :city, :state, :country
 
   validates :zipcode, :format => { :with => /^[0-9]{5}$/, :message => "must be 5 digits" }
-  validate :ensure_valid_country
 
   geocoded_by :zipcode
+
+  GENDER_ORIENTATION = { "straight guys"  => [ "male", "women" ],
+                         "bi guys"        => [ "male", "both" ],
+                         "gay guys"       => [ "male", "men" ],
+                         "straight women" => [ "female", "men" ],
+                         "bi women"       => [ "female", "both" ],
+                         "gay women"      => [ "female", "women" ] }
 
   reverse_geocoded_by :latitude, :longitude do |user_detail, results|
     if geo = results.first
@@ -23,12 +29,33 @@ class UserDetail < ActiveRecord::Base
 
   belongs_to :user
 
-  def complete?
-    if zipcode.nil? || gender.nil? || gender_preference.nil?
-      false
-    else
-      true
-    end
+  def nearby_compatible_user_details(radius=10)
+    compatible_user_details.near(zipcode, radius)
+  end
+
+  def compatible_user_details
+    lookup = {
+      ["male", "women"] => "gender = 'female' AND (gender_preference = 'both' OR gender_preference = 'men')",
+      ["male", "both"]  => "(gender = 'male' AND (gender_preference = 'both' OR gender_preference = 'men')) OR (gender = 'female' AND (gender_preference = 'men' OR gender_preference = 'both'))",
+      ["male", "men"]  => "gender = 'male' AND (gender_preference = 'both' OR gender_preference = 'men')",
+      ["female", "women"] => "gender = 'female' AND (gender_preference = 'both' OR gender_preference = 'women')",
+      ["female", "both"]  => "(gender = 'male' AND (gender_preference = 'both' OR gender_preference = 'women')) OR (gender = 'female' AND (gender_preference = 'women' OR gender_preference = 'both'))",
+      ["female", "men"]  => "gender = 'male' AND (gender_preference = 'both' OR gender_preference = 'women')",
+    }
+
+    UserDetail.where(lookup[gender_orientation_array])
+  end
+
+  def gender_orientation_array
+    [ gender, gender_preference ]
+  end
+
+  def get_gender_orientation
+    GENDER_ORIENTATION.select{ |key, value| value == gender_orientation_array }.keys.first
+  end
+
+  def gay?
+    get_gender_orientation.split(" ").first =~ /gay/ ? true : false
   end
 
   def location
@@ -45,14 +72,6 @@ class UserDetail < ActiveRecord::Base
     end
   end
 
-  def gay?
-    if gender =~ /^male/i && gender_preference =~ /^men/i || gender =~ /^female/i && gender_preference =~ /^women/i
-      true
-    else
-      false
-    end
-  end
-
   def objective_pronoun
     gender =~ /^male/i ? "him" : "her"
   end
@@ -60,9 +79,5 @@ class UserDetail < ActiveRecord::Base
   def image
     self.gender ||= "male"
     image_url.blank? ? "/assets/default_#{gender.downcase}_250.png" : image_url
-  end
-
-  def ensure_valid_country
-    country == "USA"
   end
 end

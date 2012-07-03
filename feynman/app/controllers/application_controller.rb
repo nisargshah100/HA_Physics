@@ -6,15 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    if (current_user.user_detail && current_user.complete?)
-      profile_path(current_user.slug)
-    else
-      new_signup_path
-    end
-  end
-
-  def client
-    Feynman::Client.new({:token => current_user.authentication_token})
+    profile_path(current_user.slug)
   end
 
   def get_message_count

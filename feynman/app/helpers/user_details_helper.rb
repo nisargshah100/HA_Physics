@@ -1,7 +1,7 @@
 module UserDetailsHelper
 
   def get_children_preferences
-    prefs = [ "", "Have them", "Want them now", "Want them someday", "Not for me"]
+    prefs = [ "", "Have them", "Want them now", "Maybe someday", "Not for me"]
     make_hash(prefs)
   end
 
@@ -19,15 +19,15 @@ module UserDetailsHelper
   end
 
   def get_political_affiliations
-    prefs = [ "", "Liberal", "Progressive", "Conservative", "Ultra Conservative", 
+    prefs = [ "", "Liberal", "Progressive", "Conservative", 
       "Independent", "Centrist", "Anarchist", "Socialist", "Libertarian", "Other", 
       "None", "No Comment" ]
     make_hash(prefs)
   end
 
   def get_educations
-    prefs = [ "", "High School", "Some College", "2 Year College", "College", 
-      "Masters", "MFA", "Law School", "Medical School", "Business School", "PhD" ]
+    prefs = [ "", "High School", "Some College", "College", 
+      "Masters", "MFA", "Law School", "Medical School", "MBA", "PhD" ]
     make_hash(prefs)
   end
 

@@ -2,8 +2,14 @@ class Api::V1::ImagesController < ApiController
   before_filter :authenticate
 
   def create
-    current_user.images.create(image_url: params[:image_url], width: params[:width], height: params[:height])
-    render :json => true
+    @image = current_user.images.build(image_url: params[:image_url],
+                                       width:     params[:width], 
+                                       height:    params[:height])
+    if @image.valid?
+      @image.save
+    else
+      render :json => false, :status => :bad_request
+    end
   end
 
   def index

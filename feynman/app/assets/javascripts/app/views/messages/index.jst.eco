@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="span6 message_body">
-        <a href='<%= "#{message.message_url}" %>'></a>
+        <a class="show_message" href='<%= "#{message.message_url}" %>'></a>
         <p class="message_display_name"><%= message.sender.display_name %></a>
         <p><%= message.body %></p>
       </div>

@@ -17,7 +17,12 @@
       <h2>My Dates</h2>
       <div id="events" class="profile_events row-fluid"></div>
       <h2>My Photos</h2>
-      <div id="images"></div>
+      <div id="images">
+        <div class="image_container">
+          <ul class="thumbnails" id="image_thumbnails">
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -37,90 +42,3 @@
     <%= render 'profile_about_me_js' %>
   <% end %>
 </script>
-
-<style>
-  #image_preview_modal {
-    width: 450px;
-    padding: 0px;
-  }
-
-  .modal-body {
-    margin-left: 10px;
-    padding: 0px;
-  }
-
-  .carousel {
-    margin: 10px 0px;
-  }
-
-  .profile_container {
-    margin-top:15px;
-    background: #EEE;
-  }
-
-  p.profile_display_name {
-    color: #E86D45;
-    font-size: 2.5em;
-    font-weight: bold;
-    padding: 15px 0px;
-  }
-
-  p.profile_user_details {
-    font-size: 1.5em;
-    padding-bottom:5px;
-  }
-
-  a.profile_action {
-    width: 150px;
-    font-size: 1.25em;
-  }
-
-  .profile_action_container {
-    text-align:right;
-  }
-
-  .edit {
-    height:30px;
-    width:50px;
-  }
-
-  .placeholder {
-    color: #AAA;
-  }
-
-  form {
-    display: inline !important;
-  }
-
-  select {
-    display: inline;
-    width: auto;
-    font-size: 1em;
-    height: 1.25em;
-  }
-
-  #profile_bottom {
-    padding-top:30px;
-  }
-
-  .profile_about_me_label {
-    color: #AAA;
-    font-size: 0.8em;
-  }
-
-  .enable_edit {
-    position: relative;
-  }
-
-  .icon {
-    width:10px;
-    position:absolute;
-    right: 15px;
-    top: 15px;
-  }
-
-  .profile_events {
-    margin-bottom:20px;
-  }
-
-</style>

@@ -27,6 +27,7 @@ Feynman::Application.routes.draw do
       resources :events, :only => [:index, :create]
       resources :images, :only => [:create, :index]
       resources :deals, :only => [:index]
+      match 'user_details/jeditable/:id' => 'user_details#jeditable', :as => 'jeditable', :via => :put
       resources :user_details, :only => [:update]
     end
   end
