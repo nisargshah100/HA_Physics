@@ -1,20 +1,4 @@
 class SignupsController < ApplicationController
-
-#   def preferences
-#     @user_detail = UserDetail.new()
-#   end
-  
-#   def save_preferences
-#     @user_detail = UserDetail.new(params[:user_detail])
-#     if @user_detail.valid?
-#       @user_preferences = params[:user_detail].to_json
-#       @user = User.new
-#       render 'personal_details'
-#     else
-#       render 'preferences'
-#     end
-#   end
-
   def create
     user_preferences = JSON.parse(params[:user].delete(:user_preferences))
     @user = User.new(params[:user])
