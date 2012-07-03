@@ -11,11 +11,19 @@ class DealAnalysis
   field :livingsocial_top_districts
   field :groupon_top_districts
 
+  field :top_projected_revenue
+
   def self.compute
     analysis = DealAnalysis.new
     analysis.compute_deal_velocity
     analysis.compute_top_districts
+    analysis.compute_top_projected_revenue
     analysis.save()
+  end
+
+  def compute_top_projected_revenue
+    unique_deals = DealAnalysis.unique_deals(Deal.where(:source => LS))
+    self.top_projected_revenue = RevenueProjection.compute(unique_deals).sort_by { |r| -r[0] }[0..10].to_json
   end
 
   def compute_deal_velocity(limit=10)

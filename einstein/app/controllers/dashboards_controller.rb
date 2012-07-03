@@ -20,10 +20,15 @@ class DashboardsController < ApplicationController
 
   def projected_revenue
     deals = Deal.where(:source => "LivingSocial")
-    deals = deals.where(:title => /#{params[:q]}/i) unless params[:q].blank?
-    deals = DealAnalysis.unique_deals(deals)
+    if params[:q].blank?
+      revenue = JSON.parse(DealAnalysis.last.top_projected_revenue)
+    else
+      deals = deals.where(:title => /#{params[:q]}/i)
+      deals = DealAnalysis.unique_deals(deals)
+      revenue = RevenueProjection.compute(deals).sort_by { |r| -r[0] }[0..10]
+    end
 
-    render :json => RevenueProjection.compute(deals).sort_by { |r| -r[0] }[0..10]
+    render :json => revenue
   end
 
   def deal_probability

@@ -5,19 +5,19 @@ describe 'User login is' do
 
   it 'successful' do
     visit new_user_session_path
-    fill_in 'Email', :with => user.email
-    fill_in 'Password', :with => 'asdasd'
+    fill_in 'email', :with => user.email
+    fill_in 'password', :with => 'asdasd'
 
-    click_button 'Sign in'
+    click_button 'Sign In'
     page.should have_content('Logout')
   end
 
   it 'is invalid' do
     visit new_user_session_path
-    fill_in 'Email', :with => user.email
-    fill_in 'Password', :with => 'asdas'
+    fill_in 'email', :with => user.email
+    fill_in 'password', :with => 'asdas'
 
-    click_button 'Sign in'
+    click_button 'Sign In'
     page.should have_content('Login')
   end
 end
