@@ -9,13 +9,6 @@ GIT
       therubyracer (= 0.10.1)
 
 GIT
-  remote: git@github.com:wengzilla/feynman_gem.git
-  revision: d957932abf1e09dc974234bb291a6caf3b823be0
-  specs:
-    feynman_client (0.0.1)
-      faraday
-
-GIT
   remote: git@github.com:wengzilla/instagram.git
   revision: f9996ad6da8c73609cc5bb13b239a4d6ac1a3377
   specs:
@@ -286,7 +279,6 @@ DEPENDENCIES
   eco
   factory_girl
   fancybox-rails!
-  feynman_client!
   geocoder
   guard
   guard-rspec
