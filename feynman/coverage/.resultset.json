@@ -68,6 +68,10 @@
         1,
         1,
         null,
+        null,
+        1,
+        0,
+        null,
         null
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/application_controller.rb": [
@@ -89,58 +93,6 @@
         1,
         6,
         null,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/application_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/authentications_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/deals_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/events_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/images_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/messages_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/api/v1/user_details_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/authentications_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/events_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/messages_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/pages_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/signups_helper.rb": [
-        1,
         null
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/helpers/user_details_helper.rb": [
@@ -545,16 +497,22 @@
         1,
         1,
         null,
+        1,
+        null,
         null
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/deals_controller.rb": [
         1,
         1,
         null,
+        1,
+        null,
         null
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/events_controller.rb": [
         1,
+        1,
+        null,
         1,
         0,
         null,
@@ -583,6 +541,9 @@
         0,
         0,
         0,
+        0,
+        0,
+        null,
         null,
         0,
         null,
@@ -591,7 +552,6 @@
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/pages_controller.rb": [
         1,
-        null,
         1,
         4,
         4,
@@ -616,6 +576,22 @@
         null,
         null
       ],
+      "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/user_details_controller.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/users/omniauth_callbacks_controller.rb": [
         1,
         null,
@@ -630,7 +606,7 @@
       ],
       "/Users/edwardweng/Code/ruby_100/jumpstart_tutorials/ha_physics/feynman/app/controllers/users_controller.rb": [
         1,
-        null,
+        1,
         null,
         1,
         1,
@@ -648,6 +624,6 @@
         null
       ]
     },
-    "timestamp": 1341292757
+    "timestamp": 1341297181
   }
 }
