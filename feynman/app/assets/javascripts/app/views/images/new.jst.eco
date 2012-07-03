@@ -18,7 +18,7 @@
           <input id="image_width" name="image[width]" type="hidden" value="" />
           <input id="image_height" name="image[height]" type="hidden" value="" />
           <input id="image_image_url" name="image[image_url]" type="hidden" value="" />
-          <input name="commit" type="submit" id="submit_profile_image" class="btn btn-medium btn-primary" value="Make this my profile image" />
+          <input name="commit" type="submit" id="submit_profile_image" class="btn btn-medium btn-primary" value="Change profile image" />
           <input name="commit" type="submit" class="btn btn-large btn-primary" value="Add this image" />
         </div>
       </form>
