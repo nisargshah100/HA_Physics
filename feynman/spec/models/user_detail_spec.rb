@@ -73,9 +73,9 @@ describe UserDetail do
 
   describe "#image" do
     context "given you have an image" do
-      let(:user_detail) { UserDetail.new(image: "me.jpg") }
+      let(:user_detail) { UserDetail.new(image_url: "me.jpg") }
 
-      pending "should return your image" do
+      it "should return your image" do
         user_detail.image.should == "me.jpg"
       end
     end

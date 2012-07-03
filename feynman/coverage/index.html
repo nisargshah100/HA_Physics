@@ -23,7 +23,7 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-03T02:33:01-04:00">2012-07-03T02:33:01-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-03T12:24:18-04:00">2012-07-03T12:24:18-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -34,7 +34,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.37
+         2.32
        </span>
     </span> hits/line)
   </h2>
@@ -86,7 +86,7 @@
         <td>11</td>
         <td>8</td>
         <td>3</td>
-        <td>1.5</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -126,7 +126,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>2.9</td>
+        <td>2.6</td>
       </tr>
       
       <tr>
@@ -236,7 +236,7 @@
         <td>20</td>
         <td>20</td>
         <td>0</td>
-        <td>8.9</td>
+        <td>8.7</td>
       </tr>
       
       <tr>
@@ -266,7 +266,7 @@
         <td>18</td>
         <td>16</td>
         <td>2</td>
-        <td>1.8</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -296,7 +296,7 @@
         <td>35</td>
         <td>33</td>
         <td>2</td>
-        <td>7.9</td>
+        <td>7.8</td>
       </tr>
       
       <tr>
@@ -322,7 +322,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.1
+         1.06
        </span>
     </span> hits/line)
   </h2>
@@ -374,7 +374,7 @@
         <td>11</td>
         <td>8</td>
         <td>3</td>
-        <td>1.5</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -414,7 +414,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>2.9</td>
+        <td>2.6</td>
       </tr>
       
       <tr>
@@ -529,7 +529,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.51
+         4.46
        </span>
     </span> hits/line)
   </h2>
@@ -581,7 +581,7 @@
         <td>18</td>
         <td>16</td>
         <td>2</td>
-        <td>1.8</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -611,7 +611,7 @@
         <td>35</td>
         <td>33</td>
         <td>2</td>
-        <td>7.9</td>
+        <td>7.8</td>
       </tr>
       
       <tr>
@@ -673,7 +673,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         8.9
+         8.7
        </span>
     </span> hits/line)
   </h2>
@@ -705,7 +705,7 @@
         <td>20</td>
         <td>20</td>
         <td>0</td>
-        <td>8.9</td>
+        <td>8.7</td>
       </tr>
       
     </tbody>
@@ -1033,8 +1033,8 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="5">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="3" data-linenumber="5">
+          <span class="hits">3</span>
           
           <code class="ruby">    if params[:user_id]</code>
         </li>
@@ -1051,8 +1051,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="8">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="8">
+          <span class="hits">2</span>
           
           <code class="ruby">      @events = Event.filter_by(current_user, params)</code>
         </li>
@@ -1069,8 +1069,8 @@
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="11">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="3" data-linenumber="11">
+          <span class="hits">3</span>
           
           <code class="ruby">    render :json =&gt; false, :status =&gt; :not_found unless @events</code>
         </li>
@@ -1585,14 +1585,14 @@
           <code class="ruby">  def authenticate</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="7">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="7">
+          <span class="hits">7</span>
           
           <code class="ruby">    @current_user = User.find_by_authentication_token(params[:token])</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="8">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="8">
+          <span class="hits">7</span>
           
           <code class="ruby">    unless @current_user</code>
         </li>
@@ -2632,7 +2632,7 @@
         <li class="covered" data-hits="3" data-linenumber="4">
           <span class="hits">3</span>
           
-          <code class="ruby">    prefs = [ &quot;&quot;, &quot;Have them&quot;, &quot;Want them now&quot;, &quot;Want them someday&quot;, &quot;Not for me&quot;]</code>
+          <code class="ruby">    prefs = [ &quot;&quot;, &quot;Have them&quot;, &quot;Want them now&quot;, &quot;Maybe someday&quot;, &quot;Not for me&quot;]</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="5">
@@ -2740,7 +2740,7 @@
         <li class="covered" data-hits="3" data-linenumber="22">
           <span class="hits">3</span>
           
-          <code class="ruby">    prefs = [ &quot;&quot;, &quot;Liberal&quot;, &quot;Progressive&quot;, &quot;Conservative&quot;, &quot;Ultra Conservative&quot;, </code>
+          <code class="ruby">    prefs = [ &quot;&quot;, &quot;Liberal&quot;, &quot;Progressive&quot;, &quot;Conservative&quot;, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
@@ -2782,13 +2782,13 @@
         <li class="covered" data-hits="3" data-linenumber="29">
           <span class="hits">3</span>
           
-          <code class="ruby">    prefs = [ &quot;&quot;, &quot;High School&quot;, &quot;Some College&quot;, &quot;2 Year College&quot;, &quot;College&quot;, </code>
+          <code class="ruby">    prefs = [ &quot;&quot;, &quot;High School&quot;, &quot;Some College&quot;, &quot;College&quot;, </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">      &quot;Masters&quot;, &quot;MFA&quot;, &quot;Law School&quot;, &quot;Medical School&quot;, &quot;Business School&quot;, &quot;PhD&quot; ]</code>
+          <code class="ruby">      &quot;Masters&quot;, &quot;MFA&quot;, &quot;Law School&quot;, &quot;Medical School&quot;, &quot;MBA&quot;, &quot;PhD&quot; ]</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="31">
@@ -2821,8 +2821,8 @@
           <code class="ruby">    hash = {}</code>
         </li>
       
-        <li class="covered" data-hits="118" data-linenumber="36">
-          <span class="hits">118</span>
+        <li class="covered" data-hits="114" data-linenumber="36">
+          <span class="hits">114</span>
           
           <code class="ruby">    values.each_with_index { |value, index| hash[index.to_s] = value }</code>
         </li>
@@ -3361,8 +3361,8 @@
           <code class="ruby">  def self.created_by_users(user_id_array)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="15">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="4" data-linenumber="15">
+          <span class="hits">4</span>
           
           <code class="ruby">    Event.where{ user_id.in( user_id_array ) }</code>
         </li>
@@ -3385,26 +3385,26 @@
           <code class="ruby">  def self.filter_by(user, params=nil)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="19">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="19">
+          <span class="hits">2</span>
           
           <code class="ruby">    nearby_users = user.nearby_compatible_users</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="20">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="20">
+          <span class="hits">2</span>
           
           <code class="ruby">    events = Event.created_by_users(nearby_users.pluck(:id))</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="21">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="21">
+          <span class="hits">2</span>
           
           <code class="ruby">    events = events.by_categories(params[:categories]) if params[:categories]</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="22">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="22">
+          <span class="hits">2</span>
           
           <code class="ruby">    events</code>
         </li>
@@ -3979,8 +3979,8 @@
           <code class="ruby">  def nearby_compatible_users(radius=10)</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="42">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="6" data-linenumber="42">
+          <span class="hits">6</span>
           
           <code class="ruby">    User.where{ id.in my{ nearby_compatible_user_details(radius).pluck(:user_id) } }</code>
         </li>
@@ -4369,8 +4369,8 @@
           <code class="ruby">  def nearby_compatible_user_details(radius=10)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="33">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="33">
+          <span class="hits">2</span>
           
           <code class="ruby">    compatible_user_details.near(zipcode, radius)</code>
         </li>
@@ -4393,8 +4393,8 @@
           <code class="ruby">  def compatible_user_details</code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="37">
-          <span class="hits">19</span>
+        <li class="covered" data-hits="18" data-linenumber="37">
+          <span class="hits">18</span>
           
           <code class="ruby">    lookup = {</code>
         </li>
@@ -4447,8 +4447,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="46">
-          <span class="hits">19</span>
+        <li class="covered" data-hits="18" data-linenumber="46">
+          <span class="hits">18</span>
           
           <code class="ruby">    UserDetail.where(lookup[gender_orientation_array])</code>
         </li>
@@ -4471,8 +4471,8 @@
           <code class="ruby">  def gender_orientation_array</code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="50">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="49" data-linenumber="50">
+          <span class="hits">49</span>
           
           <code class="ruby">    [ gender, gender_preference ]</code>
         </li>
@@ -4651,14 +4651,14 @@
           <code class="ruby">  def image</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="80">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="80">
+          <span class="hits">6</span>
           
           <code class="ruby">    self.gender ||= &quot;male&quot;</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="81">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="81">
+          <span class="hits">6</span>
           
           <code class="ruby">    image_url.blank? ? &quot;/assets/default_#{gender.downcase}_250.png&quot; : image_url</code>
         </li>

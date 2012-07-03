@@ -1,7 +1,7 @@
 Geocoder.configure do |config|
 
   # geocoding service (see below for supported options):
-  # config.lookup = :yahoo
+  config.lookup = :yahoo
 
   # to use an API key:
   # config.api_key = "..."
