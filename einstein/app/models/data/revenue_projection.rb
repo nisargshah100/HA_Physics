@@ -9,7 +9,8 @@ class RevenueProjection
   # Multiply by the seconds left for the deal
   def self.compute_for_deal(deal)
     revenue = DealAnalysis.revenue_for_deal(deal)
-    velocity = (revenue.to_f / 100) / (deal.end_date.to_i - DateTime.now.to_i)
+    # velocity = (revenue.to_f / 100) / (deal.end_date.to_i - DateTime.now.to_i)
+    velocity = (revenue.to_f / 100) / (DateTime.now.to_i - deal.date_added.to_i)
 
     if deal.end_date and deal.end_date > DateTime.now and not deal.sold_out
       seconds_left = deal.end_date.to_i - DateTime.now.to_i

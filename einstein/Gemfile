@@ -24,3 +24,4 @@ gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'classifier'
 gem 'chronic'
+gem 'simplecov', :require => false, :group => :test
