@@ -24,6 +24,7 @@ gem 'kaminari'
 gem 'money-rails'
 gem 'jquery-rails'
 gem 'fancybox-rails', :git => 'https://github.com/sverigemeny/fancybox-rails'
+gem 'lazy_susan'
 
 # gem 'mongoid'
 
