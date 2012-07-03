@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
   def instagram_account
     authentications.where(provider: "instagram").first
   end
+
+  def all_messages
+    Message.where{ (sender_id.eq my{ id }) | (recipient_id.eq my{ id }) }
+  end
 end

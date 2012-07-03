@@ -1,6 +1,31 @@
+<%= content_tag "div", class: "profile_meta", data:{id: "#{@message.sender.id}"} do %><% end %>
+
 <div id="messages">
+  <% @messages.each do |message| %>
+    <div class="row-fluid">
+      <div class='well span10 message message_<%= "#{message.status}" %>'>
+        <div class="message_profile_img_thumb span2">
+          <a href='<%= "#{profile_path(message.sender.slug)}" %>'>
+            <img class="message_profile_img_thumb" src=<%= "#{message.sender.image || ''}" %>></img>
+          </a>
+        </div>
+        <div class="span6 message_body">
+          <p class="message_display_name"><%= message.sender.display_name %></a>
+          <p><%= message.body %></p>
+        </div>
+        <div class="span4 pull-right" style="text-align:right;">
+          <p><%= "#{message.pretty_time}" %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-<script>
-  new App.MessagesShow();
+<p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
+
+<div class="modal hide" id="message_modal">
+</div>
+
+<script type="text/javascript">
+  new App.MessagesNew({ el: "#app" })
 </script>

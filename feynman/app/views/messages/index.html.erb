@@ -4,8 +4,8 @@
 <script>
   new App.MessagesIndex();
 
-  $(".message_body").live("click", function(){
-    window.location=$(this).find("a").attr("href"); 
+  $(".message").live("click", function(){
+    window.location=$(this).find("a.show_message").attr("href"); 
     return false;
   });
 

@@ -2,10 +2,12 @@
   <span class="brand" href="/">daily<span class="brand_bold">dates</span></span>
   <p class="brand_subtitle">dating done right.</p>
   <div class="splash_blurb">
-    DailyDates is a social club that matches people on dates through shared interests in awesome experiences. Sounds like fun?
+    DailyDates is a social club that matches people on dates through shared interests in awesome experiences. Sound like fun?
     <br />
   </div>
   <%= link_to "Get started", "#", :class => "btn btn-primary", :id => "new_user_btn"%>
+  <p id="sign_in_link"><%= link_to "Already a User?", new_user_session_path, :id => "user_signin"%></p>
+
   <div class="modal hide" id="new_user_modal">
   </div>
 </div>  
@@ -15,6 +17,12 @@
 </script>
 
 <style>
+#sign_in_link {
+  padding-top: 30px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
 #new_user_modal {
   text-align: left;
   position:fixed;
@@ -32,7 +40,6 @@
 
 
 #new_user_btn {
-  margin-left:-40px;
   font-size:2em;
   padding: 20px 20px;
 }
