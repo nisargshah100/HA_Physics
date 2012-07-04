@@ -1,5 +1,14 @@
+#new_user > .control-group > .control-label {
+  width: 100px;
+}
+
+#new_user > .control-group > .controls {
+  margin-left: 120px;
+}
+
 p.signup_form {
   font-size: 1.25em;
+  margin-bottom: 20px;
 }
 
 select {
@@ -42,6 +51,11 @@ label {
 #user_birthday_2i {
   width: 150px;
 }
+
+#user_birthday_3i {
+  width: 80px;
+}
+
 
 .field_with_errors {
   width: 100px;

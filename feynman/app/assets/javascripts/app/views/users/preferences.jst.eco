@@ -1,5 +1,11 @@
-<button type="button" class="close" data-dismiss="modal">×</button>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <div class="modal_header_content_wrapper">
+      <h3>Getting started...</h3>
+    </div>
+</div>
 <div class="modal-body">
+  <div class="modal-body-errors"></div>
   <form accept-charset="UTF-8" action="#" class="form-horizontal" id="new_user_detail" method="post">
     <p class="signup_form">I'm a 
       <select class="gender" id="user_detail_gender" name="gender">
@@ -21,8 +27,8 @@
       near 
       <input class="zip" id="user_detail_zipcode" name="zipcode" placeholder="zip" size="30" type="text" value="<%= @user_preferences.zipcode if @user_preferences %>" />
     </p>
-    <div class="modal-footer">
-      <p><input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" /></p>
-    </div>
   </form>
+</div>
+<div class="modal-footer">
+  <p><input class="btn btn-primary btn-large" id="new_user_detail" name="commit" type="submit" value="Continue" /></p>
 </div>

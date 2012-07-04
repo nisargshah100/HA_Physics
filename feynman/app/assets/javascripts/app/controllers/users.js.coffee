@@ -4,8 +4,8 @@ class App.UsersNew extends Spine.Controller
 
   events:
     "click #new_user_btn" : "renderPreferencesForm"
-    "submit #new_user_detail" : "renderPersonalDetailsForm"
-    "click #signup_back" : "goBack"
+    "click input#new_user_detail" : "renderPersonalDetailsForm"
+    "click input#signup_back" : "goBack"
 
   renderPreferencesForm: (e) =>
     e.preventDefault()
@@ -20,15 +20,17 @@ class App.UsersNew extends Spine.Controller
 
   renderPersonalDetailsForm: (e) =>
     e.preventDefault()
-    user_detail = UserDetail.fromForm(e.target)
+    user_detail = UserDetail.fromForm($('form#new_user_detail'))
     if msg = user_detail.validate()
-      $("#new_user_modal").html @preferencesForm()
+      @log msg
+      $(".modal-body-errors").html @view('shared/errors')(msg)
+      $("div.hide").fadeIn('fast')
     else
-      $("#new_user_modal").html @personalDetailsForm(user_detail) # XXX ASK HOW TO BIND TO HTML LOAD
+      $("#new_user_modal").html @personalDetailsForm(user_detail)
 
   preferencesForm: (user_preferences="{}") =>
     @user_preferences = JSON.parse(user_preferences)
-    @view('users/preferences')(@) # XXX ASK HOW TO CONDITIONALLY BRING BACK OLD FORM ELEMENTS.
+    @view('users/preferences')(@)
 
   personalDetailsForm: (user_preferences) =>
     @user_preferences_json = JSON.stringify(user_preferences)
@@ -40,4 +42,4 @@ class App.UsersNew extends Spine.Controller
       image_url: $('.active').data('image')['url'], 
       width: $('.active').data('image')['width'], 
       height: $('.active').data('image')['height']
-      }).save()
+    }).save()

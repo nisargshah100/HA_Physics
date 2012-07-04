@@ -7,9 +7,10 @@ class App.UserDetail extends Spine.Model
     # url = "/api/v1/messages.json?token=#{@token}"
 
   validate: ->
-    "Gender is required" unless @gender
-    "Gender preference is required" unless @gender_preference
-    "Zipcode is required" unless @zipcode
+    errors = []
+    errors.push "Please enter a zipcode" unless @zipcode
+    errors.push "Zipcode must be 5 digits" unless @zipcode.match(/^\d{5}$/)
+    errors unless errors.length == 0
 
 window.UserDetail = App.UserDetail
 

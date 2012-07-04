@@ -1,0 +1,16 @@
+.modal {
+  text-align: center;
+}
+
+.modal-body {
+  padding: 20px 0px 0px 0px !important;
+  margin: 0 auto; 
+  width: 500px;
+  text-align: left;
+}
+
+.modal_header_content_wrapper {
+  margin: 0 auto; 
+  width: 500px;
+  text-align: left;
+}

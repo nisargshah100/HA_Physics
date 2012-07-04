@@ -8,3 +8,9 @@
     </div>
   </div>
 <% end %>
+
+<% unless @events.length > 0: %>
+  <div class="event_container row-fluid span12">
+    You have no events yet! Click <a href="/events/new">here</a> to post a date.
+  </div>
+<% end %>
