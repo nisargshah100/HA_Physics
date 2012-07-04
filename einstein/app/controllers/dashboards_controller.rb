@@ -20,6 +20,7 @@ class DashboardsController < ApplicationController
 
   def projected_revenue
     deals = Deal.where(:source => "LivingSocial")
+
     if params[:q].blank?
       revenue = JSON.parse(DealAnalysis.last.top_projected_revenue)
     else
@@ -33,7 +34,7 @@ class DashboardsController < ApplicationController
 
   def deal_probability
     term, time, loc = params[:term], Chronic.parse(params[:time]), params[:loc]
-    deals = Deal.where(:title => /#{term}/i, :division_name => /#{loc}/i, :source => "LivingSocial")
+    deals = Deal.where(:source => 'LivingSocial').by_term(term).by_division(loc)
 
     render :json => {
       :analysis => DealRunProbability.compute(deals, time.to_date),

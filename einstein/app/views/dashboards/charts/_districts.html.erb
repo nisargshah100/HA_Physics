@@ -1,0 +1,28 @@
+
+<script id="districts-data-table" type="text/x-handlebars-template">
+  <p class='alert alert-info'>
+    Highest earning districts by revenue
+  </p>
+
+  <ul id='ddtabs' class="nav nav-tabs">
+    <li class='active'><a href="#dg" data-toggle="tab">Top 10</a></li>
+    <li><a href="#dt" data-toggle="tab">Data</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="dg">
+    </div>
+    <div class='tab-pane' id='dt'>
+      <table class='table table-bordered'>
+        {{#each data}}
+          <tr>
+            <td>
+              <b>{{district}}</b><br />
+              ${{revenue}}
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</script>

@@ -1,0 +1,28 @@
+<script type="text/x-handlebars-template" id='deal_probability_template'>
+  <p class='alert alert-info'>
+    The probability of a deal occuring within at some time that belongs
+    to a certain category. It can be filtered by location. <br />
+    Ex/ Is there going to be a beer deal tomorrow in dc?
+  </p>
+
+  <form class="well form-search" id='deal_probability_template_form'>
+    What is the chance of <input type="text" id='dpt_cat' class="input-small category-typeahead" placeholder='Deal term'> deal occuring <input type='text' id='dpt_date' class='input-small' placeholder='Date' /> in <input type='text' id='dpt_loc' class='input-small division-typeahead' placeholder='Location' />
+    <button type="submit" class="btn">Compute</button>
+  </form>
+
+  <div id='deal_probability_template_search'></div>
+
+  <script>
+    $.get('/divisions', function (data) {
+      $('.division-typeahead').typeahead({
+        source: data
+      });
+    });
+
+    // $.get('/categories', function (data) {
+    //   $('.category-typeahead').typeahead({
+    //     source: data
+    //   });
+    // });
+  </script>
+</script>
