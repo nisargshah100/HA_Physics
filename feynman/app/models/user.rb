@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def nearby_compatible_users(radius=10)
-    User.where{ id.in my{ UserDetail.nearby_compatible_user_details(radius).pluck(:user_id) } }
+    User.where{ id.in my{ nearby_compatible_user_details(radius).pluck(:user_id) } }
   end
 
   def age
