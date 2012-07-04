@@ -6,7 +6,8 @@ class UserDetail < ActiveRecord::Base
     :exercise_level, :drinking_level, :smoking_level, :city, :state, :country
 
   validates :zipcode, :format => { :with => /^[0-9]{5}$/, :message => "must be 5 digits" }
-
+  validates_uniqueness_of :user_id
+  
   geocoded_by :zipcode
 
   GENDER_ORIENTATION = { "straight guys"  => [ "male", "women" ],
