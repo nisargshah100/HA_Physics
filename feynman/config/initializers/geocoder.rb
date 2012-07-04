@@ -13,6 +13,6 @@ Geocoder.configure do |config|
   config.units = :mi
 
   # caching (see below for details):
-  # config.cache = Redis.new()
-  # config.cache_prefix = "geocoder:"
+  config.cache = Redis.new()
+  config.cache_prefix = "geocoder:"
 end
