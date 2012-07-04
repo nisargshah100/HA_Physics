@@ -7,12 +7,12 @@ class Event < ActiveRecord::Base
   belongs_to :deal
 
   def self.created_by(user_id)
-    user = User.find_by_id(user_id)
-    user.events if user
+    events = created_by_users([ user_id ])
+    events.blank? ? nil : events
   end
 
   def self.created_by_users(user_id_array)
-    Event.where{ user_id.in( user_id_array ) }
+    where{ user_id.in( user_id_array ) }
   end
 
   def self.filter_by(user, params=nil)

@@ -18,4 +18,13 @@ class Api::V1::EventsController < ApiController
       render :json => false, :status => :not_created
     end
   end
+
+  def update
+    event = current_user.events.find_by_id(params["id"])
+    if event.update_attribute(:status, "inactive")
+      render :json => true, :status => :created
+    else
+      render :json => false, :status => :not_created
+    end
+  end
 end

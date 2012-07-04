@@ -23,12 +23,22 @@ describe 'Signing up from the home page', :js => true  do
         page.should have_selector("#user_detail_zipcode")
       end
 
+      describe "When I don't fill out the preference information and click continue" do
+        before(:each) do
+          find("input#new_user_detail").click
+        end
+
+        it "shows me an error telling me I am missing elements" do
+          page.should have_selector(".alert-error")
+        end
+      end
+
       describe "When I fill out the preference information and click continue" do
         before(:each) do
           select  "male",    from: "user_detail_gender"
           select  "women",   from: "user_detail_gender_preference"
           fill_in "user_detail_zipcode", with: "20036"
-          find("#signup_continue").click
+          find("input#new_user_detail").click
         end
 
         it "should take me to a user account information form" do

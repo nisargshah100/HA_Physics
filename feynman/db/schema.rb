@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703062343) do
+ActiveRecord::Schema.define(:version => 20120704032254) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -67,9 +67,10 @@ ActiveRecord::Schema.define(:version => 20120703062343) do
     t.string   "deal_id"
     t.integer  "user_id"
     t.datetime "date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "description"
+    t.string   "status",      :default => "active"
   end
 
   add_index "events", ["deal_id", "user_id"], :name => "index_events_on_deal_id_and_user_id"

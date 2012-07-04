@@ -13,9 +13,8 @@ describe Event do
         let(:event) { FactoryGirl.build(:event) }
         it "should return all events owned by the user" do
           user = double
-          user.should_receive(:events).and_return([event])
+          Event.should_receive(:created_by_users).with([1]).and_return([event])
 
-          User.should_receive(:find_by_id).with(1).and_return(user)
           Event.created_by(1).should == [event]
         end
       end
