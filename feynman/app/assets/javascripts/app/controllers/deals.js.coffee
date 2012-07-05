@@ -29,7 +29,7 @@ class App.DealsIndex extends Spine.Controller
                 },
           success: (response) =>
             $("#deals").html @template(response)
-      }) 
+    }) 
 
   newEventForm: (deal) =>
     @deal_id = deal.dealId

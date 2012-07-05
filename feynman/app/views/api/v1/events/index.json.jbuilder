@@ -1,5 +1,5 @@
 json.array!(@events) do |json, event|
-  json.(event, :source, :deal_id, :description, :user_id, :date)
+  json.(event, :id, :source, :deal_id, :description, :user_id, :date, :status)
   json.user do |json|
     json.url profile_path(event.user.slug)
     json.user_id event.user.id

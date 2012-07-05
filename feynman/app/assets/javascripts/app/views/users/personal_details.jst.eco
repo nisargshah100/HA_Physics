@@ -181,10 +181,10 @@
       </div>
       <input id="user_user_preferences" name="user[user_preferences]" type="hidden" value='<%= "#{@user_preferences_json}" %>' />
   </div>
+</form>
   <div class="modal-footer">
     <p>
       <input class="btn btn-primary btn-large" id="signup_back" name="back_button" type="submit" value="Back" />
-      <input class="btn btn-primary btn-large" id="signup_continue" name="commit" type="submit" value="Continue" />
+      <input class="btn btn-primary btn-large" id="submit_new_user" name="commit" type="submit" value="Continue" />
     </p>
   </div>
-</form>

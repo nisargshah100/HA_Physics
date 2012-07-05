@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :source, :deal_id, :description, :user_id, :date
+  attr_accessible :source, :deal, :deal_id, :description, :user_id, :user, :date
 
   # DELETE DESCRIPTION_LONG, probably.
   validates_presence_of :user_id
@@ -7,8 +7,7 @@ class Event < ActiveRecord::Base
   belongs_to :deal
 
   def self.created_by(user_id)
-    events = created_by_users([ user_id ])
-    events.blank? ? nil : events
+    created_by_users([ user_id ])
   end
 
   def self.created_by_users(user_id_array)
@@ -25,5 +24,13 @@ class Event < ActiveRecord::Base
   def self.by_categories(categories, events=Event)
     deals = Deal.where{ category.like_any my{ categories } }
     where{ deal_id.in ( deals.select{ original_id } ) }
+  end
+
+  def self.active
+    where(status: "active")
+  end
+
+  def set_to_inactive
+    update_attribute(:status, "inactive")
   end
 end

@@ -1,14 +1,12 @@
 class Api::V1::EventsController < ApiController
-  before_filter :authenticate, :only => [:create, :index]
+  before_filter :authenticate, :only => [:create, :index, :update]
 
   def index
     if params[:user_id]
-      @events = Event.created_by(params[:user_id])
+      @events = Event.created_by(params[:user_id]).active
     else
-      @events = Event.filter_by(current_user, params)
+      @events = Event.filter_by(current_user, params).active
     end
-    
-    render :json => false, :status => :not_found unless @events
   end
 
   def create
@@ -21,7 +19,7 @@ class Api::V1::EventsController < ApiController
 
   def update
     event = current_user.events.find_by_id(params["id"])
-    if event.update_attribute(:status, "inactive")
+    if event.set_to_inactive
       render :json => true, :status => :created
     else
       render :json => false, :status => :not_created

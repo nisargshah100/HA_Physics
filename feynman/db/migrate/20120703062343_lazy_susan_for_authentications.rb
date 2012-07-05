@@ -4,7 +4,6 @@ class LazySusanForAuthentications < ActiveRecord::Migration
     add_index :authentications, :user_id
     add_index :authentications, :last_status_id
     add_index :authentications, :authentication_id
-    add_index :deals, :id
     add_index :deals, :original_id
     add_index :events, :id
     add_index :events, :deal_id
@@ -21,5 +20,8 @@ class LazySusanForAuthentications < ActiveRecord::Migration
     add_index :user_details, :id
     add_index :user_details, :user_id
     add_index :users, :id
+    add_index :users, :slug
+    add_index :users, :display_name
+    add_index :users, :email
   end
 end

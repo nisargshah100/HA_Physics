@@ -14,14 +14,14 @@ class App.MessagesIndex extends Spine.Controller
 class App.MessagesNew extends Spine.Controller
   constructor: -> 
     super
-    @log @el
 
   events:
     "click #open_message_modal" : "renderForm"
     "submit .new_message"       : "sendMessage"
 
   renderForm: (e) =>
-    $("#message_modal").html @form()    
+    recipient_id = $(e.target).data('user-id')
+    $("#message_modal").html @form(recipient_id)
 
   sendMessage: (e) =>
     e.preventDefault()
@@ -34,6 +34,5 @@ class App.MessagesNew extends Spine.Controller
     $("#message_body").val("")
     $("#message_modal").modal("hide")
 
-  form: =>
-    @recipient_id = $(".profile_meta").data("id")
-    @view('messages/new')(@)
+  form: (recipient_id) =>
+    @view('messages/new')(recipient_id)

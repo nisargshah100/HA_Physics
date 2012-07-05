@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider,
     :uid, :oauth_access_token, :display_name, :birthday
 
-  attr_accessor :back
+  attr_accessor :login
 
   has_one :user_detail, :dependent => :destroy, :autosave => true
   has_many :events, :dependent => :destroy
@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     :drinking_level, :smoking_level, :location, :complete?, :height, 
     :objective_pronoun, :latitude, :longitude, :city, :state, :country,
     :compatible_user_details, :nearby_compatible_user_details
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(display_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
 
   def self.create_user_with_detail(user_params, user_detail_params)
     User.create(user_params).tap do |user|

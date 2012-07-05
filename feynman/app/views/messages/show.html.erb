@@ -1,5 +1,3 @@
-<%= content_tag "div", class: "profile_meta", data:{id: "#{@message.sender.id}"} do %><% end %>
-
 <div id="messages">
   <% @messages.each do |message| %>
     <div class="row-fluid">
@@ -21,7 +19,7 @@
   <% end %>
 </div>
 
-<p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
+<p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal" data-user-id=<%= "#{@message.sender.id}" %>>Message</a></p>
 
 <div class="modal hide" id="message_modal">
 </div>

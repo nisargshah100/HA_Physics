@@ -23,7 +23,7 @@ class Newton
   end
 
   def self.save_entry(deal_params)
-    deal = Deal.find_by_id(deal_params["original_id"])
+    deal = Deal.find_by_original_id(deal_params["original_id"])
     if not deal
       deal = Deal.create!(deal_params)
       puts "Deal saved! #{deal.title}"

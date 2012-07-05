@@ -27,6 +27,7 @@ gem 'fancybox-rails', :git => 'https://github.com/sverigemeny/fancybox-rails'
 gem 'lazy_susan'
 gem 'seed_dump'
 gem 'redis'
+gem 'faker'
 
 # gem 'mongoid'
 

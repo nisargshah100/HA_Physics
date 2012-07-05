@@ -24,11 +24,12 @@ Feynman::Application.routes.draw do
     namespace :v1 do
       resources :authentications, :only => [:index]
       resources :messages, :only => [:index, :show, :create]
-      resources :events, :only => [:index, :create]
+      resources :events, :only => [:index, :create, :update]
       resources :images, :only => [:create, :index]
       resources :deals, :only => [:index]
       match 'user_details/jeditable/:id' => 'user_details#jeditable', :as => 'jeditable', :via => :put
       resources :user_details, :only => [:update]
+      resources :user_validators, :only => [:create]
     end
   end
 

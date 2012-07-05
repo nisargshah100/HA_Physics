@@ -5,9 +5,9 @@
 <form accept-charset="UTF-8" action="/messages" class="new_message" id="new_message" method="post">
   <div class="modal-body">
     <textarea id="message_body" name="message[body]" cols="80" rows="5"></textarea>
-    <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="<%= @recipient_id %>" />
+    <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="<%= @ %>" />
   </div>
   <div class="modal-footer">
-    <input name="commit" type="submit" class="btn btn-large btn-default" value="Send Message" />
+    <input name="commit" type="submit" class="btn btn-large btn-primary" value="Send Message" />
   </div>
 </form>
