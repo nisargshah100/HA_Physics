@@ -1,11 +1,11 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">×</button>
-  <h3>Send message</h3>
+  <h3>Send message to <%="#{@display_name}"%></h3>
 </div>
 <form accept-charset="UTF-8" action="/messages" class="new_message" id="new_message" method="post">
   <div class="modal-body">
     <textarea id="message_body" name="message[body]" cols="80" rows="5"></textarea>
-    <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="<%= @ %>" />
+    <input id="message_recipient_id" name="message[recipient_id]" type="hidden" value="<%= @id %>" />
   </div>
   <div class="modal-footer">
     <input name="commit" type="submit" class="btn btn-large btn-primary" value="Send Message" />

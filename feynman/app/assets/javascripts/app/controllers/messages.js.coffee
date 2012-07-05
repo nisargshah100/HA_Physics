@@ -20,8 +20,9 @@ class App.MessagesNew extends Spine.Controller
     "submit .new_message"       : "sendMessage"
 
   renderForm: (e) =>
-    recipient_id = $(e.target).data('user-id')
-    $("#message_modal").html @form(recipient_id)
+    @id = $(e.target).data('user-id')
+    @display_name = $(e.target).data('display-name')
+    $("#message_modal").html @view('messages/new')(@)
 
   sendMessage: (e) =>
     e.preventDefault()
@@ -33,6 +34,3 @@ class App.MessagesNew extends Spine.Controller
     @log message
     $("#message_body").val("")
     $("#message_modal").modal("hide")
-
-  form: (recipient_id) =>
-    @view('messages/new')(recipient_id)

@@ -31,7 +31,7 @@
       </div>
       <div class="span2 event_action">
         <p></p>
-        <a class="btn btn-primary btn-medium" id="open_message_modal" data-toggle="modal" href="#message_modal" data-user-id=<%= "#{event.user.user_id}" %>>Message</a></p>
+        <a class="btn btn-primary btn-medium" id="open_message_modal" data-toggle="modal" href="#message_modal" data-user-id=<%= "#{event.user.user_id}" %> data-display-name=<%= "#{event.user.display_name}" %>>Message</a></p>
       </div>
     </div>
   </div>
