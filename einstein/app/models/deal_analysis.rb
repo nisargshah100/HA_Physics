@@ -13,12 +13,19 @@ class DealAnalysis
 
   field :top_projected_revenue
 
+  field :divisions
+
   def self.compute
     analysis = DealAnalysis.new
     analysis.compute_deal_velocity
     analysis.compute_top_districts
     analysis.compute_top_projected_revenue
+    analysis.compute_divisions
     analysis.save()
+  end
+
+  def compute_divisions
+    self.divisions = Deal.where(:source => 'LivingSocial').select { |d| d.division_name != nil }.map { |d| d.division_name }.uniq.sort_by { |d| d }
   end
 
   def compute_top_projected_revenue
