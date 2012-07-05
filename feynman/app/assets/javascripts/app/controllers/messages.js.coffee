@@ -26,7 +26,7 @@ class App.MessagesNew extends Spine.Controller
 
   sendMessage: (e) =>
     e.preventDefault()
-    # message = App.Message.fromForm(e.target).save()
+    recipient_display_name = $('.recipient_display_name').html()
     message = new App.Message({ 
                                 body: $("#message_body").val(),
                                 recipient_id: $("#message_recipient_id").val()
@@ -34,3 +34,6 @@ class App.MessagesNew extends Spine.Controller
     @log message
     $("#message_body").val("")
     $("#message_modal").modal("hide")
+
+    $("#alert-bar").addClass('alert-success').text('Your message to ' + recipient_display_name + ' has been sent!').hide()
+    $("#alert-bar").slideDown().delay(3000).slideUp()

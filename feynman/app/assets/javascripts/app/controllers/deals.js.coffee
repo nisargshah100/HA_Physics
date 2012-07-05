@@ -48,4 +48,4 @@ class App.DealsIndex extends Spine.Controller
     $("#event_modal").modal("hide")
 
     $("#alert-bar").addClass('alert-success').text('Congratulations on posting your date!').hide()
-    $("#alert-bar").slideDown().delay(5000).slideUp()
+    $("#alert-bar").slideDown().delay(3000).slideUp()
