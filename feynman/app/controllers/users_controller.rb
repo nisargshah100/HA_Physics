@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @user = User.find_by_slug(params[:slug])
+    @user = User.find_by_slug(params[:slug].downcase)
     @events = @user.events
     @message = Message.new
     @location = "user_profile"

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   before_save :ensure_slug
 
-  validates_uniqueness_of :display_name
+  validates_uniqueness_of :display_name, :case_sensitive => false
   validates :display_name, :format => { :with => /^[a-z0-9]+$/i, :message => "can only contain numbers and letters" }
   validate :uniqueness_of_slug 
 

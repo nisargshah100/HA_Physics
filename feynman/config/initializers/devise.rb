@@ -208,7 +208,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   if Rails.env.production?
-    config.omniauth :instagram, "f311d38ab7fc4784aa09075e5c03a7dd", "9ff4337826864251aee1f678fd333c71"
+    config.omniauth :instagram, ENV["FEYNMAN_INSTAGRAM_APP_ID"], ENV["FEYNMAN_INSTAGRAM_SECRET_ID"]
   else
     config.omniauth :instagram, "20298a13d8404b5da50887561cd0f228", "2372a50989304d4a9375ba5a1e0536d3"
   end
