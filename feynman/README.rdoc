@@ -1,4 +1,5 @@
 == Feynman
+DailyDates (www.thedailydate.com) is a dating website that revolves around daily deals. The site's purpose is to introduce users to new experiences while introducing them to new people in the process.
 
 == Getting Started
 
@@ -8,3 +9,7 @@
 2. bundle install
 
 3. To run tests: bundle exec rspec spec
+
+== Other Requirements
+
+Instagram authentication needs a client id and a secret. Two environment variables need to be set: "FEYNMAN_INSTAGRAM_APP_ID", "FEYNMAN_INSTAGRAM_SECRET_ID" and are accessed in the config/initializers/devise.rb file.
