@@ -1,9 +1,12 @@
 <% for event in @events: %>
-  <div class="event_container row-fluid span12">
+  <div class="event_container row-fluid">
     <div class="event">
-      <div class="event_description_container">
+      <div class="event_description_container span8">
         <span class="event_letsgo">Let's go...</span>
         <span class="event_description"><%= event.description %></span>
+      </div>
+      <div class="event_description_container span4">
+        <a href="#" class="remove_date" data-id="<%= event.id %>">Take date out of play</a>
       </div>
     </div>
   </div>

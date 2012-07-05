@@ -7,7 +7,7 @@
           <a class="btn btn-primary btn-large profile_action" data-toggle="modal" id="link-instagram" href=<%="#{user_omniauth_authorize_path(:instagram)}"%>>Link to Instagram</a>
         <% end %>
       <% else %>
-        <p><a class="btn btn-primary btn-large profile_action" id="open_message_modal" data-toggle="modal" href="#message_modal">Message</a></p>
+        <p><a class="btn btn-primary btn-medium" id="open_message_modal" data-toggle="modal" href="#message_modal" data-user-id=<%= "#{user.id}" %> data-display-name=<%= "#{user.display_name}" %>>Message</a></p>
         <!-- <p><a class="btn btn-primary btn-large profile_action">Ask <%= "#{@user.objective_pronoun}" %> out</a></p>
         <p><a class="btn btn-info btn-large profile_action">Favorite</a></p> -->
       <% end %>

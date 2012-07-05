@@ -65,8 +65,11 @@ class App.ImagesIndex extends Spine.Controller
 
   render: =>
     @images = Photo.all()
-    for image in @images
-      @addImage(image)
+    if @images.length == 0
+      $('#image_thumbnails').html @view('images/no_images')
+    else
+      for image in @images
+        @addImage(image)
 
   renderOne: (data) =>
     @addImage(data.image)

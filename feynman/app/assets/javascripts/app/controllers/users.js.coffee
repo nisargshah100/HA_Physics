@@ -6,6 +6,37 @@ class App.UsersNew extends Spine.Controller
     "click #new_user_btn" : "renderPreferencesForm"
     "click input#new_user_detail" : "renderPersonalDetailsForm"
     "click input#signup_back" : "goBack"
+    "blur #user_display_name" : "checkDisplayName"
+    "blur #user_email" : "checkEmail"
+    "click #submit_new_user" : "submitForm"
+
+  checkDisplayName: (e) =>
+    if $('input#user_display_name').val()
+      $.ajax({
+            type: "POST",
+            url: "/api/v1/user_validators",
+            data: { display_name: $('input#user_display_name').val() },
+            success: (response) =>
+              if response.length > 0
+                $(".modal-body-errors").html @view('shared/errors')(response)
+                $("div.hide").fadeIn('fast')
+              else
+                $(".modal-body-errors").html("")
+      })
+
+  checkEmail: (e) =>
+    if $('input#user_email').val()
+      $.ajax({
+            type: "POST",
+            url: "/api/v1/user_validators",
+            data: { email: $('input#user_email').val() },
+            success: (response) =>
+              if response.length > 0
+                $(".modal-body-errors").html @view('shared/errors')(response)
+                $("div.hide").fadeIn('fast')
+              else
+                $(".modal-body-errors").html("")
+      })
 
   renderPreferencesForm: (e) =>
     e.preventDefault()
@@ -22,7 +53,6 @@ class App.UsersNew extends Spine.Controller
     e.preventDefault()
     user_detail = UserDetail.fromForm($('form#new_user_detail'))
     if msg = user_detail.validate()
-      @log msg
       $(".modal-body-errors").html @view('shared/errors')(msg)
       $("div.hide").fadeIn('fast')
     else
@@ -36,10 +66,22 @@ class App.UsersNew extends Spine.Controller
     @user_preferences_json = JSON.stringify(user_preferences)
     @view('users/personal_details')(@)
 
-  saveImage: (e) =>
-    e.preventDefault()
-    new App.Photo({ 
-      image_url: $('.active').data('image')['url'], 
-      width: $('.active').data('image')['width'], 
-      height: $('.active').data('image')['height']
-    }).save()
+  submitForm: (e) =>
+    @log "HI"
+    email = $('input#user_email').val()
+    display_name = $('input#user_display_name').val()
+
+    $.ajax({
+          type: "POST",
+          url: "/api/v1/user_validators",
+          data: { 
+                  email: email,
+                  display_name: display_name
+                },
+          success: (response) =>
+            if response.length > 0 || !display_name || !email
+              $(".modal-body-errors").html @view('shared/errors')(response) if response.length > 0
+              $("div.hide").fadeIn('fast')
+            else
+              $('form#new_user').submit()
+    })

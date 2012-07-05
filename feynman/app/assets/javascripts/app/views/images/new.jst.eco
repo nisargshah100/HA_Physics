@@ -1,6 +1,9 @@
-      <button type="button" class="close" data-dismiss="modal">×</button>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Choose pictures to add to your profile:</h3>
+      </div>
       <form accept-charset="UTF-8" action="/api/v1/images" class="new_image" id="new_image" method="post">
-        <div class="modal-body">
+        <div class="modal-body new-image-modal-body">
           <div id="myCarousel" class="carousel">
             <div class="carousel-inner image_preview_carousel">
               <% for object in @objects: %>
@@ -35,4 +38,5 @@
     margin: 0 auto !important;
     position: relative;
   }
+
 </style>

@@ -13,7 +13,7 @@
         <span class="event_description"><%= event.description %></span>
       </div>
 
-      <div class="span4 event_description_container">
+      <div class="span4 event_deal_description_container">
         <div>
           <a href="<%= event.deal.original_url %>"><%= event.deal.subtitle %></a>
           <p class="deal_value">$<%= event.deal.value %></p><p class="deal_price">$<%= event.deal.price %></p>
@@ -22,11 +22,27 @@
     </div>
 
     <div class="row-fluid event_user_container span12">
-      <a href='<%= "#{event.user.url}" %>'>
-        <p class="event_display_name"><%= event.user.display_name %></p>
-        <p class="event_user_details"><%= "#{event.user.age}, #{event.user.gender}, #{event.user.orientation}" %></p>
-        <p class="event_user_details"><%= "#{event.user.location}" %></p>
-      </a>
+      <div class="span10">
+        <a href='<%= "#{event.user.url}" %>'>
+          <p class="event_display_name"><%= event.user.display_name %></p>
+          <p class="event_user_details"><%= "#{event.user.age}, #{event.user.gender}, #{event.user.orientation}" %></p>
+          <p class="event_user_details"><%= "#{event.user.location}" %></p>
+        </a>
+      </div>
+      <div class="span2 event_action">
+        <p></p>
+        <a class="btn btn-primary btn-medium" id="open_message_modal" data-toggle="modal" href="#message_modal" data-user-id=<%= "#{event.user.user_id}" %> data-display-name=<%= "#{event.user.display_name}" %>>Message</a></p>
+      </div>
     </div>
   </div>
 <% end %>
+
+<style>
+  .event_action {
+    text-align: right;
+  }
+
+  .event_deal_description_container {
+    text-align: right;
+  }
+</style>

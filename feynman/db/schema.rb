@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20120704032254) do
   add_index "authentications", ["last_status_id"], :name => "index_authentications_on_last_status_id"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
-  create_table "deals", :force => true do |t|
-    t.string   "original_id"
+  create_table "deals", :id => false, :force => true do |t|
+    t.string   "original_id",                             :null => false
     t.datetime "date_added"
     t.datetime "end_date"
     t.integer  "price_cents"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(:version => 20120704032254) do
     t.integer  "last_purchase_count"
   end
 
-  add_index "deals", ["id"], :name => "index_deals_on_id"
   add_index "deals", ["original_id"], :name => "index_deals_on_original_id"
 
   create_table "events", :force => true do |t|
@@ -163,15 +162,5 @@ ActiveRecord::Schema.define(:version => 20120704032254) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "zips", :id => false, :force => true do |t|
-    t.string   "code",       :null => false
-    t.string   "city"
-    t.string   "state"
-    t.decimal  "lat"
-    t.decimal  "lon"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end

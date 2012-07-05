@@ -20,8 +20,8 @@ class UserDetail < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude do |user_detail, results|
     if geo = results.first
       user_detail.city    = geo.city
-      user_detail.state   = geo.state
-      user_detail.country = geo.country
+      user_detail.state   = geo.state_code
+      user_detail.country = geo.country_code
     end
   end
 
