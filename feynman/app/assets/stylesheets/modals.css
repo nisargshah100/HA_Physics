@@ -14,3 +14,11 @@
   width: 500px;
   text-align: left;
 }
+
+.modal-header {
+  text-align: left;
+}
+
+#image_preview_modal {
+  padding: 0px;
+}

@@ -46,11 +46,6 @@ img.profile_img_thumb {
   border-top: 1px solid #CCC;
 }
 
-#image_preview_modal {
-  width: 450px;
-  padding: 0px;
-}
-
 .carousel {
   margin: 10px 0px;
 }
